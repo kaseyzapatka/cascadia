@@ -37,11 +37,11 @@ PAL_GI <- c(
   "Not significant"      = "#e8e6e1",
   "Cold spot"            = "#7096c0"
 )
-LBL_GI <- c("Capacity cluster — 99% confidence",
-            "Capacity cluster — 95% confidence",
-            "Capacity cluster — 90% confidence",
+LBL_GI <- c("Very strong cluster (99% confidence)",
+            "Strong cluster (95% confidence)",
+            "Moderate cluster (90% confidence)",
             "No significant clustering",
-            "Low-capacity cluster")
+            "Cluster of low capacity")
 hexes_ll$col <- unname(PAL_GI[as.character(hexes_ll$gi_class)])
 
 map <- leaflet(options = leafletOptions(minZoom = 11)) |>
@@ -57,7 +57,8 @@ map <- leaflet(options = leafletOptions(minZoom = 11)) |>
     popup = ~popup
   ) |>
   addLegend(
-    position = "bottomright", title = "Untapped housing capacity",
+    position = "bottomright",
+    title = "Clustering of untapped capacity<br/><span style='font-weight:normal;font-size:11px'>confidence the concentration is not random (Gi*)</span>",
     colors = unname(PAL_GI[names(PAL_GI) %in% unique(as.character(hexes_ll$gi_class))]),
     labels = LBL_GI[names(PAL_GI) %in% unique(as.character(hexes_ll$gi_class))]
   ) |>

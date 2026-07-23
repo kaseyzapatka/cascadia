@@ -19,17 +19,6 @@ format:
       y: 1.8cm
 ---
 
-::: {.content-visible when-format="html"}
-::: {.callout-note title="About this submission" appearance="simple"}
-This site is the complete take-home submission. **Part 1** — the one-page
-data story ([slide PDF](missoula_data_story_slide.pdf)), expanded into the
-story below. **Part 2** — [Strategic Project Management](part2.qmd)
-([one-pager PDF](missoula_project_management.pdf)). **Part 3** — the
-[AI-enhanced deliverable](part3.qmd): this website itself, embeddable and
-rebuilt from a reproducible pipeline.
-:::
-:::
-
 ::: {.callout-note title="Executive Summary"}
 
 **The finding:** Missoula's adopted Growth Policy already plans for roughly
@@ -100,11 +89,14 @@ capacity clusters. Full detail: [Methods & Sources](methods.qmd).
 
 ## Finding 1 — A third of the capacity clusters in ~4% of the city
 
-![**The story in one map.** Green hexes are statistically significant
-clusters of plan-enabled capacity (Gi\* hot spots): the Mullan/Sxwtpqyen
-area in the northwest, the midtown corridor, and the south hills. Together
-the 46 hot hexes at 95%+ confidence hold ~14,100 units — a third of the
-citywide total on ~4% of the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
+![**The story in one map.** Green hexes hold significantly more
+plan-enabled capacity — counting each hex together with its neighbors —
+than a random arrangement of the same parcels would produce (Getis-Ord
+Gi\*); darker green means stronger statistical evidence, not more
+capacity. The clusters: the Mullan/Sxwtpqyen area in the northwest, the
+midtown corridor, and the south hills. Together the 46 hexes at 95%+
+confidence hold ~14,100 units — a third of the citywide total on ~4% of
+the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
 
 Untapped capacity is not evenly smeared across Missoula. Aggregated to a
 1,000-ft hex grid and tested for spatial clustering, **46 of 1,188 hexes
@@ -174,8 +166,7 @@ development forecast**: it ignores ownership, market feasibility, and
 infrastructure timing. Density assumptions per designation await
 verification against the adopted Growth Policy. The Sxwtpqyen master-plan
 area carries its own designation we conservatively treat as non-residential,
-so the true total is likely *higher*. See [Methods & Sources](methods.qmd)
-and the [FAQ](faq.qmd).
+so the true total is likely *higher*. See [Methods & Sources](methods.qmd).
 
 ---
 

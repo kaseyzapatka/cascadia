@@ -42,12 +42,14 @@ PAL_GI <- c(
 # Plain-language legend: a Gi* "hot spot" is a hex whose neighborhood-wide
 # capacity is higher than chance would allow — i.e., a cluster of high
 # values surrounded by high values (the Gi* analogue of LISA's high-high).
+# Classes are the conventional Gi* confidence tiers: how sure the statistic
+# is that the concentration is real rather than random arrangement.
 LBL_GI <- c(
-  "Hot spot (99% conf.)" = "Capacity cluster — 99% confidence",
-  "Hot spot (95% conf.)" = "Capacity cluster — 95% confidence",
-  "Hot spot (90% conf.)" = "Capacity cluster — 90% confidence",
+  "Hot spot (99% conf.)" = "Very strong cluster (99% confidence)",
+  "Hot spot (95% conf.)" = "Strong cluster (95% confidence)",
+  "Hot spot (90% conf.)" = "Moderate cluster (90% confidence)",
   "Not significant"      = "No significant clustering",
-  "Cold spot"            = "Low-capacity cluster"
+  "Cold spot"            = "Cluster of low capacity"
 )
 
 theme_story <- function(base_size = 12) {
@@ -76,7 +78,7 @@ fig1 <- ggplot() +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
   labs(
     title    = "Missoula's untapped housing capacity clusters in a few corridors",
-    subtitle = "Getis-Ord Gi* hot spots of plan-enabled units on vacant and underbuilt parcels\n(1,000-ft hex grid over housing-eligible parcels)",
+    subtitle = "Each hex is scored by how much plan-enabled capacity it and its neighbors hold.\nGreen hexes hold significantly more than random arrangement would produce\n(Getis-Ord Gi*); darker green = stronger statistical evidence.",
     caption  = "Source: City of Missoula taxlot data (2024). Analysis: capacity gap between Growth Policy\nfuture land use and existing dwelling units on unconstrained, economically soft parcels."
   ) +
   theme_story() +

@@ -6,12 +6,15 @@ format:
     toc: false
 ---
 
-Explore where Missoula's plan-enabled housing capacity clusters. **Hexes**
-are shaded by Gi\* cluster confidence — **green** marks statistically
-significant concentrations of untapped capacity. Toggle on the
-**opportunity parcels** layer to see the underlying vacant and underbuilt
-lots (blue); click any parcel for its current use, future land-use
-designation, acreage, and plan-enabled units.
+Explore where Missoula's plan-enabled housing capacity clusters. Each
+**hex** is scored by how much untapped capacity it *and its neighbors*
+hold; green hexes hold significantly more than a random arrangement of
+the same parcels would produce (a Getis-Ord Gi\* test). The three green
+tiers are **confidence levels, not capacity levels** — darker green means
+stronger statistical evidence that the concentration is real (99% / 95% /
+90%). Toggle on the **opportunity parcels** layer to see the underlying
+vacant and underbuilt lots (blue); click any parcel for its current use,
+future land-use designation, acreage, and plan-enabled units.
 
 ```{=html}
 <iframe src="output/maps/hotspot_map.html"

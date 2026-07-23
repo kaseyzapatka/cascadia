@@ -84,10 +84,30 @@ renders and pushes to the `gh-pages` branch on every push to `main`.
 ## Repository layout
 
 ```
-data/       raw inputs (taxlot .gdb, FieldMap.csv) — never modified
-code/       numbered R scripts + run_all.R entry point
-output/     generated figures, leaflet map, stats (committed; gpkg ignored)
-*.qmd       website pages + PDF deliverables (slide, part2)
-scripts/    quarto post-render hook (PDF builds)
-docs/       rendered site (gitignored; CI publishes gh-pages)
+.
+├── data/                          # raw inputs — never modified
+│   ├── HiringExercise_GIS_2024.gdb/   # Missoula taxlot layer (Esri gdb)
+│   └── FieldMap.csv                   # data dictionary
+├── code/                          # analysis pipeline (R)
+│   ├── 00_setup.R                     # paths, parameters, all assumptions
+│   ├── 01_clean_derive.R              # clean + derive parcel metrics
+│   ├── 02_hotspots.R                  # Gi* hot spots on hex grid
+│   ├── 03_figures.R                   # story figures (PNG)
+│   ├── 04_interactive.R               # self-contained Leaflet map
+│   └── run_all.R                      # entry point: reproduce everything
+├── output/
+│   ├── data/                          # scored parcels, hexes, stats
+│   ├── figures/                       # fig1–fig3 (committed)
+│   └── maps/hotspot_map.html          # embedded interactive map
+├── index.qmd                      # Part 1 · data story (html + memo PDF)
+├── slide.qmd                      # Part 1 · one-page slide (typst PDF)
+├── part2.qmd                      # Part 2 · project management (html + PDF)
+├── part3.qmd                      # Part 3 · AI-enhanced deliverable
+├── map.qmd                        # interactive map page
+├── methods.qmd                    # methodology, assumptions, limitations
+├── _quarto.yml                    # site config (navbar, formats)
+├── brand.scss                     # site theme (blue/green palette)
+├── scripts/render_pdfs.sh         # post-render hook: builds the PDFs
+├── .github/workflows/publish.yml  # renders + publishes gh-pages
+└── docs/                          # rendered site (gitignored; CI output)
 ```

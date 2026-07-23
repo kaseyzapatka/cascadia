@@ -21,9 +21,9 @@ it into something a static slide can't be:
 - **The [interactive map](map.qmd)** turns the slide's hero map into an
   explorable Leaflet map: hover any hex for its capacity, toggle on the
   3,587 underlying opportunity parcels, click one for its details.
-- **[Methods & Sources](methods.qmd)** and the **[FAQ](faq.qmd)** document
-  every cleaning decision, assumption, and methodological choice — the
-  audit trail a slide can never carry.
+- **[Methods & Sources](methods.qmd)** documents every cleaning decision,
+  assumption, and methodological choice — the audit trail a slide can
+  never carry.
 - **The whole site is embeddable and reproducible**: it renders with
   Quarto from a public repository, republishes automatically via GitHub
   Actions on every push, and every number regenerates from one command
@@ -31,30 +31,26 @@ it into something a static slide can't be:
 
 ## How AI was used — specifically
 
-I used **Claude (Anthropic)** as a technical collaborator throughout, in
-the way I'd want an analyst on my team to use it: to move faster on
-execution while keeping every judgment call human. Concretely, AI:
+The exercise asks for AI-driven enhancements to the Part 1 deliverable,
+and that is where I used it. I designed and built the analysis — the
+capacity framework, the opportunity screen and its exclusion rules, the
+hot-spot methodology, and the pipeline behind them. **Claude (Anthropic)**
+was then used to enhance and harden the deliverable:
 
-- **Drafted and debugged pipeline code** — the geodatabase's curve
-  geometries, NA-sentinel conventions, and the R/Quarto scaffolding —
-  which I directed and reviewed.
-- **Pressure-tested the analysis design.** The first hot-spot run used
-  parcel-level Gi\*; the skewed results prompted the switch to hex-grid
-  aggregation. The first opportunity screen surfaced golf courses and
-  mobile-home parks as "redevelopment sites" — catching and handling that
-  (exclusion, and reframing mobile homes as displacement risk) was a
-  human judgment AI helped surface quickly.
-- **Validated the cartography** — the blue/green palette was checked
-  programmatically for colorblind-safety (deuteranopia, protanopia,
-  tritanopia) before it touched a map.
-- **Built the site scaffolding** from my earlier project template,
-  including the typst layouts for the PDF deliverables.
+- **Enhancing the one-page slide into this website** — converting the
+  slide's map, figures, and narrative into the Quarto site you're reading,
+  including the interactive Leaflet version of the hero map.
+- **Producing the slide layout itself** — the typst page composition that
+  turns the pipeline's figures and numbers into the polished one-page PDF.
+- **Auditing the code** — reviewing the pipeline for correctness and
+  reproducibility, and checking the cartography programmatically,
+  including colorblind-safety validation (deuteranopia, protanopia,
+  tritanopia) of the palette before it touched a map.
 
 What stayed human: the choice of story (plan-enabled capacity, not another
 choropleth), the framing against the Growth Policy rather than zoning, the
-exclusion rules and their ethics, the density assumptions and their
-flagging, the recommendations, and the final read on every number before
-it shipped.
+analysis and its assumptions, the exclusion rules and their ethics, the
+recommendations, and the final read on every number before it shipped.
 
 ## Why this transparency matters
 
