@@ -7,7 +7,7 @@
 #   * opportunity classification (vacant / underbuilt, infill / large site)
 # Writes: output/data/parcels_scored.gpkg, output/data/headline_stats.csv
 
-source(here::here("R", "00_setup.R"))
+source(here::here("code", "00_setup.R"))
 
 library(sf)
 library(dplyr)

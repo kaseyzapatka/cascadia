@@ -1,0 +1,58 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "index.qmd"
+    - "map.qmd"
+    - "methods.qmd"
+    - "part2.qmd"
+    - "faq.qmd"
+  post-render:
+    - scripts/render_pdfs.sh
+  resources:
+    - "output/maps/hotspot_map.html"
+
+website:
+  title: "Missoula Housing Capacity"
+  # TODO: update site-url / repo links if the GitHub repo gets a different name
+  site-url: "https://www.kaseyzapatka.com/cascadia"
+  navbar:
+    pinned: true
+    left:
+      - text: "Data Story"
+        href: index.qmd
+      - text: "Interactive Map"
+        href: map.qmd
+      - text: "Methods & Sources"
+        href: methods.qmd
+      - text: "Project Management"
+        href: part2.qmd
+      - text: "FAQ"
+        href: faq.qmd
+    right:
+      - text: "Downloads"
+        menu:
+          - text: "Part 1 — Data story slide (PDF)"
+            href: missoula_data_story_slide.pdf
+          - text: "Part 2 — Project management (PDF)"
+            href: missoula_project_management.pdf
+          - text: "Full memo (PDF)"
+            href: missoula_housing_memo.pdf
+      - icon: github
+        href: https://github.com/kaseyzapatka/cascadia
+  page-footer:
+    center: "Kasey Zapatka · Missoula housing capacity data story · 2026"
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand.scss
+    toc: true
+    toc-location: left
+    embed-resources: true
+    fig-align: center
+    code-tools: false
+    grid:
+      sidebar-width: 240px
+      body-width: 820px

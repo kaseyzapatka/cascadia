@@ -80,5 +80,5 @@ MAX_INFILL_ACRES <- 5
 
 # ---- Hot-spot parameters ----------------------------------------------
 
-HEX_CELLSIZE_FT <- 1000    # hex center-to-center distance (ft), ~23 ac cells
+HEX_CELLSIZE_FT <- 1000    # hex center-to-center distance (ft), ~20 ac cells
 GI_SEED         <- 20260722  # seed for reproducibility

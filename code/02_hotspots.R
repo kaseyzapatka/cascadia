@@ -8,7 +8,7 @@
 # and neighborhoods rather than individual outlier lots.
 # Writes: output/data/hex_hotspots.gpkg
 
-source(here::here("R", "00_setup.R"))
+source(here::here("code", "00_setup.R"))
 
 library(sf)
 library(dplyr)

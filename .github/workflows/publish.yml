@@ -1,0 +1,31 @@
+# Render the Quarto site and publish it to the gh-pages branch.
+# The site embeds pre-generated figures and maps committed in output/, so
+# CI needs Quarto only — the R pipeline never runs here.
+#
+# One-time setup after the first push:
+#   Repo Settings -> Pages -> Source: "Deploy from a branch" -> gh-pages / root
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: false
+
+      - uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

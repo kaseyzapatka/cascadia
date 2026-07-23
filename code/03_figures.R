@@ -5,7 +5,7 @@
 #   fig3_breakdown.png     — where the ready units sit (scale x type)
 # Writes PNGs (300 dpi) to output/figures/.
 
-source(here::here("R", "00_setup.R"))
+source(here::here("code", "00_setup.R"))
 
 library(sf)
 library(dplyr)
@@ -17,23 +17,35 @@ parcels <- st_read(file.path(OUT_DATA, "parcels_scored.gpkg"), quiet = TRUE)
 hexes   <- st_read(file.path(OUT_DATA, "hex_hotspots.gpkg"),   quiet = TRUE)
 
 # ---- Shared style ------------------------------------------------------
-# Chart series colors come from a CVD-validated pair (blue = what exists,
-# orange = what the plan adds). The map's hot classes are an ordered ramp:
-# one red hue stepped light -> dark, neutral gray for "not significant",
-# a single blue for cold spots.
+# Brand palette pulled from cascadia-partners.com (coral accent #f0523d,
+# near-black ink #272727, blue #3a57b6) and validated for CVD safety with
+# the dataviz palette checker: blue = what exists, coral = what the plan
+# adds. The map's hot classes are the coral hue stepped light -> dark with
+# neutral gray for "not significant" and blue for (absent) cold spots.
 
-COL_EXISTING <- "#2a78d6"
-COL_ADDED    <- "#eb6834"
+COL_EXISTING <- "#3a57b6"
+COL_ADDED    <- "#f0523d"
 COL_FABRIC   <- "#efedea"   # background parcel fabric
-COL_INK      <- "#0b0b0b"
+COL_INK      <- "#272727"
 COL_INK2     <- "#52514e"
 
 PAL_GI <- c(
-  "Hot spot (99% conf.)" = "#a50f15",
-  "Hot spot (95% conf.)" = "#fb6a4a",
-  "Hot spot (90% conf.)" = "#fcae91",
+  "Hot spot (99% conf.)" = "#9c2a16",
+  "Hot spot (95% conf.)" = "#f0523d",
+  "Hot spot (90% conf.)" = "#f5a58f",
   "Not significant"      = "#e8e6e1",
-  "Cold spot"            = "#4393c3"
+  "Cold spot"            = "#3a57b6"
+)
+
+# Plain-language legend: a Gi* "hot spot" is a hex whose neighborhood-wide
+# capacity is higher than chance would allow — i.e., a cluster of high
+# values surrounded by high values (the Gi* analogue of LISA's high-high).
+LBL_GI <- c(
+  "Hot spot (99% conf.)" = "Capacity cluster — 99% confidence",
+  "Hot spot (95% conf.)" = "Capacity cluster — 95% confidence",
+  "Hot spot (90% conf.)" = "Capacity cluster — 90% confidence",
+  "Not significant"      = "No significant clustering",
+  "Cold spot"            = "Low-capacity cluster"
 )
 
 theme_story <- function(base_size = 12) {
@@ -58,11 +70,11 @@ fig1 <- ggplot() +
   geom_sf(data = parcels, fill = COL_FABRIC, color = NA) +
   geom_sf(data = hexes, aes(fill = gi_class), color = "#fcfcfb",
           linewidth = 0.1, alpha = 0.92) +
-  scale_fill_manual(values = PAL_GI, name = NULL, drop = FALSE) +
+  scale_fill_manual(values = PAL_GI, labels = LBL_GI, name = NULL, drop = FALSE) +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
   labs(
     title    = "Missoula's untapped housing capacity clusters in a few corridors",
-    subtitle = "Getis-Ord Gi* hot spots of plan-ready units on vacant and underbuilt parcels\n(1,000-ft hex grid over housing-eligible parcels)",
+    subtitle = "Getis-Ord Gi* hot spots of plan-enabled units on vacant and underbuilt parcels\n(1,000-ft hex grid over housing-eligible parcels)",
     caption  = "Source: City of Missoula taxlot data (2024). Analysis: capacity gap between Growth Policy\nfuture land use and existing dwelling units on unconstrained, economically soft parcels."
   ) +
   theme_story() +
@@ -94,18 +106,18 @@ by_class <- parcels |>
 fig2 <- ggplot(by_class, aes(y = Land_Use)) +
   geom_segment(aes(x = existing, xend = potential, yend = Land_Use),
                color = "#c9c7c1", linewidth = 1.2) +
-  geom_point(aes(x = existing,  color = "Units today"), size = 3.2) +
-  geom_point(aes(x = potential, color = "With plan-ready capacity"), size = 3.2) +
+  geom_point(aes(x = existing,  color = "Homes today"), size = 3.2) +
+  geom_point(aes(x = potential, color = "If plan-enabled capacity is built"), size = 3.2) +
   geom_text(aes(x = potential, label = paste0("+", comma(round(ready)))),
             hjust = -0.35, size = 3.1, color = COL_INK2) +
-  scale_color_manual(values = c("Units today" = COL_EXISTING,
-                                "With plan-ready capacity" = COL_ADDED),
+  scale_color_manual(values = c("Homes today" = COL_EXISTING,
+                                "If plan-enabled capacity is built" = COL_ADDED),
                      name = NULL) +
   scale_x_continuous(labels = comma, expand = expansion(mult = c(0.02, 0.16))) +
   labs(
     title    = "The Growth Policy already makes room for ~43,000 more homes",
-    subtitle = "Dwelling units by future land-use designation: today vs. with capacity on\nvacant and underbuilt parcels (no rezoning required)",
-    caption  = "Ready capacity = assumed allowable density x developable acres on unconstrained soft parcels,\nnet of existing units. Density assumptions pending verification against the adopted Growth Policy.",
+    subtitle = "Dwelling units by Growth Policy future land-use designation (not current zoning):\ntoday vs. with capacity on vacant and underbuilt parcels",
+    caption  = "Plan-enabled capacity = assumed allowable density x developable acres on unconstrained soft parcels,\nnet of existing units. Density assumptions pending verification against the adopted Growth Policy.",
     x = "Dwelling units", y = NULL
   ) +
   theme_story()
@@ -131,8 +143,8 @@ fig3 <- ggplot(breakdown,
   scale_x_continuous(labels = comma) +
   labs(
     title    = "Half the opportunity is small-scale infill",
-    subtitle = "Plan-ready units by parcel size and current condition",
-    x = "Plan-ready dwelling units", y = NULL
+    subtitle = "Plan-enabled units by parcel size and current condition",
+    x = "Plan-enabled dwelling units", y = NULL
   ) +
   theme_story()
 

@@ -2,88 +2,86 @@
 
 Analysis for the Cascadia Partners Technical Senior Associate hiring
 exercise: a parcel-level look at how much housing Missoula's adopted Growth
-Policy already makes room for, and where that untapped capacity clusters.
+Policy already makes room for, and where that capacity clusters.
 
-## Headline findings (first pass)
+**Deliverables** (all built from this repo):
 
-- **~43,000 plan-ready units** sit on 3,587 vacant or underbuilt parcels
-  (4,311 acres) where the Growth Policy's future land use already calls for
-  housing — no rezoning required. Missoula has ~44,300 units today.
-- **Half of that capacity is small-scale infill** (parcels ≤ 5 acres), not
-  just big greenfield tracts.
-- **A third of it concentrates in ~4% of the urban fabric**: Getis-Ord Gi*
-  hot spots (46 of 1,188 hex cells at 95%+ confidence) hold ~14,100 ready
-  units, clustered in the Mullan/Sxtpqyen area, the midtown corridor, and
-  the south hills.
-- **Counterpoint:** 530 mobile-home parcels holding ~2,850 of the city's
-  most affordable homes sit on land planned for higher density — a
-  displacement-risk flag, deliberately excluded from the opportunity count.
+- **Part 1 — data story slide:** `docs/missoula_data_story_slide.pdf`
+  (one-page 11×8.5, from [slide.qmd](slide.qmd))
+- **Part 2 — project management one-pager:**
+  `docs/missoula_project_management.pdf` (from [part2.qmd](part2.qmd))
+- **Part 3 — AI-enhanced web deliverable:** the Quarto website itself
+  (data story, interactive map, methods, FAQ), published via GitHub Actions
 
-## Method
+## Headline findings
 
-1. **Clean & derive** ([R/01_clean_derive.R](R/01_clean_derive.R)) — read the
-   taxlot geodatabase; derive improvement-to-land ratio (ILR), environmental
-   constraint share (floodway / steep slope), plan-implied unit capacity by
-   future land-use class, and the gap vs. existing units. A parcel is an
-   *opportunity* when it is housing-eligible under the Growth Policy,
-   economically soft (vacant or ILR < 1), not public/institutional/open-space
-   land, and not mostly constrained.
-2. **Hot spots** ([R/02_hotspots.R](R/02_hotspots.R)) — aggregate ready
-   capacity to a 1,000-ft hex grid and run Getis-Ord Gi* (queen contiguity,
-   self-inclusive) to find statistically significant clusters. Parcel-level
-   Gi* is deliberately avoided: unit gap is so right-skewed that it only
-   rediscovers individual mega-parcels.
-3. **Figures** ([R/03_figures.R](R/03_figures.R)) — hero hot-spot map,
-   existing-vs-capacity dumbbell by land-use class, and an infill/large-site
-   breakdown. Palettes are colorblind-checked.
+- **~43,000 plan-enabled units** sit on 3,587 vacant or underbuilt parcels
+  (~4,300 acres) where the Growth Policy's future land use already calls
+  for housing. Missoula has ~44,300 units today.
+- **Half of that capacity is small-scale infill** (parcels ≤ 5 acres).
+- **A third concentrates in ~4% of the urban fabric**: 46 Gi* hot-spot
+  hexes (95%+ confidence) hold ~14,100 units — Mullan/Sxwtpqyen, midtown,
+  and the south hills.
+- **Counterpoint:** 530 mobile-home parcels (~2,850 affordable units) sit
+  on planned-density land — flagged as displacement risk, excluded from
+  the opportunity count.
 
-All tunable assumptions (density per land-use class, ILR threshold,
-constraint cutoff, excluded uses, hex size) live in
-[R/00_setup.R](R/00_setup.R).
-
-## Reproduce
+## Pipeline
 
 ```sh
-Rscript R/run_all.R
+Rscript code/run_all.R   # raw .gdb -> derived data -> figures -> leaflet map
 ```
 
-Requires R (developed on 4.5) with: `sf`, `dplyr`, `tidyr`, `readr`,
-`spdep`, `ggplot2`, `scales`, `here`. The exact environment used is recorded
-in [output/session_info.txt](output/session_info.txt).
+1. [code/01_clean_derive.R](code/01_clean_derive.R) — clean geodatabase
+   quirks; derive improvement-to-land ratio, constraint share,
+   plan-enabled capacity, opportunity screen
+2. [code/02_hotspots.R](code/02_hotspots.R) — Getis-Ord Gi* on a 1,000-ft
+   hex grid
+3. [code/03_figures.R](code/03_figures.R) — slide/story figures
+   (brand palette, colorblind-validated)
+4. [code/04_interactive.R](code/04_interactive.R) — self-contained Leaflet
+   map for the website
 
-Inputs are committed in `data/` (Esri file geodatabase + field map).
-`python/` note: [code/read_data.py](code/read_data.py) is a small
-geopandas utility used for initial data inspection; the pipeline itself is
-pure R.
+All tunable assumptions live in [code/00_setup.R](code/00_setup.R).
+Requires R (developed on 4.5) with `sf`, `dplyr`, `tidyr`, `readr`,
+`spdep`, `ggplot2`, `scales`, `leaflet`, `htmlwidgets`, `here`; exact
+environment in [output/session_info.txt](output/session_info.txt).
+
+## Website
+
+Quarto site (pages: `index`, `map`, `methods`, `part2`, `faq`; config in
+[_quarto.yml](_quarto.yml)). The site embeds the committed figures and map
+from `output/`, so rendering never re-runs the analysis:
+
+```sh
+quarto render        # -> docs/ (also builds the three PDFs via post-render)
+quarto preview       # local preview
+```
+
+Publishing: [.github/workflows/publish.yml](.github/workflows/publish.yml)
+renders and pushes to the `gh-pages` branch on every push to `main`.
+One-time setup after first push: **Settings → Pages → Deploy from a
+branch → `gh-pages` / root**.
 
 ## Repository layout
 
 ```
-data/     raw inputs (taxlot .gdb, FieldMap.csv) — never modified
-R/        numbered analysis scripts + run_all.R entry point
-code/     python data-inspection utility
-output/   generated data (gpkg, csv) and figures (png) — reproducible
-docs/     (reserved) rendered website for GitHub Pages
+data/       raw inputs (taxlot .gdb, FieldMap.csv) — never modified
+code/       numbered R scripts + run_all.R entry point
+output/     generated figures, leaflet map, stats (committed; gpkg ignored)
+*.qmd       website pages + PDF deliverables (slide, part2)
+scripts/    quarto post-render hook (PDF builds)
+docs/       rendered site (gitignored; CI publishes gh-pages)
 ```
 
 ## Assumptions & caveats
 
-- Density assumptions per future land-use class are **placeholders
-  calibrated to the Our Missoula Growth Policy ranges** and must be verified
-  against the adopted document before client use (`DU_PER_ACRE` in
-  `R/00_setup.R`).
-- Flood/slope percentages are only populated where a constraint exists; NA
-  is treated as 0%. The constrained share takes the max of the two (they
-  overlap in unknown ways).
-- Assessed values are used as an economic-softness signal (ILR), not as
-  market prices.
-- Capacity is *plan-implied*, not a development forecast: it nets out
-  constrained land and existing units but ignores ownership, market
-  feasibility, and infrastructure.
-
-## Roadmap
-
-- [ ] Part 1 slide (hero map + headline stats + capacity chart)
-- [ ] Part 2 page (scaling, delegation/QC, $50k budget)
-- [ ] Quarto website rendered via GitHub Actions (Part 3, embeddable
-      interactive version of the story)
+- Density assumptions per future land-use designation are placeholders
+  calibrated to Growth Policy ranges — **verify against the adopted
+  document before client use** (`DU_PER_ACRE` in `code/00_setup.R`).
+- Flood/slope NA means "no mapped constraint" (treated as 0%); constraint
+  share takes the max of the two.
+- Assessed values proxy economic softness (ILR), not market prices.
+- Capacity is plan-implied, not a development forecast.
+- The Sxwtpqyen Area designation is conservatively excluded from capacity,
+  so totals are likely understated.

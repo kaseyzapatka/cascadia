@@ -1,0 +1,127 @@
+---
+title: "Methods & Sources"
+format:
+  html:
+    toc: true
+---
+
+## Data
+
+A single Esri file geodatabase layer, `CP_Hiring_Exercise_Missoula`
+(**32,974 parcels**, NAD83 State Plane Montana, US feet), with an
+accompanying field map. Fields used: existing use
+(`LandUseBuildingType_All`), dwelling units, assessed land/building/total
+value, acres, Growth Policy future land use (`Land_Use`), current zoning
+(`Zoning_Mstr`), percent of parcel in floodway (`PercentageFlood`), and
+percent in steep slopes > 25% (`PercentSlope`).
+
+## Cleaning decisions
+
+| Quirk | Treatment |
+|---|---|
+| ~900 features stored as curve geometries (`MultiSurface`) | Linearized to polygons on read (GDAL `forceTo`) |
+| `PercentageFlood` / `PercentSlope` populated only where a constraint exists | `NA` → 0% (verified: nulls mean "no mapped constraint") |
+| `YearBuilt = 0` sentinel | → `NA` |
+| Invalid rings / self-intersections | Repaired with `st_make_valid()` on the invalid subset |
+| Empty geometries | Dropped |
+
+## Plan-enabled capacity
+
+For each parcel whose Growth Policy designation calls for housing:
+
+> **capacity** = developable acres × assumed du/ac − existing units,
+> floored at zero
+
+where *developable acres* = acres × (1 − max(flood share, slope share)).
+Taking the max of the two constraint shares is conservative without
+double-counting (their overlap is unknown).
+
+**Assumed allowable densities** (du/ac) by designation — calibrated to the
+Growth Policy's designation ranges, centralized in `code/00_setup.R`, and
+**pending verification against the adopted document**:
+
+| Designation | du/ac | Designation | du/ac |
+|---|---|---|---|
+| Residential Low | 3 | Neighborhood Mixed Use | 16 |
+| Residential Medium | 8 | Community Mixed Use | 29 |
+| Residential Medium-High | 16 | Urban Center | 43 |
+| Residential High | 29 | | |
+
+All other designations (including the Sxwtpqyen Area's own designation,
+industrial, parks, open/resource) contribute zero capacity — a
+conservative choice that likely *understates* the total.
+
+## The opportunity screen
+
+A parcel counts as an **opportunity** when all of the following hold:
+
+1. **Housing-eligible** future land-use designation (table above);
+2. **Economically soft** — vacant, or improvement-to-land ratio (ILR:
+   assessed building value ÷ assessed land value) **< 1.0**, i.e., the
+   dirt is worth more than what stands on it;
+3. **Not excluded** — public/institutional land, parks, open space and
+   recreation, master condo records (which would double-count their child
+   units), and **mobile homes** (naturally occurring affordable housing —
+   flagged separately as displacement risk, never as opportunity);
+4. **Not constrained** — no more than 50% of the parcel in floodway or
+   steep slope; capacity on the remainder is already discounted;
+5. **Material** — capacity gap of at least one unit.
+
+Opportunity parcels are typed **vacant vs. underbuilt** and sized
+**infill (≤ 5 ac) vs. large site (> 5 ac)**. The 5-acre line separates
+parcels a single owner or small builder can develop under by-right rules
+from sites that realistically need master planning, subdivision, and new
+internal infrastructure.
+
+## Hot-spot analysis (Getis-Ord Gi\*)
+
+Plan-enabled units on opportunity parcels are summed to a **1,000-ft
+hexagonal grid** (~20-acre cells; 1,188 hexes contain at least one
+housing-eligible parcel). Gi\* runs on the hex values with queen
+contiguity, self-inclusive weights; classes are reported at 90/95/99%
+confidence.
+
+**Why hexes rather than parcels?** Parcel-level unit gap is extremely
+right-skewed (median 1, maximum ~3,200), and parcels vary enormously in
+size, so a parcel-level statistic mostly re-identifies individual
+mega-parcels and their immediate neighbors. Aggregating first asks the
+policy-relevant question — *which places, at the scale of a block cluster,
+concentrate capacity* — and yields legible corridors instead of scattered
+outliers. A uniform grid also equalizes the spatial support underlying each
+observation (parcels differ in area by four orders of magnitude), which
+contiguity-based weights otherwise distort.
+
+**Gi\* vs. LISA.** Gi\* hot spots are clusters of high values surrounded by
+high values — the direct analogue of LISA's *high-high* class. LISA
+(local Moran's I) additionally distinguishes spatial outliers (high-low /
+low-high), which is useful diagnostics but noise for this narrative; the
+deliverable question is "where are the concentrations," which Gi\* answers
+directly. No cold spots (low-low analogues) reach significance in this
+data, so the map legend shows only capacity clusters.
+
+## Reproducibility
+
+```sh
+Rscript code/run_all.R   # raw .gdb -> derived data -> figures -> map
+```
+
+Numbered scripts with all assumptions centralized in `code/00_setup.R`;
+the exact package environment is recorded in `output/session_info.txt`.
+The website is rendered with Quarto from the committed figure and map
+outputs, so rendering never re-runs the analysis.
+
+## Limitations
+
+- **Plan-implied, not predicted.** Capacity measures what the adopted
+  future land-use map makes room for — not ownership, feasibility, or
+  infrastructure timing.
+- **Density assumptions** are calibrated placeholders until checked
+  against the adopted Growth Policy tables.
+- **Assessed values** proxy economic softness; they lag the market and
+  compress at the top.
+- **The Sxwtpqyen Area** (766 parcels) is conservatively excluded from
+  capacity; the Mullan-area master plan is largely residential, so totals
+  are understated.
+- **Zoning is not analyzed here** — the story is deliberately framed
+  against the Growth Policy. A zoning-vs-plan entitlement-gap analysis is
+  the natural next phase.

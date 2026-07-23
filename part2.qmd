@@ -1,0 +1,92 @@
+---
+title: "Scaling to a Regional Housing Readiness Dashboard"
+format:
+  html:
+    toc: true
+    subtitle: "Strategic project management for the Five Valleys expansion"
+    author: "Kasey Zapatka"
+  typst:
+    output-file: missoula_project_management.pdf
+    toc: false
+    papersize: us-letter
+    margin:
+      x: 1cm
+      y: 1cm
+    fontsize: 8pt
+---
+
+## 2a. Scaling & technical workflow
+
+**The primary data trap: schema fragmentation across jurisdictions.** The
+pilot data already shows it — `Zoning_Mstr` mixes `CITY -RM1-45` with
+`COUNTY -Rural Residential, Small Agriculture-1`: different naming schemes,
+different density logic, different vintages, in one field. Expanding to
+Missoula County and unincorporated Frenchtown, Lolo, and Bonner multiplies
+that: each jurisdiction's zoning, future land use, and assessor attributes
+were built for different purposes, and unincorporated areas may have no
+adopted land-use plan at all. Naively stacking layers produces a dashboard
+that silently compares incomparable things — the most dangerous failure
+mode, because it *looks* finished.
+
+**The workflow to defeat it:**
+
+1. **Canonical schema first.** Define the region-wide analysis schema
+   (the pilot's derived fields: developable acres, plan-enabled capacity,
+   opportunity class) before acquiring anything.
+2. **Per-jurisdiction crosswalks as data, not code.** Each jurisdiction
+   gets a version-controlled crosswalk table (source class → canonical
+   class → assumed density, with a source citation per row). Crosswalks
+   are reviewed with planning staff from each jurisdiction — the
+   local-knowledge check no script can replace.
+3. **One automated pipeline.** The pilot's R pipeline generalizes: raw
+   sources are never edited; every transformation is scripted; adding a
+   jurisdiction means adding a config block and a crosswalk, not new code.
+4. **Validation gates between stages.** Automated checks at each step —
+   row counts reconcile, CRS uniform, geometries valid, no unmapped
+   classes, capacity totals within plausibility bounds per jurisdiction —
+   so errors surface at ingest, not at the client meeting.
+
+## 2b. Delegation & quality control
+
+| Role | Owns | Why it fits |
+|---|---|---|
+| **Junior Associate** | Data acquisition; crosswalk drafting per jurisdiction; analysis runs; source documentation | Judgment-building work with clear review points |
+| **GIS Intern** | Geometry QA (validity, topology, CRS); metadata inventory; map production from templates; dashboard layer prep | Well-specified, checkable tasks that build real skills |
+| **Me (strategic lead)** | Schema and assumption sign-off; crosswalk reviews with jurisdiction staff; client communication; final QC | Keeps my time on decisions, not production |
+
+Weekly cadence: Monday stand-up, mid-week working session, Friday review
+of outputs against the task list.
+
+**Quality control before anything reaches the client:**
+
+- **Automated:** the pipeline's validation gates run on every rebuild;
+  no hand-edited files anywhere in the chain.
+- **Peer review:** every crosswalk and analysis script reviewed by a
+  second person; intern's geometry QA spot-checked against county records.
+- **Ground-truthing:** for each jurisdiction, a random sample of ~25
+  parcels checked by hand against assessor records and aerial imagery.
+- **Sensitivity disclosure:** headline numbers published with their
+  sensitivity to the key thresholds (density assumptions, softness cutoff),
+  so no single assumption can quietly drive the story.
+- **Sign-off checklist:** sources cited, numbers reconciled to pipeline
+  output, cartography standards met — before any deliverable ships.
+
+## 2c. Budget & schedule ($50,000 fixed, ~16 weeks)
+
+| Task | Weeks | Lead | Budget |
+|---|---|---|---|
+| 1. Scoping, canonical schema, jurisdiction outreach | 1–2 | Senior | $4,500 |
+| 2. Data acquisition & crosswalks (5+ jurisdictions) | 2–6 | Junior Assoc. | $9,500 |
+| 3. Pipeline generalization, capacity analysis, hot spots | 5–9 | Senior + Junior | $12,000 |
+| 4. Web dashboard build (open-stack: Quarto/Observable + hosted tiles) | 8–13 | Senior + Intern | $12,500 |
+| 5. Documentation, methods report, QC & ground-truthing | 11–14 | All | $5,500 |
+| 6. Client reviews, revisions, training & handoff | 14–16 | Senior | $4,000 |
+| Contingency (~4%) | — | — | $2,000 |
+| **Total** | **16 weeks** | | **$50,000** |
+
+The budget's shape reflects the risk: data normalization (Tasks 1–3,
+$26,000) is over half the project, because the dashboard is only as
+credible as the crosswalks under it. The dashboard itself stays on an
+open stack — no per-seat licenses for the client to inherit — and Task 6
+ends with the client able to re-run the pipeline when next year's assessor
+roll lands.

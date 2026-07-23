@@ -1,0 +1,18 @@
+/*-- scss:defaults --*/
+// Cascadia Partners-inspired accents (coral #f0523d, ink #272727, blue #3a57b6)
+$primary: #f0523d;
+$link-color: #3a57b6;
+$navbar-bg: #272727;
+$navbar-fg: #f6f6f6;
+
+/*-- scss:rules --*/
+h1, h2, h3 {
+  color: #272727;
+}
+h2 {
+  border-bottom: 2px solid #f0523d;
+  padding-bottom: 0.15em;
+}
+.navbar-brand {
+  font-weight: 700;
+}

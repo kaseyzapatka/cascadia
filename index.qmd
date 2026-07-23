@@ -1,0 +1,165 @@
+---
+title: "Missoula's Housing Capacity Is Already on the Books"
+subtitle: "Where the Growth Policy makes room for the next ~43,000 homes — and where that capacity clusters"
+author: "Kasey Zapatka"
+date: today
+format:
+  html:
+    toc: true
+  typst:
+    output-file: missoula_housing_memo.pdf
+    toc: false
+    papersize: us-letter
+    margin:
+      x: 1.6cm
+      y: 1.8cm
+---
+
+::: {.callout-note title="Executive Summary"}
+
+**The finding:** Missoula's adopted Growth Policy already plans for roughly
+**43,000 more homes** on land that is vacant or economically underbuilt today
+— about as many homes as the city currently has (~44,300) — **without
+changing the plan or touching a floodplain**. Half of that capacity is
+small-scale infill on parcels of five acres or less, and a third of it
+concentrates in just ~4% of the urban fabric.
+
+**The recommendation:** As the City rewrites its development code, align
+zoned entitlements with the Growth Policy in the handful of corridors where
+capacity already clusters — and pair that upzoning with preservation for the
+530 mobile-home parcels (~2,850 of Missoula's most affordable homes) that
+sit on the same planned-density land.
+:::
+
+## The question
+
+Missoula is considering policy changes to advance housing affordability and
+smart growth at a moment when Montana's land-use rules are shifting under
+the 2023 Montana Land Use Planning Act and the City's own code-reform work.
+The sharpest question a parcel dataset can answer for that effort is not
+"where could the city grow someday?" but: **how much housing does the City's
+adopted plan already make room for, and where?** If the answer is "a lot,
+in specific places," the policy task stops being about finding new land and
+becomes about removing the friction — zoning, process, infrastructure —
+between the plan and the ground.
+
+## Approach
+
+We work from the City of Missoula taxlot layer — **32,974 parcels** with
+existing use, dwelling units, assessed values, current zoning, Growth Policy
+future land use, and floodplain/steep-slope shares^[Areal math is done in
+NAD83 State Plane Montana (feet), the layer's native projection. See
+[Methods & Sources](methods.qmd) for cleaning decisions, including ~900
+curve geometries and the flood/slope fields where missing genuinely means
+zero.]. For every parcel whose future land-use designation calls for
+housing, we compute **plan-enabled capacity**: the parcel's developable
+acres (net of floodway and steep slope) times an assumed allowable density
+for its designation, minus the dwelling units already standing^[Densities
+are calibrated to the Growth Policy's designation ranges and are the one
+assumption set awaiting verification against the adopted document —
+they're centralized in `code/00_setup.R` and trivially updatable. This is
+*plan-implied* capacity from the City's future land-use map, deliberately
+distinct from current zoning: it measures what the City has already agreed
+growth should look like.].
+
+We then keep only parcels where that capacity is **realistically
+addressable**: vacant, or economically soft (assessed improvements worth
+less than the land under them), excluding public and institutional land,
+parks and open space, master condo records — and mobile-home parks, which
+score as "soft" but are naturally occurring affordable housing (they get
+their own finding below, as a risk rather than an opportunity). Finally, a
+**Getis-Ord Gi\*** analysis on a 1,000-ft hex grid finds where that
+capacity clusters. Full detail: [Methods & Sources](methods.qmd).
+
+## Finding 1 — A third of the capacity clusters in ~4% of the city
+
+![**The story in one map.** Coral hexes are statistically significant
+clusters of plan-enabled capacity (Gi\* hot spots): the Mullan/Sxwtpqyen
+area in the northwest, the midtown corridor, and the south hills. Together
+the 46 hot hexes at 95%+ confidence hold ~14,100 units — a third of the
+citywide total on ~4% of the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
+
+Untapped capacity is not evenly smeared across Missoula. Aggregated to a
+1,000-ft hex grid and tested for spatial clustering, **46 of 1,188 hexes
+(~3.9%) are hot spots at 95%+ confidence, and they hold ~14,100 of the
+~43,000 plan-enabled units**. These are the places where code reform,
+infrastructure investment, and permitting capacity would do the most work
+per acre: the Mullan/Sxwtpqyen growth area, the midtown corridor, and the
+south hills.
+
+## Finding 2 — The plan already makes room for ~43,000 homes
+
+![Dwelling units by Growth Policy future land-use designation: homes on the
+ground today (blue) versus today plus plan-enabled capacity on vacant and
+underbuilt parcels (coral). Community Mixed Use and the medium/high
+residential designations carry most of the headroom.](output/figures/fig2_capacity_gap.png){#fig-capacity width=92%}
+
+Summing across designations, **3,587 opportunity parcels (~4,300 acres)
+carry ~43,000 plan-enabled units** — nearly a one-for-one doubling of the
+existing ~44,300-unit stock. Roughly half of that capacity sits on vacant
+land and half on economically underbuilt parcels whose improvements are
+worth less than the land beneath them. This is not a rezoning wish list:
+every unit of it is consistent with the future land-use map the City has
+already adopted. The capacity is real, mapped, and — because it nets out
+floodway and steep-slope land — buildable ground.
+
+## Finding 3 — Half the opportunity is small-scale infill
+
+![Plan-enabled units by parcel size and current condition. Small parcels
+(≤ 5 acres) — the scale of an individual owner, a small builder, a
+neighborhood lot — carry half the citywide total.](output/figures/fig3_breakdown.png){#fig-infill width=92%}
+
+Big vacant tracts get the headlines, but **parcels of five acres or less
+carry ~22,400 units — 52% of the total**, most of it on *underbuilt* rather
+than vacant land. That matters for policy design: large-site capacity is
+unlocked by master planning and infrastructure; small-site capacity is
+unlocked by **by-right approvals, missing-middle allowances, and simpler
+review** — exactly the levers a development-code rewrite controls.
+
+## The counterpoint — density on paper, displacement on the ground
+
+The same screen that finds opportunity also finds risk: **530 mobile-home
+parcels holding ~2,850 units sit on land the Growth Policy designates for
+higher density**. Their improvement values are low, so any market-driven
+realization of the plan's capacity puts them first in line for
+redevelopment — and they are among the city's most affordable homes. We
+deliberately excluded them from the opportunity count, and recommend the
+capacity strategy be paired from the start with mobile-home park
+preservation tools (resident ownership conversions, zoning overlays,
+relocation standards).
+
+## What this means for the code reform
+
+1. **Align zoning with the plan where capacity clusters.** The hot-spot
+   corridors are where the gap between the future land-use map and current
+   entitlements is doing the most damage. Focus the rewrite there first.
+2. **Make small infill easy.** Half the capacity is on small parcels;
+   by-right missing-middle and streamlined review convert it from paper to
+   permits.
+3. **Protect the residents already providing affordability.** Preservation
+   for the 530 mobile-home parcels before — not after — the surrounding
+   land appreciates.
+
+## Caveats
+
+Plan-enabled capacity is **what the adopted plan makes room for, not a
+development forecast**: it ignores ownership, market feasibility, and
+infrastructure timing. Density assumptions per designation await
+verification against the adopted Growth Policy. The Sxwtpqyen master-plan
+area carries its own designation we conservatively treat as non-residential,
+so the true total is likely *higher*. See [Methods & Sources](methods.qmd)
+and the [FAQ](faq.qmd).
+
+---
+
+::: {.callout-tip appearance="simple" icon=false}
+**Data sources.**
+
+- City of Missoula taxlot layer (2024) with assessor, zoning, Growth Policy
+  future land use, and constraint attributes (provided for this exercise)
+- Field map / data dictionary accompanying the taxlot layer
+
+Analysis and figures: Kasey Zapatka, 2026. Full methodology:
+[Methods & Sources](methods.qmd). Code:
+[github.com/kaseyzapatka/cascadia](https://github.com/kaseyzapatka/cascadia).
+:::
