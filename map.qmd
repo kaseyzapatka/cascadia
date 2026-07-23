@@ -7,11 +7,11 @@ format:
 ---
 
 Explore where Missoula's plan-enabled housing capacity clusters. **Hexes**
-are shaded by Gi\* cluster confidence — **coral** marks statistically
+are shaded by Gi\* cluster confidence — **green** marks statistically
 significant concentrations of untapped capacity. Toggle on the
 **opportunity parcels** layer to see the underlying vacant and underbuilt
-lots; click any parcel for its current use, future land-use designation,
-acreage, and plan-enabled units.
+lots (blue); click any parcel for its current use, future land-use
+designation, acreage, and plan-enabled units.
 
 ```{=html}
 <iframe src="output/maps/hotspot_map.html"

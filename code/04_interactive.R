@@ -29,13 +29,13 @@ opp_ll <- parcels |>
     )
   )
 
-# Brand palette (see 03_figures.R); hot classes stepped coral, gray neutral.
+# Brand palette (see 03_figures.R); hot classes stepped green, gray neutral.
 PAL_GI <- c(
-  "Hot spot (99% conf.)" = "#9c2a16",
-  "Hot spot (95% conf.)" = "#f0523d",
-  "Hot spot (90% conf.)" = "#f5a58f",
+  "Hot spot (99% conf.)" = "#4c5813",
+  "Hot spot (95% conf.)" = "#8b9c26",
+  "Hot spot (90% conf.)" = "#c9d465",
   "Not significant"      = "#e8e6e1",
-  "Cold spot"            = "#3a57b6"
+  "Cold spot"            = "#7096c0"
 )
 LBL_GI <- c("Capacity cluster — 99% confidence",
             "Capacity cluster — 95% confidence",
@@ -53,7 +53,7 @@ map <- leaflet(options = leafletOptions(minZoom = 11)) |>
   ) |>
   addPolygons(
     data = opp_ll, group = "Opportunity parcels",
-    fillColor = "#3a57b6", fillOpacity = 0.5, color = "#3a57b6", weight = 0.5,
+    fillColor = "#7096c0", fillOpacity = 0.5, color = "#7096c0", weight = 0.5,
     popup = ~popup
   ) |>
   addLegend(

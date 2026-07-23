@@ -6,6 +6,7 @@ project:
     - "map.qmd"
     - "methods.qmd"
     - "part2.qmd"
+    - "part3.qmd"
     - "faq.qmd"
   post-render:
     - scripts/render_pdfs.sh
@@ -19,14 +20,16 @@ website:
   navbar:
     pinned: true
     left:
-      - text: "Data Story"
+      - text: "Part 1 · Data Story"
         href: index.qmd
+      - text: "Part 2 · Strategic Project Management"
+        href: part2.qmd
+      - text: "Part 3 · AI-Enhanced Deliverable"
+        href: part3.qmd
       - text: "Interactive Map"
         href: map.qmd
       - text: "Methods & Sources"
         href: methods.qmd
-      - text: "Project Management"
-        href: part2.qmd
       - text: "FAQ"
         href: faq.qmd
     right:

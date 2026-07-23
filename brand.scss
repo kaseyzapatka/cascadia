@@ -1,7 +1,8 @@
 /*-- scss:defaults --*/
-// Cascadia Partners-inspired accents (coral #f0523d, ink #272727, blue #3a57b6)
-$primary: #f0523d;
-$link-color: #3a57b6;
+// Brand accents: steel blue #7096c0 and chartreuse green (deep step #8b9c26
+// of swatch #bdc74f); ink #272727. Link blue darkened for text contrast.
+$primary: #8b9c26;
+$link-color: #46689b;
 $navbar-bg: #272727;
 $navbar-fg: #f6f6f6;
 
@@ -10,7 +11,7 @@ h1, h2, h3 {
   color: #272727;
 }
 h2 {
-  border-bottom: 2px solid #f0523d;
+  border-bottom: 2px solid #8b9c26;
   padding-bottom: 0.15em;
 }
 .navbar-brand {
