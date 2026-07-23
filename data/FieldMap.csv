@@ -1,0 +1,15 @@
+Field Name,Alias,Description
+DwellingUnits,Dwelling Units,Number of housing units on parcel
+NumberFloors,Number of Floors,Number of floors (stories) if buildings on parcel
+YearBuilt,Year Built Building,Year the newest improvement on the parcel was built
+YearRemod,Year Remodeled Building,Year of the most recent remodel on the parcel
+SFLA,Building Floor Area SqFt,Building area in square feet
+FinalLand,Assessed Land Value,Assessed Land Value
+FinalBuilding,Assessed Building Value,Assessed Building Value
+FinalTotal,Total Market Assessed,Total Assessed Value (Building + Land)
+Zoning_Mstr,Zoning Master,Zoning district
+Land_Use,City Future Land Use,Planned future land use (from City Growth Policy)
+PercentageFlood,Percentage of Floodplain in Parcel,Percent of parcel in floodway
+PercentSlope,Percentage of Steep Slope in Parcel,Percent of parcel with steep slopes (>25%)
+Acres,Parcel Acres,Land area in acres
+LandUseBuildingType_All,LandUseBuildingType_All,Existing land use classification
