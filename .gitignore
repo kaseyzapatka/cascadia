@@ -20,3 +20,6 @@ output/data/*.gpkg
 .vscode/
 
 **/*.quarto_ipynb
+
+# files 
+*.pdf
