@@ -1,4 +1,4 @@
-# 03_figures.R
+# 04_figures.R
 # Slide-ready figures for the data story:
 #   fig1_hotspot_map.png   — hero map: Gi* hot spots of ready capacity
 #   fig2_capacity_gap.png  — existing units vs. plan capacity by land-use class
@@ -70,25 +70,75 @@ theme_story <- function(base_size = 12) {
 
 # ---- Fig 1: hero hot-spot map ------------------------------------------
 
-fig1 <- ggplot() +
-  geom_sf(data = parcels, fill = COL_FABRIC, color = NA) +
-  geom_sf(data = hexes, aes(fill = gi_class), color = "#fcfcfb",
-          linewidth = 0.1, alpha = 0.92) +
-  scale_fill_manual(values = PAL_GI, labels = LBL_GI, name = NULL, drop = FALSE) +
-  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
+transit <- st_read(file.path(OUT_DATA, "transit.gpkg"), layer = "routes",
+                   quiet = TRUE)
+
+# Label the three biggest cluster groups (contiguity components of the
+# 95%+ hexes). Names verified by reverse-geocoding the component
+# centroids: northernmost = North Reserve corridor, southwest = Linda
+# Vista / Miller Creek, remaining = South Hills (Moose Can Gully).
+hot95 <- dplyr::filter(hexes, gi_z >= 1.96)
+comp  <- spdep::n.comp.nb(spdep::poly2nb(hot95, queen = TRUE))$comp.id
+comps <- hot95 |>
+  mutate(comp = comp) |>
+  group_by(comp) |>
+  summarise(units = sum(ready_units), .groups = "drop") |>
+  arrange(desc(units)) |>
+  slice_head(n = 3)
+cents <- st_coordinates(st_centroid(st_geometry(comps)))
+comps$x <- cents[, 1]; comps$y <- cents[, 2]
+no <- which.max(comps$y)                    # northernmost component
+rest <- setdiff(seq_len(nrow(comps)), no)
+sw <- rest[which.min(comps$x[rest])]        # western of the remaining two
+comps$label <- "South Hills"
+comps$label[no] <- "North Reserve corridor"
+comps$label[sw] <- "Linda Vista / Miller Creek"
+
+# Manual 1-mile scale bar (ggspatial not available).
+bb <- st_bbox(parcels)
+sb_x <- bb["xmin"] + 2000; sb_y <- bb["ymin"] + 3000
+
+map_layers <- function() {
+  list(
+    geom_sf(data = parcels, fill = COL_FABRIC, color = NA),
+    geom_sf(data = transit, color = "#b5b2aa", linewidth = 0.35),
+    geom_sf(data = hexes, aes(fill = gi_class), color = "#fcfcfb",
+            linewidth = 0.1, alpha = 0.92),
+    geom_text(data = st_drop_geometry(comps),
+              aes(x = x, y = y, label = label),
+              nudge_y = 4200, fontface = "bold", size = 3.4,
+              color = COL_INK),
+    annotate("segment", x = sb_x, xend = sb_x + 5280, y = sb_y, yend = sb_y,
+             linewidth = 1, color = COL_INK2),
+    annotate("text", x = sb_x + 2640, y = sb_y + 1400, label = "1 mile",
+             size = 2.8, color = COL_INK2),
+    scale_fill_manual(values = PAL_GI, labels = LBL_GI, name = NULL,
+                      drop = FALSE),
+    guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+  )
+}
+
+theme_map <- function() {
+  list(theme_story(),
+       theme(axis.text = element_blank(), axis.title = element_blank(),
+             panel.grid.major = element_blank()))
+}
+
+fig1 <- ggplot() + map_layers() +
   labs(
     title    = "Missoula's untapped housing capacity clusters in a few corridors",
     subtitle = "Each hex is scored by how much plan-enabled capacity it and its neighbors hold.\nGreen hexes hold significantly more than random arrangement would produce\n(Getis-Ord Gi*); darker green = stronger statistical evidence.",
-    caption  = "Source: City of Missoula taxlot data (2024). Analysis: capacity gap between Growth Policy\nfuture land use and existing dwelling units on unconstrained, economically soft parcels."
+    caption  = "Thin gray lines: Mountain Line bus routes (GTFS). Source: City of Missoula taxlot data (2024).\nAnalysis: capacity gap between Growth Policy future land use and existing dwelling units\non unconstrained, economically soft parcels."
   ) +
-  theme_story() +
-  theme(
-    axis.text        = element_blank(),
-    panel.grid.major = element_blank()
-  )
+  theme_map()
 
 ggsave(file.path(OUT_FIG, "fig1_hotspot_map.png"), fig1,
        width = 8.5, height = 9.5, dpi = 300, bg = "#fcfcfb")
+
+# Slide variant: same map, no title block (the slide header carries it).
+fig1s <- ggplot() + map_layers() + theme_map()
+ggsave(file.path(OUT_FIG, "fig1_hotspot_map_slide.png"), fig1s,
+       width = 8.5, height = 8.6, dpi = 300, bg = "#fcfcfb")
 
 # ---- Fig 2: existing units vs. plan capacity by land-use class ---------
 # Dumbbell: blue dot = units on the ground today, orange dot = today plus
@@ -155,4 +205,31 @@ fig3 <- ggplot(breakdown,
 ggsave(file.path(OUT_FIG, "fig3_breakdown.png"), fig3,
        width = 9, height = 3.6, dpi = 300, bg = "#fcfcfb")
 
-message("03_figures: wrote 3 figures to ", OUT_FIG)
+message("04_figures: wrote 4 figures + slide map variant to ", OUT_FIG)
+
+# ---- Fig 4: NOAH exposure map ------------------------------------------
+# Where the existing low-cost stock (bottom-quartile assessed value per
+# unit) sits relative to the capacity clusters.
+
+fig4 <- ggplot() +
+  geom_sf(data = parcels, fill = COL_FABRIC, color = NA) +
+  geom_sf(data = filter(hexes, noah_units > 0),
+          aes(fill = noah_units), color = "#fcfcfb", linewidth = 0.1) +
+  geom_sf(data = filter(hexes, gi_z >= 1.96), fill = NA,
+          color = "#4c5813", linewidth = 0.55) +
+  geom_text(data = st_drop_geometry(comps),
+            aes(x = x, y = y, label = label),
+            nudge_y = 4200, fontface = "bold", size = 3.4, color = COL_INK) +
+  scale_fill_gradient(low = "#e7ecf6", high = "#2f4b7c", trans = "sqrt",
+                      name = "Low-cost (NOAH) units per hex",
+                      breaks = c(10, 50, 150, 300)) +
+  labs(
+    title    = "The city's lowest-cost homes sit beside its growth clusters",
+    subtitle = "Blue: naturally occurring affordable housing (bottom-quartile assessed value\nper unit, under ~$240k). Dark green outline: 95%+ capacity clusters from Fig 1.",
+    caption  = "2,602 of the ~20,500 low-cost units across the mapped fabric sit inside or adjacent to a capacity\ncluster — where preservation policy must move first. Source: City of Missoula taxlot data (2024)."
+  ) +
+  theme_map() +
+  theme(legend.position = "top", legend.justification = "left")
+
+ggsave(file.path(OUT_FIG, "fig4_noah_map.png"), fig4,
+       width = 8.5, height = 9.5, dpi = 300, bg = "#fcfcfb")

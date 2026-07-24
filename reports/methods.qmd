@@ -83,6 +83,38 @@ parcels a single owner or small builder can develop under by-right rules
 from sites that realistically need master planning, subdivision, and new
 internal infrastructure.
 
+## Plan vintage
+
+The taxlot layer carries the future land-use designations of the **2035
+Growth Policy**. In December 2024 the City adopted the successor [Our
+Missoula 2045 Land Use Plan](https://www.ci.missoula.mt.us/3156/Land-Use-Plan)
+(need identified: ~22,000–27,500 new homes by 2045). Capacity here is
+therefore measured against the 2035-vintage map and read as a
+feasibility check on the 2045 target — designation-level densities are
+broadly continuous between the two plans, but a designation-by-
+designation re-run on the 2045 map is the natural refresh once its GIS
+layer is in hand.
+
+## Naturally occurring affordable housing (NOAH)
+
+NOAH = parcels with at least one dwelling unit whose **total assessed
+value per unit falls in the bottom quartile** of the city's housing
+stock — everything under **~$240,300 per unit** (6,691 parcels, ~23,800
+units). Assessed value proxies *price level*, not rent, and lags the
+market; the flag marks relative affordability, not income-qualified
+affordability. Exposure is measured on the hex grid: a hex's NOAH units
+count as exposed when the hex is, or touches, a 95%+ capacity cluster
+(~2,600 units).
+
+## Transit accessibility
+
+Stops and route shapes come from Mountain Line's published GTFS feed
+(July 2026; `data/external/`). A parcel counts as transit-accessible
+when it intersects a **quarter-mile (1,320 ft) Euclidean buffer** around
+any stop — the standard walkshed shorthand, which slightly overstates
+true network walking distance. 58% of plan-enabled units on opportunity
+parcels fall inside the walkshed.
+
 ## Hot-spot analysis (Getis-Ord Gi\*)
 
 Plan-enabled units on opportunity parcels are summed to a **1,000-ft
@@ -120,6 +152,13 @@ is why the map legend shows only capacity clusters. Running LISA as a
 robustness check on the hex grid is a natural QC step for the regional
 expansion.
 
+## Cluster naming
+
+The three labeled clusters on the maps are contiguity components of the
+95%+ hexes; their names were verified by reverse-geocoding each
+component's centroid (North Reserve corridor; Halle Drive area = Linda
+Vista / Miller Creek; Hillview Way / Moose Can Gully = South Hills).
+
 ## Reproducibility
 
 ```sh
@@ -148,3 +187,7 @@ outputs, so rendering never re-runs the analysis.
 - **Zoning is not analyzed here** — the story is deliberately framed
   against the Growth Policy. A zoning-vs-plan entitlement-gap analysis is
   the natural next phase.
+- **ACS estimates** (tenure, rent burden) carry margins of error; figures
+  cited are point estimates for Missoula city.
+- **The walkshed is Euclidean**, not network-routed, and GTFS reflects
+  current service.

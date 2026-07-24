@@ -60,6 +60,17 @@ smart-growth capacity: it sits inside the existing urban fabric, nets out
 floodway and steep slopes, and half of it is small-scale infill. Every
 unit built there is a unit not built as sprawl at the urban edge.
 
+One timing note matters. This dataset carries the future land-use
+designations of the **2035 Growth Policy**; in December 2024 the City
+adopted its successor, the [Our Missoula 2045 Land Use
+Plan](https://www.ci.missoula.mt.us/3156/Land-Use-Plan), which
+identifies a need of roughly **22,000–27,500 new homes by 2045**. That
+makes this analysis a feasibility check on the City's own target: at
+deliberately conservative midpoint densities, the 2035-vintage plan
+already provides ground for ~43,000 units — the 2045 target fits within
+existing plan capacity **1.6 to 2 times over**. The constraint is not
+land; it is conversion.
+
 ## Approach
 
 We work from the City of Missoula taxlot layer — **32,974 parcels** with
@@ -95,18 +106,23 @@ capacity clusters. Full detail: [Methods & Sources](reports/methods.qmd).
 plan-enabled capacity — counting each hex together with its neighbors —
 than a random arrangement of the same parcels would produce (Getis-Ord
 Gi\*); darker green means stronger statistical evidence, not more
-capacity. The clusters: the Mullan/Sxwtpqyen area in the northwest, the
-midtown corridor, and the south hills. Together the 40 hexes at 95%+
-confidence hold ~14,600 units — a third of the citywide total on ~3% of
-the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
+capacity. The three biggest clusters — labeled and verified by
+reverse-geocoding — are the North Reserve corridor, the Linda
+Vista/Miller Creek area, and the South Hills. Together the 40 hexes at
+95%+ confidence hold ~14,600 units — a third of the citywide total on
+~3% of the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
 
 Untapped capacity is not evenly smeared across Missoula. Aggregated to a
 1,000-ft hex grid and tested for spatial clustering, **40 of 1,188 hexes
 (~3.4%) are hot spots at 95%+ confidence, and they hold ~14,600 of the
 ~43,000 plan-enabled units**. These are the places where code reform,
 infrastructure investment, and permitting capacity would do the most work
-per acre: the Mullan/Sxwtpqyen growth area, the midtown corridor, and the
-south hills.
+per acre: the North Reserve corridor, the Linda Vista/Miller Creek area,
+and the South Hills, with smaller significant clusters through midtown.
+And the capacity is transit-aligned smart growth in a measurable sense:
+**58% of all plan-enabled units sit within a quarter-mile walk of one of
+Mountain Line's 334 bus stops** (agency GTFS) — growth where zero-fare
+transit already runs.
 
 ## Finding 2 — The plan already makes room for ~43,000 homes
 
@@ -137,23 +153,44 @@ unlocked by master planning and infrastructure; small-site capacity is
 unlocked by **by-right approvals, missing-middle allowances, and simpler
 review** — exactly the levers a development-code rewrite controls.
 
-## The counterpoint — density on paper, displacement on the ground
+## The affordability lens — who this is for, and who it puts at risk
 
-The same screen that finds opportunity also finds risk: **530 mobile-home
-parcels holding ~2,850 units sit on land the Growth Policy designates for
-higher density**. Their improvement values are low, so any market-driven
+Capacity only matters because of who is waiting on it. Missoula is a
+**majority-renter city — 52% of households rent** — and **half of those
+renters (49.9%) are cost-burdened**, paying more than 30% of income for
+housing (ACS 2019–2023). Supply that lands where demand already is —
+inside the urban fabric, on transit — is the structural relief valve for
+that pressure, and the 2045 plan's own target exists because the City
+reached the same conclusion.
+
+But the same market forces that would fill the capacity clusters also
+threaten the affordability that already exists. Using assessed values,
+we flag the city's **naturally occurring affordable housing (NOAH)** —
+the bottom quartile of homes by assessed value per unit, everything
+under roughly **$240,000 per unit** (~6,700 parcels, ~23,800 units).
+
+![Blue hexes shade where the low-cost stock concentrates; dark-green
+outlines are the 95%+ capacity clusters from the hero map. The overlap
+is the displacement frontier: **~2,600 low-cost units sit inside or
+directly adjacent to a capacity cluster.**](output/figures/fig4_noah_map.png){#fig-noah width=88%}
+
+The sharpest case is mobile homes: **530 mobile-home parcels holding
+~2,850 units sit on land the Growth Policy designates for higher
+density**. Their improvement values are low, so any market-driven
 realization of the plan's capacity puts them first in line for
-redevelopment — and they are among the city's most affordable homes. We
-deliberately excluded them from the opportunity count, and recommend the
-capacity strategy be paired from the start with mobile-home park
-preservation tools (resident ownership conversions, zoning overlays,
-relocation standards).
+redevelopment — which is why they are excluded from the opportunity
+count entirely. The policy implication is sequencing: pair the capacity
+strategy from the start with preservation tools — mobile-home park
+resident-ownership conversions, NOAH acquisition funds, zoning
+overlays, relocation standards — in exactly the hexes where the two
+maps overlap.
 
 ## What this means for the code reform
 
-1. **Align zoning with the plan where capacity clusters.** The hot-spot
-   corridors are where the gap between the future land-use map and current
-   entitlements is doing the most damage. Focus the rewrite there first.
+1. **Align zoning with the plan where capacity clusters.** The North
+   Reserve, Linda Vista/Miller Creek, and South Hills clusters are where
+   the gap between the future land-use map and current entitlements is
+   doing the most damage. Focus the rewrite there first.
 2. **Make small infill easy.** Half the capacity is on small parcels;
    by-right missing-middle and streamlined review convert it from paper to
    permits.
@@ -167,7 +204,9 @@ Plan-enabled capacity is **what the adopted plan makes room for, not a
 development forecast**: it ignores ownership, market feasibility, and
 infrastructure timing. Densities use the midpoints of the Growth
 Policy's designation ranges — the plan's ceiling would roughly double
-the headline. The Sxwtpqyen master-plan
+the headline. Assessed values proxy price levels, not rents, so the
+NOAH flag marks *relative* affordability; the quarter-mile walkshed is
+straight-line, which slightly overstates walk access. The Sxwtpqyen master-plan
 area carries its own designation we conservatively treat as non-residential,
 so the true total is likely *higher*. See [Methods & Sources](reports/methods.qmd).
 
@@ -179,6 +218,13 @@ so the true total is likely *higher*. See [Methods & Sources](reports/methods.qm
 - City of Missoula taxlot layer (2024) with assessor, zoning, Growth Policy
   future land use, and constraint attributes (provided for this exercise)
 - Field map / data dictionary accompanying the taxlot layer
+- [Mountain Line GTFS feed](https://www.mountainline.com/about/data-portal/)
+  (stops and routes, July 2026)
+- [American Community Survey](https://www.census.gov/programs-surveys/acs)
+  2019–2023 5-year estimates, Missoula city (tenure B25003, rent burden B25070)
+- Our Missoula 2035 Growth Policy designation density ranges, as applied
+  in City annexation/rezoning staff reports; [Our Missoula 2045 Land Use
+  Plan](https://www.ci.missoula.mt.us/3156/Land-Use-Plan) housing targets
 
 Analysis and figures: Kasey Zapatka, 2026. Full methodology:
 [Methods & Sources](reports/methods.qmd). Code:

@@ -91,6 +91,10 @@ of outputs against the task list.
 
 : {tbl-colwidths="[11,54,18,17]"}
 
+Budgeted at blended rates — Senior Associate $150/hr (~140 hrs), Junior
+Associate $95/hr (~200 hrs), GIS Intern $55/hr (~145 hrs) — ≈485 staff
+hours ($48,000) plus $2,000 contingency.
+
 The budget's shape reflects the risk: data normalization (Tasks 1–3,
 $26,000) is over half the project, because the dashboard is only as
 credible as the crosswalks under it. The dashboard itself stays on an
