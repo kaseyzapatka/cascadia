@@ -29,19 +29,19 @@ opp_ll <- parcels |>
     )
   )
 
-# Brand palette (see 03_figures.R); hot classes stepped coral, gray neutral.
+# Brand palette (see 03_figures.R); hot classes stepped green, gray neutral.
 PAL_GI <- c(
-  "Hot spot (99% conf.)" = "#9c2a16",
-  "Hot spot (95% conf.)" = "#f0523d",
-  "Hot spot (90% conf.)" = "#f5a58f",
+  "Hot spot (99% conf.)" = "#4c5813",
+  "Hot spot (95% conf.)" = "#8b9c26",
+  "Hot spot (90% conf.)" = "#c9d465",
   "Not significant"      = "#e8e6e1",
-  "Cold spot"            = "#3a57b6"
+  "Cold spot"            = "#7096c0"
 )
-LBL_GI <- c("Capacity cluster — 99% confidence",
-            "Capacity cluster — 95% confidence",
-            "Capacity cluster — 90% confidence",
+LBL_GI <- c("Very strong cluster (99% confidence)",
+            "Strong cluster (95% confidence)",
+            "Moderate cluster (90% confidence)",
             "No significant clustering",
-            "Low-capacity cluster")
+            "Cluster of low capacity")
 hexes_ll$col <- unname(PAL_GI[as.character(hexes_ll$gi_class)])
 
 map <- leaflet(options = leafletOptions(minZoom = 11)) |>
@@ -53,11 +53,12 @@ map <- leaflet(options = leafletOptions(minZoom = 11)) |>
   ) |>
   addPolygons(
     data = opp_ll, group = "Opportunity parcels",
-    fillColor = "#3a57b6", fillOpacity = 0.5, color = "#3a57b6", weight = 0.5,
+    fillColor = "#7096c0", fillOpacity = 0.5, color = "#7096c0", weight = 0.5,
     popup = ~popup
   ) |>
   addLegend(
-    position = "bottomright", title = "Untapped housing capacity",
+    position = "bottomright",
+    title = "Clustering of untapped capacity<br/><span style='font-weight:normal;font-size:11px'>confidence the concentration is not random (Gi*)</span>",
     colors = unname(PAL_GI[names(PAL_GI) %in% unique(as.character(hexes_ll$gi_class))]),
     labels = LBL_GI[names(PAL_GI) %in% unique(as.character(hexes_ll$gi_class))]
   ) |>

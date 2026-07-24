@@ -6,6 +6,10 @@ date: today
 format:
   html:
     toc: true
+    format-links:
+      - format: typst
+        text: "Download PDF"
+        icon: file-pdf
   typst:
     output-file: missoula_housing_memo.pdf
     toc: false
@@ -43,6 +47,18 @@ in specific places," the policy task stops being about finding new land and
 becomes about removing the friction — zoning, process, infrastructure —
 between the plan and the ground.
 
+That question sits directly under both of the City's stated goals.
+**Affordability** in a supply-constrained market is won two ways: adding
+homes where demand already is, and protecting the low-cost homes that
+exist — this analysis locates the first (43,000 plan-enabled units) and
+flags the second (the mobile-home counterpoint below). **Smart growth**
+means directing that supply *inward* — onto vacant and underbuilt land
+already served by streets, pipes, and transit — rather than outward into
+farmland and hazard areas. Plan-enabled capacity is, by construction,
+smart-growth capacity: it sits inside the existing urban fabric, nets out
+floodway and steep slopes, and half of it is small-scale infill. Every
+unit built there is a unit not built as sprawl at the urban edge.
+
 ## Approach
 
 We work from the City of Missoula taxlot layer — **32,974 parcels** with
@@ -73,11 +89,14 @@ capacity clusters. Full detail: [Methods & Sources](methods.qmd).
 
 ## Finding 1 — A third of the capacity clusters in ~4% of the city
 
-![**The story in one map.** Coral hexes are statistically significant
-clusters of plan-enabled capacity (Gi\* hot spots): the Mullan/Sxwtpqyen
-area in the northwest, the midtown corridor, and the south hills. Together
-the 46 hot hexes at 95%+ confidence hold ~14,100 units — a third of the
-citywide total on ~4% of the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
+![**The story in one map.** Green hexes hold significantly more
+plan-enabled capacity — counting each hex together with its neighbors —
+than a random arrangement of the same parcels would produce (Getis-Ord
+Gi\*); darker green means stronger statistical evidence, not more
+capacity. The clusters: the Mullan/Sxwtpqyen area in the northwest, the
+midtown corridor, and the south hills. Together the 46 hexes at 95%+
+confidence hold ~14,100 units — a third of the citywide total on ~4% of
+the urban fabric.](figures/fig1_hotspot_map.png){#fig-hero width=88%}
 
 Untapped capacity is not evenly smeared across Missoula. Aggregated to a
 1,000-ft hex grid and tested for spatial clustering, **46 of 1,188 hexes
@@ -91,8 +110,8 @@ south hills.
 
 ![Dwelling units by Growth Policy future land-use designation: homes on the
 ground today (blue) versus today plus plan-enabled capacity on vacant and
-underbuilt parcels (coral). Community Mixed Use and the medium/high
-residential designations carry most of the headroom.](output/figures/fig2_capacity_gap.png){#fig-capacity width=92%}
+underbuilt parcels (green). Community Mixed Use and the medium/high
+residential designations carry most of the headroom.](figures/fig2_capacity_gap.png){#fig-capacity width=92%}
 
 Summing across designations, **3,587 opportunity parcels (~4,300 acres)
 carry ~43,000 plan-enabled units** — nearly a one-for-one doubling of the
@@ -107,7 +126,7 @@ floodway and steep-slope land — buildable ground.
 
 ![Plan-enabled units by parcel size and current condition. Small parcels
 (≤ 5 acres) — the scale of an individual owner, a small builder, a
-neighborhood lot — carry half the citywide total.](output/figures/fig3_breakdown.png){#fig-infill width=92%}
+neighborhood lot — carry half the citywide total.](figures/fig3_breakdown.png){#fig-infill width=92%}
 
 Big vacant tracts get the headlines, but **parcels of five acres or less
 carry ~22,400 units — 52% of the total**, most of it on *underbuilt* rather
@@ -147,12 +166,11 @@ development forecast**: it ignores ownership, market feasibility, and
 infrastructure timing. Density assumptions per designation await
 verification against the adopted Growth Policy. The Sxwtpqyen master-plan
 area carries its own designation we conservatively treat as non-residential,
-so the true total is likely *higher*. See [Methods & Sources](methods.qmd)
-and the [FAQ](faq.qmd).
+so the true total is likely *higher*. See [Methods & Sources](methods.qmd).
 
 ---
 
-::: {.callout-tip appearance="simple" icon=false}
+::: {.callout-note appearance="simple" icon=false}
 **Data sources.**
 
 - City of Missoula taxlot layer (2024) with assessor, zoning, Growth Policy

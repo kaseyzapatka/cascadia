@@ -17,35 +17,39 @@ parcels <- st_read(file.path(OUT_DATA, "parcels_scored.gpkg"), quiet = TRUE)
 hexes   <- st_read(file.path(OUT_DATA, "hex_hotspots.gpkg"),   quiet = TRUE)
 
 # ---- Shared style ------------------------------------------------------
-# Brand palette pulled from cascadia-partners.com (coral accent #f0523d,
-# near-black ink #272727, blue #3a57b6) and validated for CVD safety with
-# the dataviz palette checker: blue = what exists, coral = what the plan
-# adds. The map's hot classes are the coral hue stepped light -> dark with
-# neutral gray for "not significant" and blue for (absent) cold spots.
+# Palette anchored on the user's brand swatches — steel blue #7096c0 and
+# chartreuse green #bdc74f — validated for CVD safety with the dataviz
+# palette checker: blue = what exists, green = what the plan adds (marks
+# use the deeper #8b9c26 step of the same hue so they read against white;
+# the light swatch tone survives as fills/tints). The map's hot classes
+# are the green hue stepped light -> dark with neutral gray for "not
+# significant" and blue for (absent) cold spots.
 
-COL_EXISTING <- "#3a57b6"
-COL_ADDED    <- "#f0523d"
+COL_EXISTING <- "#7096c0"
+COL_ADDED    <- "#8b9c26"
 COL_FABRIC   <- "#efedea"   # background parcel fabric
 COL_INK      <- "#272727"
 COL_INK2     <- "#52514e"
 
 PAL_GI <- c(
-  "Hot spot (99% conf.)" = "#9c2a16",
-  "Hot spot (95% conf.)" = "#f0523d",
-  "Hot spot (90% conf.)" = "#f5a58f",
+  "Hot spot (99% conf.)" = "#4c5813",
+  "Hot spot (95% conf.)" = "#8b9c26",
+  "Hot spot (90% conf.)" = "#c9d465",
   "Not significant"      = "#e8e6e1",
-  "Cold spot"            = "#3a57b6"
+  "Cold spot"            = "#7096c0"
 )
 
 # Plain-language legend: a Gi* "hot spot" is a hex whose neighborhood-wide
 # capacity is higher than chance would allow — i.e., a cluster of high
 # values surrounded by high values (the Gi* analogue of LISA's high-high).
+# Classes are the conventional Gi* confidence tiers: how sure the statistic
+# is that the concentration is real rather than random arrangement.
 LBL_GI <- c(
-  "Hot spot (99% conf.)" = "Capacity cluster — 99% confidence",
-  "Hot spot (95% conf.)" = "Capacity cluster — 95% confidence",
-  "Hot spot (90% conf.)" = "Capacity cluster — 90% confidence",
+  "Hot spot (99% conf.)" = "Very strong cluster (99% confidence)",
+  "Hot spot (95% conf.)" = "Strong cluster (95% confidence)",
+  "Hot spot (90% conf.)" = "Moderate cluster (90% confidence)",
   "Not significant"      = "No significant clustering",
-  "Cold spot"            = "Low-capacity cluster"
+  "Cold spot"            = "Cluster of low capacity"
 )
 
 theme_story <- function(base_size = 12) {
@@ -74,7 +78,7 @@ fig1 <- ggplot() +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
   labs(
     title    = "Missoula's untapped housing capacity clusters in a few corridors",
-    subtitle = "Getis-Ord Gi* hot spots of plan-enabled units on vacant and underbuilt parcels\n(1,000-ft hex grid over housing-eligible parcels)",
+    subtitle = "Each hex is scored by how much plan-enabled capacity it and its neighbors hold.\nGreen hexes hold significantly more than random arrangement would produce\n(Getis-Ord Gi*); darker green = stronger statistical evidence.",
     caption  = "Source: City of Missoula taxlot data (2024). Analysis: capacity gap between Growth Policy\nfuture land use and existing dwelling units on unconstrained, economically soft parcels."
   ) +
   theme_story() +
@@ -137,7 +141,7 @@ fig3 <- ggplot(breakdown,
   geom_col(width = 0.55, color = "#fcfcfb", linewidth = 0.8) +
   geom_text(aes(label = comma(round(units))),
             position = position_stack(vjust = 0.5),
-            color = "#fcfcfb", size = 3.4, fontface = "bold") +
+            color = "#272727", size = 3.4, fontface = "bold") +
   scale_fill_manual(values = c("Vacant" = COL_EXISTING,
                                "Underbuilt" = COL_ADDED), name = NULL) +
   scale_x_continuous(labels = comma) +

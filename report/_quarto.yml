@@ -1,16 +1,16 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: ../docs
   render:
     - "index.qmd"
     - "map.qmd"
     - "methods.qmd"
     - "part2.qmd"
-    - "faq.qmd"
+    - "part3.qmd"
+  pre-render:
+    - scripts/copy_assets.sh
   post-render:
     - scripts/render_pdfs.sh
-  resources:
-    - "output/maps/hotspot_map.html"
 
 website:
   title: "Missoula Housing Capacity"
@@ -19,16 +19,16 @@ website:
   navbar:
     pinned: true
     left:
-      - text: "Data Story"
+      - text: "Part 1: Data Story"
         href: index.qmd
-      - text: "Interactive Map"
-        href: map.qmd
-      - text: "Methods & Sources"
-        href: methods.qmd
-      - text: "Project Management"
+      - text: "Part 2: Management"
         href: part2.qmd
-      - text: "FAQ"
-        href: faq.qmd
+      - text: "Part 3: AI"
+        href: part3.qmd
+      - text: "Map"
+        href: map.qmd
+      - text: "Methods"
+        href: methods.qmd
     right:
       - text: "Downloads"
         menu:

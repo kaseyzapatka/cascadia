@@ -1,17 +1,19 @@
 # Missoula Housing Capacity — GIS Data Story
 
+**Website: <https://www.kaseyzapatka.com/cascadia/>**
+
 Analysis for the Cascadia Partners Technical Senior Associate hiring
 exercise: a parcel-level look at how much housing Missoula's adopted Growth
 Policy already makes room for, and where that capacity clusters.
 
-**Deliverables** (all built from this repo):
+**Deliverables** (all built from this repo — see the website for each):
 
-- **Part 1 — data story slide:** `docs/missoula_data_story_slide.pdf`
-  (one-page 11×8.5, from [slide.qmd](slide.qmd))
-- **Part 2 — project management one-pager:**
-  `docs/missoula_project_management.pdf` (from [part2.qmd](part2.qmd))
+- **Part 1 — data story slide:** one-page 11×8.5 PDF, from
+  [report/slide.qmd](report/slide.qmd)
+- **Part 2 — strategic project management one-pager:** from
+  [report/part2.qmd](report/part2.qmd)
 - **Part 3 — AI-enhanced web deliverable:** the Quarto website itself
-  (data story, interactive map, methods, FAQ), published via GitHub Actions
+  (data story, interactive map, methods), published via GitHub Actions
 
 ## Headline findings
 
@@ -25,6 +27,22 @@ Policy already makes room for, and where that capacity clusters.
 - **Counterpoint:** 530 mobile-home parcels (~2,850 affordable units) sit
   on planned-density land — flagged as displacement risk, excluded from
   the opportunity count.
+
+## How it fits together
+
+```mermaid
+flowchart LR
+    A[("data/<br/>taxlot .gdb + field map")] --> B["01_clean_derive.R<br/>clean + derive metrics<br/>(ILR, constraints, capacity)"]
+    B --> C["02_hotspots.R<br/>Gi* on 1,000-ft hex grid"]
+    C --> D["03_figures.R<br/>story figures"]
+    C --> E["04_interactive.R<br/>Leaflet map"]
+    D --> F[("output/figures/")]
+    E --> G[("output/maps/")]
+    F --> H["quarto render<br/>(.qmd pages)"]
+    G --> H
+    H --> I["Website<br/>(GitHub Actions → gh-pages)"]
+    H --> J["PDFs: Part 1 slide,<br/>Part 2 one-pager, memo"]
+```
 
 ## Pipeline
 
@@ -42,46 +60,56 @@ Rscript code/run_all.R   # raw .gdb -> derived data -> figures -> leaflet map
 4. [code/04_interactive.R](code/04_interactive.R) — self-contained Leaflet
    map for the website
 
-All tunable assumptions live in [code/00_setup.R](code/00_setup.R).
-Requires R (developed on 4.5) with `sf`, `dplyr`, `tidyr`, `readr`,
+All tunable assumptions live in [code/00_setup.R](code/00_setup.R);
+methodology, assumptions, and limitations are documented on the site's
+[Methods & Sources](https://www.kaseyzapatka.com/cascadia/methods.html)
+page. Requires R (developed on 4.5) with `sf`, `dplyr`, `tidyr`, `readr`,
 `spdep`, `ggplot2`, `scales`, `leaflet`, `htmlwidgets`, `here`; exact
 environment in [output/session_info.txt](output/session_info.txt).
 
 ## Website
 
-Quarto site (pages: `index`, `map`, `methods`, `part2`, `faq`; config in
-[_quarto.yml](_quarto.yml)). The site embeds the committed figures and map
-from `output/`, so rendering never re-runs the analysis:
+Quarto site in [report/](report/) (config in [report/_quarto.yml](report/_quarto.yml)). The site embeds the
+committed figures and map from `output/`, so rendering never re-runs the
+analysis:
 
 ```sh
+cd report
 quarto render        # -> docs/ (also builds the three PDFs via post-render)
 quarto preview       # local preview
 ```
 
 Publishing: [.github/workflows/publish.yml](.github/workflows/publish.yml)
 renders and pushes to the `gh-pages` branch on every push to `main`.
-One-time setup after first push: **Settings → Pages → Deploy from a
-branch → `gh-pages` / root**.
 
 ## Repository layout
 
 ```
-data/       raw inputs (taxlot .gdb, FieldMap.csv) — never modified
-code/       numbered R scripts + run_all.R entry point
-output/     generated figures, leaflet map, stats (committed; gpkg ignored)
-*.qmd       website pages + PDF deliverables (slide, part2)
-scripts/    quarto post-render hook (PDF builds)
-docs/       rendered site (gitignored; CI publishes gh-pages)
+.
+├── data/                          # raw inputs — never modified
+│   ├── HiringExercise_GIS_2024.gdb/   # Missoula taxlot layer (Esri gdb)
+│   └── FieldMap.csv                   # data dictionary
+├── code/                          # analysis pipeline (R)
+│   ├── 00_setup.R                     # paths, parameters, all assumptions
+│   ├── 01_clean_derive.R              # clean + derive parcel metrics
+│   ├── 02_hotspots.R                  # Gi* hot spots on hex grid
+│   ├── 03_figures.R                   # story figures (PNG)
+│   ├── 04_interactive.R               # self-contained Leaflet map
+│   └── run_all.R                      # entry point: reproduce everything
+├── output/
+│   ├── data/                          # scored parcels, hexes, stats
+│   ├── figures/                       # fig1–fig3 (committed)
+│   └── maps/hotspot_map.html          # embedded interactive map
+├── report/                        # Quarto website + PDF deliverables
+│   ├── _quarto.yml                    # site config (navbar, formats)
+│   ├── index.qmd                      # Part 1 · data story (html + memo PDF)
+│   ├── slide.qmd                      # Part 1 · one-page slide (PDF)
+│   ├── part2.qmd                      # Part 2 · management (html + PDF)
+│   ├── part3.qmd                      # Part 3 · AI-enhanced deliverable
+│   ├── map.qmd                        # interactive map page
+│   ├── methods.qmd                    # methodology, assumptions, limitations
+│   ├── brand.scss                     # site theme (blue/green palette)
+│   └── scripts/                       # pre/post-render hooks (assets, PDFs)
+├── .github/workflows/publish.yml  # renders + publishes gh-pages
+└── docs/                          # rendered site (gitignored; CI output)
 ```
-
-## Assumptions & caveats
-
-- Density assumptions per future land-use designation are placeholders
-  calibrated to Growth Policy ranges — **verify against the adopted
-  document before client use** (`DU_PER_ACRE` in `code/00_setup.R`).
-- Flood/slope NA means "no mapped constraint" (treated as 0%); constraint
-  share takes the max of the two.
-- Assessed values proxy economic softness (ILR), not market prices.
-- Capacity is plan-implied, not a development forecast.
-- The Sxwtpqyen Area designation is conservatively excluded from capacity,
-  so totals are likely understated.

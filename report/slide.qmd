@@ -10,18 +10,18 @@ format:
           margin: (x: 0.45in, top: 0.35in, bottom: 0.3in))
 #set text(size: 9.5pt, fill: rgb("#272727"))
 
-#let coral = rgb("#f0523d")
-#let blue  = rgb("#3a57b6")
+#let accent = rgb("#8b9c26")   // brand green (deep step for text/rules)
+#let blue   = rgb("#7096c0")   // brand steel blue
 #let ink2  = rgb("#52514e")
 
 #let stat(num, label) = box(
   fill: rgb("#f6f6f6"),
-  stroke: (left: 3pt + coral),
+  stroke: (left: 3pt + accent),
   inset: 8pt,
   radius: 2pt,
   width: 100%,
 )[
-  #text(size: 19pt, weight: "bold", fill: coral)[#num]
+  #text(size: 19pt, weight: "bold", fill: accent)[#num]
   #linebreak()
   #text(size: 8pt, fill: ink2)[#label]
 ]
@@ -35,7 +35,7 @@ format:
   third of it clustered in just 4% of the city.
 ]
 #v(2pt)
-#line(length: 100%, stroke: 1.5pt + coral)
+#line(length: 100%, stroke: 1.5pt + accent)
 #v(4pt)
 
 // ---------- body ----------
@@ -43,7 +43,7 @@ format:
   columns: (46%, 54%),
   gutter: 14pt,
   [
-    #image("output/figures/fig1_hotspot_map.png", width: 100%, height: 4.75in, fit: "contain")
+    #image("figures/fig1_hotspot_map.png", width: 100%, height: 4.75in, fit: "contain")
     #v(4pt)
     #box(fill: rgb("#f6f6f6"), stroke: (left: 3pt + blue), inset: 8pt, radius: 2pt, width: 100%)[
       #text(size: 8.5pt)[
@@ -63,20 +63,20 @@ format:
       stat[1∕3][of capacity sits in 46 hot spots — just ≈4% of the urban fabric],
     )
     #v(6pt)
-    #image("output/figures/fig2_capacity_gap.png", width: 100%, height: 2.85in, fit: "contain")
+    #image("figures/fig2_capacity_gap.png", width: 100%, height: 2.85in, fit: "contain")
     #v(4pt)
     #text(size: 9.5pt, weight: "bold")[What this means for the code reform]
     #v(2pt)
     #text(size: 8.5pt)[
-      #text(fill: coral, weight: "bold")[1.] Align zoning with the plan in
+      #text(fill: accent, weight: "bold")[1.] Align zoning with the plan in
       the hot-spot corridors (Mullan/Sxwtpqyen, midtown, south hills) —
       that's where entitlement friction costs the most homes.
       #linebreak()
-      #text(fill: coral, weight: "bold")[2.] Make small infill by-right:
+      #text(fill: accent, weight: "bold")[2.] Make small infill by-right:
       half the capacity sits on parcels a small builder can develop under
       simple rules.
       #linebreak()
-      #text(fill: coral, weight: "bold")[3.] Pair upzoning with mobile-home
+      #text(fill: accent, weight: "bold")[3.] Pair upzoning with mobile-home
       park preservation before surrounding land values move.
     ]
   ]
