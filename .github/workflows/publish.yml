@@ -1,8 +1,9 @@
-# Render the Quarto site and publish it to the gh-pages branch.
-# The site embeds pre-generated figures and maps committed in output/, so
-# CI needs Quarto only — the R pipeline never runs here.
+# Render the Quarto site (project lives in report/, outputs to docs/) and
+# deploy docs/ to the gh-pages branch. The site embeds pre-generated
+# figures and maps committed in output/, so CI needs Quarto only — the R
+# pipeline never runs here.
 #
-# One-time setup after the first push:
+# One-time setup after the first successful run:
 #   Repo Settings -> Pages -> Source: "Deploy from a branch" -> gh-pages / root
 name: Publish site
 
@@ -24,9 +25,12 @@ jobs:
         with:
           tinytex: false
 
-      - uses: quarto-dev/quarto-actions/publish@v2
+      - name: Render site
+        run: quarto render
+        working-directory: report
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          target: gh-pages
-          path: report
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs
