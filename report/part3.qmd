@@ -29,7 +29,7 @@ it into something a static slide can't be:
   Actions on every push, and every number regenerates from one command
   (`Rscript code/run_all.R`).
 
-## How AI was used — specifically
+## How AI was used
 
 The exercise asks for AI-driven enhancements to the Part 1 deliverable,
 and that is where I used it. I designed and built the analysis — the
@@ -40,8 +40,8 @@ was then used to enhance and harden the deliverable:
 - **Enhancing the one-page slide into this website** — converting the
   slide's map, figures, and narrative into the Quarto site you're reading,
   including the interactive Leaflet version of the hero map.
-- **Producing the slide layout itself** — the typst page composition that
-  turns the pipeline's figures and numbers into the polished one-page PDF.
+- **Producing the slide layout itself** — the page composition that turns
+  the pipeline's figures and numbers into the polished one-page PDF.
 - **Auditing the code** — reviewing the pipeline for correctness and
   reproducibility, and checking the cartography programmatically,
   including colorblind-safety validation (deuteranopia, protanopia,

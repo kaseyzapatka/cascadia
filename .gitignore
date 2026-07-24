@@ -6,7 +6,7 @@
 
 # Quarto render products (site is published to gh-pages by CI)
 docs/
-/.quarto/
+.quarto/
 *_files/
 index.html
 map.html
@@ -25,3 +25,6 @@ output/data/*.gpkg
 Hiring Exercise Senior Associate.pdf
 # private interview-prep notes
 notes/
+
+# staged copies for typst (source of truth: output/figures)
+report/figures/
