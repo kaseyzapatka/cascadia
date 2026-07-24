@@ -1,9 +1,21 @@
 ---
 title: "The AI-Enhanced Deliverable"
 subtitle: "How the Part 1 slide became this website — and exactly how AI was used"
+format-links:
+  - html
+  - format: typst
+    text: "Download PDF"
+    icon: file-pdf
 format:
   html:
     toc: true
+  typst:
+    output-file: missoula_ai_enhancement.pdf
+    toc: false
+    papersize: us-letter
+    margin:
+      x: 1.6cm
+      y: 1.8cm
 ---
 
 ## What this deliverable is
@@ -20,7 +32,7 @@ it into something a static slide can't be:
   source.
 - **The [interactive map](map.qmd)** turns the slide's hero map into an
   explorable Leaflet map: hover any hex for its capacity, toggle on the
-  3,587 underlying opportunity parcels, click one for its details.
+  3,419 underlying opportunity parcels, click one for its details.
 - **[Methods & Sources](methods.qmd)** documents every cleaning decision,
   assumption, and methodological choice — the audit trail a slide can
   never carry.

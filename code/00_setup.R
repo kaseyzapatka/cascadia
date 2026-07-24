@@ -22,18 +22,30 @@ dir.create(OUT_FIG,  recursive = TRUE, showWarnings = FALSE)
 CRS_PLANE <- 2256
 
 # ---- Capacity assumptions ---------------------------------------------
-# Assumed allowable net densities (dwelling units / acre) by City Growth
-# Policy future land-use designation. PLACEHOLDERS calibrated to the ranges
-# in the Our Missoula Growth Policy (2035) land-use guide — verify against
-# the adopted document before client use. Classes not listed are treated as
-# not housing-eligible and contribute zero capacity.
+# Allowable net density (dwelling units / acre) by City Growth Policy
+# future land-use designation, from the adopted Our Missoula 2035 Growth
+# Policy designation ranges as applied in City of Missoula annexation /
+# rezoning staff reports:
+#   Residential Low          1-2 du/ac
+#   Residential Medium       3-11 du/ac
+#   Residential Medium-High  12-23 du/ac
+#   Residential High         24-43 du/ac
+#   Neighborhood Mixed Use   carries medium-high residential (12-23)
+#   Community Mixed Use      carries high residential (24+; aligned zoning
+#                            districts C1-4/C2-4/M1R-2 cap at 43)
+#   Urban Center             no du/ac stated in the Policy; pinned at 43,
+#                            the highest density the Policy quotes anywhere
+#                            (conservative for the downtown designation)
+# Capacity uses the MIDPOINT of each range — a deliberately conservative
+# "expected" density rather than the plan's ceiling. Classes not listed are
+# treated as not housing-eligible and contribute zero capacity.
 DU_PER_ACRE <- c(
-  "Residential Low"         = 3,
-  "Residential Medium"      = 8,
-  "Residential Medium-High" = 16,
-  "Residential High"        = 29,
-  "Neighborhood Mixed Use"  = 16,
-  "Community Mixed Use"     = 29,
+  "Residential Low"         = 1.5,
+  "Residential Medium"      = 7,
+  "Residential Medium-High" = 17.5,
+  "Residential High"        = 33.5,
+  "Neighborhood Mixed Use"  = 17.5,
+  "Community Mixed Use"     = 33.5,
   "Urban Center"            = 43
 )
 

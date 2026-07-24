@@ -17,12 +17,12 @@ Policy already makes room for, and where that capacity clusters.
 
 ## Headline findings
 
-- **~43,000 plan-enabled units** sit on 3,587 vacant or underbuilt parcels
-  (~4,300 acres) where the Growth Policy's future land use already calls
+- **~43,000 plan-enabled units** sit on 3,419 vacant or underbuilt parcels
+  (~4,200 acres) where the Growth Policy's future land use already calls
   for housing. Missoula has ~44,300 units today.
 - **Half of that capacity is small-scale infill** (parcels ≤ 5 acres).
-- **A third concentrates in ~4% of the urban fabric**: 46 Gi* hot-spot
-  hexes (95%+ confidence) hold ~14,100 units — Mullan/Sxwtpqyen, midtown,
+- **A third concentrates in ~3% of the urban fabric**: 40 Gi* hot-spot
+  hexes (95%+ confidence) hold ~14,600 units — Mullan/Sxwtpqyen, midtown,
   and the south hills.
 - **Counterpoint:** 530 mobile-home parcels (~2,850 affordable units) sit
   on planned-density land — flagged as displacement risk, excluded from

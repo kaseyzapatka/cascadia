@@ -58,9 +58,9 @@ format:
     #grid(
       columns: (1fr, 1fr, 1fr),
       gutter: 8pt,
-      stat[≈43,000][plan-enabled homes on 3,587 vacant and underbuilt parcels — no plan change needed],
-      stat[52%][of capacity is infill on parcels ≤ 5 acres — unlocked by code, not land assembly],
-      stat[1∕3][of capacity sits in 46 hot spots — just ≈4% of the urban fabric],
+      stat[≈43,000][plan-enabled homes on 3,419 vacant and underbuilt parcels — no plan change needed],
+      stat[54%][of capacity is infill on parcels ≤ 5 acres — unlocked by code, not land assembly],
+      stat[1∕3][of capacity sits in 40 hot spots — just ≈3% of the urban fabric],
     )
     #v(6pt)
     #image("output/figures/fig2_capacity_gap.png", width: 100%, height: 2.85in, fit: "contain")
@@ -91,8 +91,8 @@ format:
   acres (net of floodway/steep slope) − existing units, on vacant or
   economically soft parcels (improvement value < land value), excluding
   public, institutional, open-space, and mobile-home land. Clusters:
-  Getis-Ord Gi\* on a 1,000-ft hex grid, 95%+ confidence. Density
-  assumptions pending verification against the adopted Growth Policy.
+  Getis-Ord Gi\* on a 1,000-ft hex grid, 95%+ confidence. Densities: midpoints of the
+  adopted 2035 Growth Policy designation ranges.
   Source: City of Missoula taxlot data (2024). Analysis: Kasey Zapatka,
   2026 — full methods, interactive map, and code at
   kaseyzapatka.com/cascadia.
