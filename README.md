@@ -13,7 +13,7 @@ Policy already makes room for, and where that capacity clusters.
 - **Part 2 — strategic project management one-pager:** from
   [reports/part2.qmd](reports/part2.qmd)
 - **Part 3 — AI-enhanced web deliverable:** the Quarto website itself
-  (data story, interactive map, methods), published via GitHub Actions
+  (data story, interactive map, methods), served by GitHub Pages
 
 ## Headline findings
 
@@ -78,8 +78,9 @@ quarto render        # -> docs/ (also builds the three PDFs via post-render)
 quarto preview       # local preview
 ```
 
-Publishing: [.github/workflows/publish.yml](.github/workflows/publish.yml)
-renders and pushes to the `gh-pages` branch on every push to `main`.
+Publishing: GitHub Pages serves the committed `docs/` folder from `main`
+(Settings → Pages → Deploy from a branch → `main` / `docs`). Render
+locally, commit `docs/`, push.
 
 ## Repository layout
 
@@ -109,6 +110,5 @@ renders and pushes to the `gh-pages` branch on every push to `main`.
 │   ├── map.qmd                        # interactive map page
 │   └── methods.qmd                    # methodology, assumptions, limitations
 ├── scripts/render_pdfs.sh         # post-render hook: builds the PDFs
-├── .github/workflows/publish.yml  # renders + publishes gh-pages
-└── docs/                          # rendered site (gitignored; CI output)
+└── docs/                          # rendered site (committed; Pages serves main /docs)
 ```
