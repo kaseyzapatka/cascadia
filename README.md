@@ -9,9 +9,9 @@ Policy already makes room for, and where that capacity clusters.
 **Deliverables** (all built from this repo — see the website for each):
 
 - **Part 1 — data story slide:** one-page 11×8.5 PDF, from
-  [slide.qmd](slide.qmd)
+  [reports/slide.qmd](reports/slide.qmd)
 - **Part 2 — strategic project management one-pager:** from
-  [part2.qmd](part2.qmd)
+  [reports/part2.qmd](reports/part2.qmd)
 - **Part 3 — AI-enhanced web deliverable:** the Quarto website itself
   (data story, interactive map, methods), published via GitHub Actions
 
@@ -69,14 +69,17 @@ environment in [output/session_info.txt](output/session_info.txt).
 
 ## Website
 
-Quarto site at the repo root (config in [_quarto.yml](_quarto.yml)). The site embeds the
+Quarto site in [reports/](reports/) (config in [reports/_quarto.yml](reports/_quarto.yml)). The site embeds the
 committed figures and map from `output/`, so rendering never re-runs the
 analysis:
 
 ```sh
-quarto render        # -> docs/ (also builds the three PDFs via post-render)
-quarto preview       # local preview
+quarto render reports    # -> docs/ (also builds the three PDFs via post-render)
+quarto preview reports   # local preview
 ```
+
+(Run from the repo root; Quarto takes the project folder as an argument.
+`cd reports && quarto preview` works too.)
 
 Publishing: [.github/workflows/publish.yml](.github/workflows/publish.yml)
 renders and pushes to the `gh-pages` branch on every push to `main`.
@@ -99,15 +102,16 @@ renders and pushes to the `gh-pages` branch on every push to `main`.
 │   ├── data/                          # scored parcels, hexes, stats
 │   ├── figures/                       # fig1–fig3 (committed)
 │   └── maps/hotspot_map.html          # embedded interactive map
-├── _quarto.yml                    # site config (navbar, formats)
-├── index.qmd                      # Part 1 · data story (html + memo PDF)
-├── slide.qmd                      # Part 1 · one-page slide (PDF)
-├── part2.qmd                      # Part 2 · management (html + PDF)
-├── part3.qmd                      # Part 3 · AI-enhanced deliverable
-├── map.qmd                        # interactive map page
-├── methods.qmd                    # methodology, assumptions, limitations
-├── brand.scss                     # site theme (blue/green palette)
-├── scripts/render_pdfs.sh         # post-render hook: builds the PDFs
+├── reports/                       # Quarto website + PDF deliverables
+│   ├── _quarto.yml                    # site config (navbar, formats)
+│   ├── index.qmd                      # Part 1 · data story (html + memo PDF)
+│   ├── slide.qmd                      # Part 1 · one-page slide (PDF)
+│   ├── part2.qmd                      # Part 2 · management (html + PDF)
+│   ├── part3.qmd                      # Part 3 · AI-enhanced deliverable
+│   ├── map.qmd                        # interactive map page
+│   ├── methods.qmd                    # methodology, assumptions, limitations
+│   ├── brand.scss                     # site theme (blue/green palette)
+│   └── scripts/                       # pre/post-render hooks (assets, PDFs)
 ├── .github/workflows/publish.yml  # renders + publishes gh-pages
 └── docs/                          # rendered site (gitignored; CI output)
 ```
