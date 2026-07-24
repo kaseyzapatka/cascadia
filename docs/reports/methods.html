@@ -4047,7 +4047,7 @@ vertical-align: -.125em;
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reports/part2.html"> 
-<span class="menu-text">Part 2: Management</span></a>
+<span class="menu-text">Part 2: Project Management</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reports/part3.html"> 
@@ -4070,11 +4070,15 @@ vertical-align: -.125em;
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-downloads">    
         <li>
     <a class="dropdown-item" href="../missoula_data_story_slide.pdf">
- <span class="dropdown-text">Part 1 — Data story slide (PDF)</span></a>
+ <span class="dropdown-text">Part 1: Data story slide (PDF)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../reports/missoula_project_management.pdf">
- <span class="dropdown-text">Part 2 — Project management (PDF)</span></a>
+ <span class="dropdown-text">Part 2: Project management (PDF)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reports/missoula_ai_enhancement.pdf">
+ <span class="dropdown-text">Part 3: AI enhancement (PDF)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../missoula_housing_memo.pdf">
@@ -4186,44 +4190,54 @@ vertical-align: -.125em;
 <p><strong>capacity</strong> = developable acres × assumed du/ac − existing units, floored at zero</p>
 </blockquote>
 <p>where <em>developable acres</em> = acres × (1 − max(flood share, slope share)). Taking the max of the two constraint shares is conservative without double-counting (their overlap is unknown).</p>
-<p><strong>Assumed allowable densities</strong> (du/ac) by designation — calibrated to the Growth Policy’s designation ranges, centralized in <code>code/00_setup.R</code>, and <strong>pending verification against the adopted document</strong>:</p>
+<p><strong>Allowable densities</strong> come from the adopted <strong>Our Missoula 2035 Growth Policy</strong> designation ranges, as those ranges are applied in the City’s own annexation and rezoning staff reports (e.g., “Residential Medium Density (3 to 11 dwelling units per acre)… Residential High Density (24 to 43 dwelling units per acre) (Our Missoula 2035)”). Capacity uses the <strong>midpoint</strong> of each range — a deliberately conservative “expected” density rather than the plan’s ceiling:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Designation</th>
-<th>du/ac</th>
-<th>Designation</th>
-<th>du/ac</th>
+<th>Policy range (du/ac)</th>
+<th>Used</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Residential Low</td>
-<td>3</td>
-<td>Neighborhood Mixed Use</td>
-<td>16</td>
+<td>1–2</td>
+<td>1.5</td>
 </tr>
 <tr class="even">
 <td>Residential Medium</td>
-<td>8</td>
-<td>Community Mixed Use</td>
-<td>29</td>
+<td>3–11</td>
+<td>7</td>
 </tr>
 <tr class="odd">
 <td>Residential Medium-High</td>
-<td>16</td>
-<td>Urban Center</td>
-<td>43</td>
+<td>12–23</td>
+<td>17.5</td>
 </tr>
 <tr class="even">
 <td>Residential High</td>
-<td>29</td>
-<td></td>
-<td></td>
+<td>24–43</td>
+<td>33.5</td>
+</tr>
+<tr class="odd">
+<td>Neighborhood Mixed Use</td>
+<td>carries medium-high (12–23)</td>
+<td>17.5</td>
+</tr>
+<tr class="even">
+<td>Community Mixed Use</td>
+<td>carries high (24–43 in aligned zoning)</td>
+<td>33.5</td>
+</tr>
+<tr class="odd">
+<td>Urban Center</td>
+<td>not stated in the Policy</td>
+<td>43</td>
 </tr>
 </tbody>
 </table>
-<p>All other designations (including the Sxwtpqyen Area’s own designation, industrial, parks, open/resource) contribute zero capacity — a conservative choice that likely <em>understates</em> the total.</p>
+<p>Urban Center has no du/ac in the Policy; it is pinned at 43 — the highest density the Policy quotes anywhere — which is conservative for the downtown designation. Values are centralized in <code>code/00_setup.R</code>. All other designations (including the Sxwtpqyen Area’s own designation, industrial, parks, open/resource) contribute zero capacity — a conservative choice that likely <em>understates</em> the total.</p>
 </section>
 <section id="the-opportunity-screen" class="level2">
 <h2 class="anchored" data-anchor-id="the-opportunity-screen">The opportunity screen</h2>
@@ -4241,7 +4255,8 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="hot-spot-analysis-getis-ord-gi">Hot-spot analysis (Getis-Ord Gi*)</h2>
 <p>Plan-enabled units on opportunity parcels are summed to a <strong>1,000-ft hexagonal grid</strong> (~20-acre cells; 1,188 hexes contain at least one housing-eligible parcel). Gi* runs on the hex values with queen contiguity, self-inclusive weights; classes are reported at 90/95/99% confidence.</p>
 <p><strong>Why hexes rather than parcels?</strong> Parcel-level unit gap is extremely right-skewed (median 1, maximum ~3,200), and parcels vary enormously in size, so a parcel-level statistic mostly re-identifies individual mega-parcels and their immediate neighbors. Aggregating first asks the policy-relevant question — <em>which places, at the scale of a block cluster, concentrate capacity</em> — and yields legible corridors instead of scattered outliers. A uniform grid also equalizes the spatial support underlying each observation (parcels differ in area by four orders of magnitude), which contiguity-based weights otherwise distort.</p>
-<p><strong>Gi* vs. LISA.</strong> Gi* hot spots are clusters of high values surrounded by high values — the direct analogue of LISA’s <em>high-high</em> class. LISA (local Moran’s I) additionally distinguishes spatial outliers (high-low / low-high), which is useful diagnostics but noise for this narrative; the deliverable question is “where are the concentrations,” which Gi* answers directly. No cold spots (low-low analogues) reach significance in this data, so the map legend shows only capacity clusters.</p>
+<p><strong>Why Gi* rather than a LISA map?</strong> The question this analysis asks is specific: <em>where do high-capacity places sit next to other high-capacity places</em> — LISA’s <strong>high-high</strong> quadrant. A Gi* hot spot is precisely that: because the statistic sums each hex <em>together with its neighbors</em>, a significant positive z-score can only occur where high values cluster against other high values. So Gi* delivers the high-high answer directly, with a single confidence-graded class that maps cleanly.</p>
+<p>LISA (local Moran’s I) reports the same high-high clusters but adds three more classes — low-low, and the high-low / low-high spatial <em>outliers</em>. Those are valuable diagnostics (an isolated mega-parcel in a low-capacity neighborhood is a high-low outlier), but for a policy audience they quadruple the legend to answer a question nobody asked here. The one thing LISA would add — cold spots (low-low) — turns out empty: no low-capacity cluster reaches significance in this data, which is why the map legend shows only capacity clusters. Running LISA as a robustness check on the hex grid is a natural QC step for the regional expansion.</p>
 </section>
 <section id="reproducibility" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
@@ -4252,7 +4267,7 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
 <ul>
 <li><strong>Plan-implied, not predicted.</strong> Capacity measures what the adopted future land-use map makes room for — not ownership, feasibility, or infrastructure timing.</li>
-<li><strong>Density assumptions</strong> are calibrated placeholders until checked against the adopted Growth Policy tables.</li>
+<li><strong>Densities are range midpoints</strong>, not the plan’s ceiling — using the top of each designation range would roughly double the headline capacity. Urban Center’s value is an assumption (the Policy states no du/ac for it).</li>
 <li><strong>Assessed values</strong> proxy economic softness; they lag the market and compress at the top.</li>
 <li><strong>The Sxwtpqyen Area</strong> (766 parcels) is conservatively excluded from capacity; the Mullan-area master plan is largely residential, so totals are understated.</li>
 <li><strong>Zoning is not analyzed here</strong> — the story is deliberately framed against the Growth Policy. A zoning-vs-plan entitlement-gap analysis is the natural next phase.</li>

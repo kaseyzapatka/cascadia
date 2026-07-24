@@ -36,17 +36,27 @@ where *developable acres* = acres × (1 − max(flood share, slope share)).
 Taking the max of the two constraint shares is conservative without
 double-counting (their overlap is unknown).
 
-**Assumed allowable densities** (du/ac) by designation — calibrated to the
-Growth Policy's designation ranges, centralized in `code/00_setup.R`, and
-**pending verification against the adopted document**:
+**Allowable densities** come from the adopted **Our Missoula 2035 Growth
+Policy** designation ranges, as those ranges are applied in the City's
+own annexation and rezoning staff reports (e.g., "Residential Medium
+Density (3 to 11 dwelling units per acre)... Residential High Density
+(24 to 43 dwelling units per acre) (Our Missoula 2035)"). Capacity uses
+the **midpoint** of each range — a deliberately conservative "expected"
+density rather than the plan's ceiling:
 
-| Designation | du/ac | Designation | du/ac |
-|---|---|---|---|
-| Residential Low | 3 | Neighborhood Mixed Use | 16 |
-| Residential Medium | 8 | Community Mixed Use | 29 |
-| Residential Medium-High | 16 | Urban Center | 43 |
-| Residential High | 29 | | |
+| Designation | Policy range (du/ac) | Used |
+|---|---|---|
+| Residential Low | 1–2 | 1.5 |
+| Residential Medium | 3–11 | 7 |
+| Residential Medium-High | 12–23 | 17.5 |
+| Residential High | 24–43 | 33.5 |
+| Neighborhood Mixed Use | carries medium-high (12–23) | 17.5 |
+| Community Mixed Use | carries high (24–43 in aligned zoning) | 33.5 |
+| Urban Center | not stated in the Policy | 43 |
 
+Urban Center has no du/ac in the Policy; it is pinned at 43 — the
+highest density the Policy quotes anywhere — which is conservative for
+the downtown designation. Values are centralized in `code/00_setup.R`.
 All other designations (including the Sxwtpqyen Area's own designation,
 industrial, parks, open/resource) contribute zero capacity — a
 conservative choice that likely *understates* the total.
@@ -91,13 +101,24 @@ outliers. A uniform grid also equalizes the spatial support underlying each
 observation (parcels differ in area by four orders of magnitude), which
 contiguity-based weights otherwise distort.
 
-**Gi\* vs. LISA.** Gi\* hot spots are clusters of high values surrounded by
-high values — the direct analogue of LISA's *high-high* class. LISA
-(local Moran's I) additionally distinguishes spatial outliers (high-low /
-low-high), which is useful diagnostics but noise for this narrative; the
-deliverable question is "where are the concentrations," which Gi\* answers
-directly. No cold spots (low-low analogues) reach significance in this
-data, so the map legend shows only capacity clusters.
+**Why Gi\* rather than a LISA map?** The question this analysis asks is
+specific: *where do high-capacity places sit next to other high-capacity
+places* — LISA's **high-high** quadrant. A Gi\* hot spot is precisely
+that: because the statistic sums each hex *together with its neighbors*,
+a significant positive z-score can only occur where high values cluster
+against other high values. So Gi\* delivers the high-high answer
+directly, with a single confidence-graded class that maps cleanly.
+
+LISA (local Moran's I) reports the same high-high clusters but adds
+three more classes — low-low, and the high-low / low-high spatial
+*outliers*. Those are valuable diagnostics (an isolated mega-parcel in a
+low-capacity neighborhood is a high-low outlier), but for a policy
+audience they quadruple the legend to answer a question nobody asked
+here. The one thing LISA would add — cold spots (low-low) — turns out
+empty: no low-capacity cluster reaches significance in this data, which
+is why the map legend shows only capacity clusters. Running LISA as a
+robustness check on the hex grid is a natural QC step for the regional
+expansion.
 
 ## Reproducibility
 
@@ -115,8 +136,10 @@ outputs, so rendering never re-runs the analysis.
 - **Plan-implied, not predicted.** Capacity measures what the adopted
   future land-use map makes room for — not ownership, feasibility, or
   infrastructure timing.
-- **Density assumptions** are calibrated placeholders until checked
-  against the adopted Growth Policy tables.
+- **Densities are range midpoints**, not the plan's ceiling — using the
+  top of each designation range would roughly double the headline
+  capacity. Urban Center's value is an assumption (the Policy states no
+  du/ac for it).
 - **Assessed values** proxy economic softness; they lag the market and
   compress at the top.
 - **The Sxwtpqyen Area** (766 parcels) is conservatively excluded from

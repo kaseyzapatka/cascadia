@@ -4,6 +4,8 @@
 #   missoula_data_story_slide.pdf   (Part 1 slide, from reports/slide.qmd)
 #   missoula_project_management.pdf (Part 2 one-pager, from reports/part2.qmd,
 #                                    lands in docs/reports/)
+#   missoula_ai_enhancement.pdf     (Part 3 page, from reports/part3.qmd,
+#                                    lands in docs/reports/)
 #   missoula_housing_memo.pdf       (full memo, from index.qmd)
 # Output filenames are set via `output-file:` in each qmd so navbar links
 # and the pages' "Download PDF" links stay consistent.
@@ -21,5 +23,6 @@ echo "Rendering PDF deliverables..."
 quarto render slide.qmd --to typst
 mv -f missoula_data_story_slide.pdf docs/
 quarto render reports/part2.qmd --to typst
+quarto render reports/part3.qmd --to typst
 quarto render index.qmd --to typst
 echo "  PDFs done."

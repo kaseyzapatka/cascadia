@@ -21,7 +21,7 @@ website:
     left:
       - text: "Part 1: Data Story"
         href: index.qmd
-      - text: "Part 2: Management"
+      - text: "Part 2: Project Management"
         href: reports/part2.qmd
       - text: "Part 3: AI"
         href: reports/part3.qmd
@@ -32,10 +32,12 @@ website:
     right:
       - text: "Downloads"
         menu:
-          - text: "Part 1 — Data story slide (PDF)"
+          - text: "Part 1: Data story slide (PDF)"
             href: missoula_data_story_slide.pdf
-          - text: "Part 2 — Project management (PDF)"
+          - text: "Part 2: Project management (PDF)"
             href: reports/missoula_project_management.pdf
+          - text: "Part 3: AI enhancement (PDF)"
+            href: reports/missoula_ai_enhancement.pdf
           - text: "Full memo (PDF)"
             href: missoula_housing_memo.pdf
       - icon: github

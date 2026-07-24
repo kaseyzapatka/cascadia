@@ -121,7 +121,7 @@ fig2 <- ggplot(by_class, aes(y = Land_Use)) +
   labs(
     title    = "The Growth Policy already makes room for ~43,000 more homes",
     subtitle = "Dwelling units by Growth Policy future land-use designation (not current zoning):\ntoday vs. with capacity on vacant and underbuilt parcels",
-    caption  = "Plan-enabled capacity = assumed allowable density x developable acres on unconstrained soft parcels,\nnet of existing units. Density assumptions pending verification against the adopted Growth Policy.",
+    caption  = "Plan-enabled capacity = allowable density x developable acres on unconstrained soft parcels, net of\nexisting units. Densities: midpoints of the adopted 2035 Growth Policy designation ranges.",
     x = "Dwelling units", y = NULL
   ) +
   theme_story()

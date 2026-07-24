@@ -1,14 +1,15 @@
 ---
 title: "Scaling to a Regional Housing Readiness Dashboard"
+format-links:
+  - html
+  - format: typst
+    text: "Download PDF"
+    icon: file-pdf
 format:
   html:
     toc: true
     subtitle: "Strategic project management for the Five Valleys expansion"
     author: "Kasey Zapatka"
-    format-links:
-      - format: typst
-        text: "Download PDF"
-        icon: file-pdf
   typst:
     output-file: missoula_project_management.pdf
     toc: false
