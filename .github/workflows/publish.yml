@@ -26,7 +26,7 @@ jobs:
           tinytex: false
 
       - name: Render site
-        run: quarto render reports
+        run: quarto render
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4

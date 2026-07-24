@@ -65,7 +65,7 @@ We work from the City of Missoula taxlot layer — **32,974 parcels** with
 existing use, dwelling units, assessed values, current zoning, Growth Policy
 future land use, and floodplain/steep-slope shares^[Areal math is done in
 NAD83 State Plane Montana (feet), the layer's native projection. See
-[Methods & Sources](methods.qmd) for cleaning decisions, including ~900
+[Methods & Sources](reports/methods.qmd) for cleaning decisions, including ~900
 curve geometries and the flood/slope fields where missing genuinely means
 zero.]. For every parcel whose future land-use designation calls for
 housing, we compute **plan-enabled capacity**: the parcel's developable
@@ -85,7 +85,7 @@ parks and open space, master condo records — and mobile-home parks, which
 score as "soft" but are naturally occurring affordable housing (they get
 their own finding below, as a risk rather than an opportunity). Finally, a
 **Getis-Ord Gi\*** analysis on a 1,000-ft hex grid finds where that
-capacity clusters. Full detail: [Methods & Sources](methods.qmd).
+capacity clusters. Full detail: [Methods & Sources](reports/methods.qmd).
 
 ## Finding 1 — A third of the capacity clusters in ~4% of the city
 
@@ -96,7 +96,7 @@ Gi\*); darker green means stronger statistical evidence, not more
 capacity. The clusters: the Mullan/Sxwtpqyen area in the northwest, the
 midtown corridor, and the south hills. Together the 46 hexes at 95%+
 confidence hold ~14,100 units — a third of the citywide total on ~4% of
-the urban fabric.](figures/fig1_hotspot_map.png){#fig-hero width=88%}
+the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
 
 Untapped capacity is not evenly smeared across Missoula. Aggregated to a
 1,000-ft hex grid and tested for spatial clustering, **46 of 1,188 hexes
@@ -111,7 +111,7 @@ south hills.
 ![Dwelling units by Growth Policy future land-use designation: homes on the
 ground today (blue) versus today plus plan-enabled capacity on vacant and
 underbuilt parcels (green). Community Mixed Use and the medium/high
-residential designations carry most of the headroom.](figures/fig2_capacity_gap.png){#fig-capacity width=92%}
+residential designations carry most of the headroom.](output/figures/fig2_capacity_gap.png){#fig-capacity width=92%}
 
 Summing across designations, **3,587 opportunity parcels (~4,300 acres)
 carry ~43,000 plan-enabled units** — nearly a one-for-one doubling of the
@@ -126,7 +126,7 @@ floodway and steep-slope land — buildable ground.
 
 ![Plan-enabled units by parcel size and current condition. Small parcels
 (≤ 5 acres) — the scale of an individual owner, a small builder, a
-neighborhood lot — carry half the citywide total.](figures/fig3_breakdown.png){#fig-infill width=92%}
+neighborhood lot — carry half the citywide total.](output/figures/fig3_breakdown.png){#fig-infill width=92%}
 
 Big vacant tracts get the headlines, but **parcels of five acres or less
 carry ~22,400 units — 52% of the total**, most of it on *underbuilt* rather
@@ -166,7 +166,7 @@ development forecast**: it ignores ownership, market feasibility, and
 infrastructure timing. Density assumptions per designation await
 verification against the adopted Growth Policy. The Sxwtpqyen master-plan
 area carries its own designation we conservatively treat as non-residential,
-so the true total is likely *higher*. See [Methods & Sources](methods.qmd).
+so the true total is likely *higher*. See [Methods & Sources](reports/methods.qmd).
 
 ---
 
@@ -178,6 +178,6 @@ so the true total is likely *higher*. See [Methods & Sources](methods.qmd).
 - Field map / data dictionary accompanying the taxlot layer
 
 Analysis and figures: Kasey Zapatka, 2026. Full methodology:
-[Methods & Sources](methods.qmd). Code:
+[Methods & Sources](reports/methods.qmd). Code:
 [github.com/kaseyzapatka/cascadia](https://github.com/kaseyzapatka/cascadia).
 :::

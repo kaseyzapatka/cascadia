@@ -11,12 +11,12 @@ format:
 The hiring exercise asks for an AI-enhanced version of the Part 1 slide, in
 a format that can be embedded in a website. **This website is that
 deliverable.** The one-page slide
-([download](missoula_data_story_slide.pdf)) is the seed; the site enhances
+([download](../missoula_data_story_slide.pdf)) is the seed; the site enhances
 it into something a static slide can't be:
 
-- **The [data story](index.qmd)** expands the slide's narrative into a full
+- **The [data story](../index.qmd)** expands the slide's narrative into a full
   memo with an executive summary, findings, recommendations, and caveats —
-  with a [PDF version](missoula_housing_memo.pdf) built from the same
+  with a [PDF version](../missoula_housing_memo.pdf) built from the same
   source.
 - **The [interactive map](map.qmd)** turns the slide's hero map into an
   explorable Leaflet map: hover any hex for its capacity, toggle on the
