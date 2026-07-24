@@ -1,7 +1,7 @@
-# Render the Quarto site (project lives in report/, outputs to docs/) and
-# deploy docs/ to the gh-pages branch. The site embeds pre-generated
-# figures and maps committed in output/, so CI needs Quarto only — the R
-# pipeline never runs here.
+# Render the Quarto site (project root, outputs to docs/) and deploy
+# docs/ to the gh-pages branch. The site embeds pre-generated figures and
+# maps committed in output/, so CI needs Quarto only — the R pipeline
+# never runs here.
 #
 # One-time setup after the first successful run:
 #   Repo Settings -> Pages -> Source: "Deploy from a branch" -> gh-pages / root
@@ -27,7 +27,6 @@ jobs:
 
       - name: Render site
         run: quarto render
-        working-directory: report
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4

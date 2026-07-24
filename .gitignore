@@ -21,10 +21,9 @@ output/data/*.gpkg
 
 **/*.quarto_ipynb
 
-# files 
+# files
 Hiring Exercise Senior Associate.pdf
 # private interview-prep notes
 notes/
 
-# staged copies for typst (source of truth: output/figures)
-report/figures/
+/.quarto/

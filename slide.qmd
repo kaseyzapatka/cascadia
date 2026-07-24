@@ -43,7 +43,7 @@ format:
   columns: (46%, 54%),
   gutter: 14pt,
   [
-    #image("figures/fig1_hotspot_map.png", width: 100%, height: 4.75in, fit: "contain")
+    #image("output/figures/fig1_hotspot_map.png", width: 100%, height: 4.75in, fit: "contain")
     #v(4pt)
     #box(fill: rgb("#f6f6f6"), stroke: (left: 3pt + blue), inset: 8pt, radius: 2pt, width: 100%)[
       #text(size: 8.5pt)[
@@ -63,7 +63,7 @@ format:
       stat[1∕3][of capacity sits in 46 hot spots — just ≈4% of the urban fabric],
     )
     #v(6pt)
-    #image("figures/fig2_capacity_gap.png", width: 100%, height: 2.85in, fit: "contain")
+    #image("output/figures/fig2_capacity_gap.png", width: 100%, height: 2.85in, fit: "contain")
     #v(4pt)
     #text(size: 9.5pt, weight: "bold")[What this means for the code reform]
     #v(2pt)

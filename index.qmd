@@ -96,7 +96,7 @@ Gi\*); darker green means stronger statistical evidence, not more
 capacity. The clusters: the Mullan/Sxwtpqyen area in the northwest, the
 midtown corridor, and the south hills. Together the 46 hexes at 95%+
 confidence hold ~14,100 units — a third of the citywide total on ~4% of
-the urban fabric.](figures/fig1_hotspot_map.png){#fig-hero width=88%}
+the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
 
 Untapped capacity is not evenly smeared across Missoula. Aggregated to a
 1,000-ft hex grid and tested for spatial clustering, **46 of 1,188 hexes
@@ -111,7 +111,7 @@ south hills.
 ![Dwelling units by Growth Policy future land-use designation: homes on the
 ground today (blue) versus today plus plan-enabled capacity on vacant and
 underbuilt parcels (green). Community Mixed Use and the medium/high
-residential designations carry most of the headroom.](figures/fig2_capacity_gap.png){#fig-capacity width=92%}
+residential designations carry most of the headroom.](output/figures/fig2_capacity_gap.png){#fig-capacity width=92%}
 
 Summing across designations, **3,587 opportunity parcels (~4,300 acres)
 carry ~43,000 plan-enabled units** — nearly a one-for-one doubling of the
@@ -126,7 +126,7 @@ floodway and steep-slope land — buildable ground.
 
 ![Plan-enabled units by parcel size and current condition. Small parcels
 (≤ 5 acres) — the scale of an individual owner, a small builder, a
-neighborhood lot — carry half the citywide total.](figures/fig3_breakdown.png){#fig-infill width=92%}
+neighborhood lot — carry half the citywide total.](output/figures/fig3_breakdown.png){#fig-infill width=92%}
 
 Big vacant tracts get the headlines, but **parcels of five acres or less
 carry ~22,400 units — 52% of the total**, most of it on *underbuilt* rather
