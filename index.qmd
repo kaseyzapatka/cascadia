@@ -163,13 +163,14 @@ review** — exactly the levers a development-code rewrite controls.
 
 ## The affordability lens — who this is for, and who it puts at risk
 
-The capacity numbers matter because of who is waiting on them. Missoula
-is a **majority-renter city — 52% of households rent** — and **half of
-those renters (49.9%) are cost-burdened**, paying more than 30% of income
-for housing (ACS 2019–2023). Supply that lands where demand already is —
-inside the urban fabric, on transit — is the most direct structural
-answer to that pressure, and the 2045 plan's own target exists because
-the City reached the same conclusion.
+Missoula is a **majority-renter city**: 52% of households rent, and
+**half of those renters (49.9%) are cost-burdened**, paying more than
+30% of income for housing (ACS 2019–2023). This is the demand side of
+the capacity story, and it falls hardest on the households with the
+least room to absorb it. Adding supply inside the existing urban
+fabric, near transit, is the most direct structural answer to that
+pressure — and the 2045 plan's housing target reflects the City's own
+version of the same conclusion.
 
 But the same market forces that would fill the capacity clusters also
 threaten the affordability that already exists. Using assessed values,
