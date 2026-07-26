@@ -101,9 +101,13 @@ sb_x <- bb["xmin"] + 2000; sb_y <- bb["ymin"] + 3000
 map_layers <- function() {
   list(
     geom_sf(data = parcels, fill = COL_FABRIC, color = NA),
-    geom_sf(data = transit, color = "#b5b2aa", linewidth = 0.35),
     geom_sf(data = hexes, aes(fill = gi_class), color = "#fcfcfb",
-            linewidth = 0.1, alpha = 0.92),
+            linewidth = 0.1, alpha = 0.85),
+    geom_sf(data = transit, aes(color = "Mountain Line bus route"),
+            linewidth = 0.4),
+    scale_color_manual(values = c("Mountain Line bus route" = "#8a8677"),
+                       name = NULL,
+                       guide = guide_legend(override.aes = list(linewidth = 0.8))),
     geom_text(data = st_drop_geometry(comps),
               aes(x = x, y = y, label = label),
               nudge_y = 4200, fontface = "bold", size = 3.4,
@@ -128,7 +132,7 @@ fig1 <- ggplot() + map_layers() +
   labs(
     title    = "Missoula's untapped housing capacity clusters in a few corridors",
     subtitle = "Each hex is scored by how much plan-enabled capacity it and its neighbors hold.\nGreen hexes hold significantly more than random arrangement would produce\n(Getis-Ord Gi*); darker green = stronger statistical evidence.",
-    caption  = "Thin gray lines: Mountain Line bus routes (GTFS). Source: City of Missoula taxlot data (2024).\nAnalysis: capacity gap between Growth Policy future land use and existing dwelling units\non unconstrained, economically soft parcels."
+    caption  = "Source: City of Missoula taxlot data (2024); Mountain Line GTFS.\nAnalysis: capacity gap between Growth Policy future land use and existing dwelling units\non unconstrained, economically soft parcels."
   ) +
   theme_map()
 
@@ -216,7 +220,10 @@ fig4 <- ggplot() +
   geom_sf(data = filter(hexes, noah_units > 0),
           aes(fill = noah_units), color = "#fcfcfb", linewidth = 0.1) +
   geom_sf(data = filter(hexes, gi_z >= 1.96), fill = NA,
-          color = "#4c5813", linewidth = 0.55) +
+          aes(color = "Capacity cluster (95%+, Fig 1)"), linewidth = 0.8) +
+  scale_color_manual(values = c("Capacity cluster (95%+, Fig 1)" = "#8b9c26"),
+                     name = NULL,
+                     guide = guide_legend(override.aes = list(fill = NA))) +
   geom_text(data = st_drop_geometry(comps),
             aes(x = x, y = y, label = label),
             nudge_y = 4200, fontface = "bold", size = 3.4, color = COL_INK) +
@@ -225,7 +232,7 @@ fig4 <- ggplot() +
                       breaks = c(10, 50, 150, 300)) +
   labs(
     title    = "The city's lowest-cost homes sit beside its growth clusters",
-    subtitle = "Blue: naturally occurring affordable housing (bottom-quartile assessed value\nper unit, under ~$240k). Dark green outline: 95%+ capacity clusters from Fig 1.",
+    subtitle = "Blue: naturally occurring affordable housing (bottom-quartile assessed value\nper unit, under ~$240k). Green outlines: the capacity clusters from Fig 1.",
     caption  = "2,602 of the ~20,500 low-cost units across the mapped fabric sit inside or adjacent to a capacity\ncluster — where preservation policy must move first. Source: City of Missoula taxlot data (2024)."
   ) +
   theme_map() +
