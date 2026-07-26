@@ -102,6 +102,24 @@ parcels <- parcels |>
                          housing_eligible
   )
 
+# ---- Naturally occurring affordable housing (NOAH) ---------------------
+# The affordability lens: the existing homes with the lowest assessed
+# value per unit are the city's de facto affordable stock. NOAH = bottom
+# quartile of total assessed value per dwelling unit among parcels with
+# housing on them. Assessed value proxies price level, not rent — see
+# methods for caveats.
+
+stock <- parcels$DwellingUnits >= 1 & !is.na(parcels$FinalTotal) &
+         parcels$FinalTotal > 0
+value_per_unit <- ifelse(stock, parcels$FinalTotal / parcels$DwellingUnits, NA)
+NOAH_CUTOFF <- quantile(value_per_unit[stock], 0.25, na.rm = TRUE)
+
+parcels <- parcels |>
+  mutate(
+    value_per_unit = value_per_unit,
+    is_noah        = stock & value_per_unit <= NOAH_CUTOFF
+  )
+
 # ---- Headline stats ----------------------------------------------------
 
 opp <- filter(parcels, is_opportunity) |> st_drop_geometry()
@@ -120,7 +138,10 @@ headline <- tibble(
     "existing_units_all_parcels",
     "share_capacity_top_decile_parcels",
     "displacement_watch_parcels",
-    "displacement_watch_units"
+    "displacement_watch_units",
+    "noah_cutoff_value_per_unit",
+    "noah_parcels",
+    "noah_units"
   ),
   value = c(
     nrow(parcels),
@@ -136,7 +157,10 @@ headline <- tibble(
     { top <- ceiling(nrow(opp) / 10)
       sum(sort(opp$unit_gap, decreasing = TRUE)[seq_len(top)]) / sum(opp$unit_gap) },
     sum(parcels$displacement_watch),
-    sum(parcels$DwellingUnits[parcels$displacement_watch])
+    sum(parcels$DwellingUnits[parcels$displacement_watch]),
+    NOAH_CUTOFF,
+    sum(parcels$is_noah),
+    sum(parcels$DwellingUnits[parcels$is_noah])
   )
 )
 

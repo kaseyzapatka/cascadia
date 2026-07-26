@@ -4,7 +4,7 @@
 # Scripts are numbered and independent — each reads its inputs from disk —
 # so any one can also be re-run alone after upstream outputs exist.
 
-scripts <- c("01_clean_derive.R", "02_hotspots.R", "03_figures.R", "04_interactive.R")
+scripts <- c("01_clean_derive.R", "02_hotspots.R", "03_transit.R", "04_figures.R", "05_interactive.R")
 
 for (s in scripts) {
   message("==> ", s)

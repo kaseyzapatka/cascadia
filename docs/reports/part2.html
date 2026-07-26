@@ -4114,7 +4114,7 @@ vertical-align: -.125em;
 <section id="a.-scaling-technical-workflow" class="level2">
 <h2 class="anchored" data-anchor-id="a.-scaling-technical-workflow">2a. Scaling &amp; technical workflow</h2>
 <p><strong>The primary data trap: schema fragmentation across jurisdictions.</strong> The pilot data already shows it — <code>Zoning_Mstr</code> mixes <code>CITY -RM1-45</code> with <code>COUNTY -Rural Residential, Small Agriculture-1</code>: different naming schemes, different density logic, different vintages, in one field. Expanding to Missoula County and unincorporated Frenchtown, Lolo, and Bonner multiplies that: each jurisdiction’s zoning, future land use, and assessor attributes were built for different purposes, and unincorporated areas may have no adopted land-use plan at all. Naively stacking layers produces a dashboard that silently compares incomparable things — the most dangerous failure mode, because it <em>looks</em> finished.</p>
-<p><strong>The workflow to defeat it:</strong></p>
+<p><strong>The workflow to address it:</strong></p>
 <ol type="1">
 <li><strong>Canonical schema first.</strong> Define the region-wide analysis schema (the pilot’s derived fields: developable acres, plan-enabled capacity, opportunity class) before acquiring anything.</li>
 <li><strong>Per-jurisdiction crosswalks as data, not code.</strong> Each jurisdiction gets a version-controlled crosswalk table (source class → canonical class → assumed density, with a source citation per row). Crosswalks are reviewed with planning staff from each jurisdiction — the local-knowledge check no script can replace.</li>
@@ -4140,7 +4140,7 @@ vertical-align: -.125em;
 <tbody>
 <tr class="odd">
 <td><strong>Junior Associate</strong></td>
-<td>Data acquisition; crosswalk drafting per jurisdiction; analysis runs; source documentation</td>
+<td>Data acquisition and management; crosswalk drafting per jurisdiction; analysis runs; source documentation</td>
 <td>Judgment-building work with clear review points</td>
 </tr>
 <tr class="even">
@@ -4177,7 +4177,7 @@ vertical-align: -.125em;
 <thead>
 <tr class="header">
 <th>Weeks</th>
-<th>Task</th>
+<th>Task (deliverable)</th>
 <th>Lead</th>
 <th>Budget</th>
 </tr>
@@ -4185,45 +4185,45 @@ vertical-align: -.125em;
 <tbody>
 <tr class="odd">
 <td>1–2</td>
-<td>1. Scoping, canonical schema, jurisdiction outreach</td>
+<td>1. Scoping, canonical schema, data-sharing letters &amp; named contacts per jurisdiction (schema memo)</td>
 <td>Senior</td>
 <td>$4,500</td>
 </tr>
 <tr class="even">
 <td>2–6</td>
-<td>2. Data acquisition &amp; crosswalks (5+ jurisdictions)</td>
+<td>2. Data acquisition &amp; crosswalks, 5+ jurisdictions (crosswalk workbook)</td>
 <td>Junior Assoc.</td>
 <td>$9,500</td>
 </tr>
 <tr class="odd">
 <td>5–9</td>
-<td>3. Pipeline generalization, capacity analysis, hot spots</td>
+<td>3. Pipeline generalization, capacity analysis, hot spots (validated regional dataset)</td>
 <td>Senior + Junior</td>
-<td>$12,000</td>
+<td>$11,000</td>
 </tr>
 <tr class="even">
 <td>8–13</td>
-<td>4. Web dashboard build (open-stack: Quarto/Observable + hosted tiles)</td>
+<td>4. Web dashboard build, open-stack: Quarto/Observable + hosted tiles (beta dashboard)</td>
 <td>Senior + Intern</td>
-<td>$12,500</td>
+<td>$10,500</td>
 </tr>
 <tr class="odd">
 <td>11–14</td>
-<td>5. Documentation, methods report, QC &amp; ground-truthing</td>
+<td>5. Documentation, methods report, QC &amp; ground-truthing (methods report)</td>
 <td>All</td>
 <td>$5,500</td>
 </tr>
 <tr class="even">
 <td>14–16</td>
-<td>6. Client reviews, revisions, training &amp; handoff</td>
+<td>6. Client reviews, revisions, training &amp; handoff (training + reproducible handoff)</td>
 <td>Senior</td>
 <td>$4,000</td>
 </tr>
 <tr class="odd">
 <td>—</td>
-<td>Contingency (~4%)</td>
+<td>Contingency (10%)</td>
 <td>—</td>
-<td>$2,000</td>
+<td>$5,000</td>
 </tr>
 <tr class="even">
 <td><strong>16 weeks</strong></td>
@@ -4233,7 +4233,8 @@ vertical-align: -.125em;
 </tr>
 </tbody>
 </table>
-<p>The budget’s shape reflects the risk: data normalization (Tasks 1–3, $26,000) is over half the project, because the dashboard is only as credible as the crosswalks under it. The dashboard itself stays on an open stack — no per-seat licenses for the client to inherit — and Task 6 ends with the client able to re-run the pipeline when next year’s assessor roll lands.</p>
+<p>Budgeted at blended rates — Senior Associate $150/hr (~130 hrs), Junior Associate $95/hr (~190 hrs), GIS Intern $55/hr (~135 hrs) — ≈455 staff hours ($45,000) plus $5,000 contingency (10%), sized to the real risk: other jurisdictions’ data. Invoicing is tied to the milestone deliverable named in each task, not to hours.</p>
+<p>The budget’s shape reflects the risk: data normalization (Tasks 1–3, $25,000) is half the project, because the dashboard is only as credible as the crosswalks under it. The schedule’s critical path is jurisdiction response time — outside our control — so Task 1 secures data-sharing letters and a named contact per jurisdiction <em>before</em> analysis dates are promised. Scope boundary: the fixed fee covers the named jurisdictions and one dashboard revision cycle; additions are priced at the stated rates by change order. All required data is public and free (Montana State Library cadastral, city/county GIS, GTFS, ACS); commercial data, travel, and post-handoff hosting are excluded, with any records-request fees absorbed by contingency. The dashboard stays on an open stack — no per-seat licenses to inherit — and Task 6 ends with the client able to re-run the pipeline when next year’s assessor roll lands.</p>
 
 
 </section>

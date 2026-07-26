@@ -38,7 +38,8 @@ hex_stats <- hex_join |>
     parcels_n      = n(),
     ready_units    = sum(unit_gap[is_opportunity]),
     opp_parcels    = sum(is_opportunity),
-    existing_units = sum(DwellingUnits)
+    existing_units = sum(DwellingUnits),
+    noah_units     = sum(DwellingUnits[is_noah])
   )
 
 hexes <- hexes |>
@@ -51,7 +52,7 @@ hexes <- hexes |>
 nb <- include.self(poly2nb(hexes, queen = TRUE))
 lw <- nb2listw(nb, style = "W", zero.policy = TRUE)
 
-set.seed(GI_SEED)
+# localG is analytic (normal approximation), so no seed is involved.
 gi <- localG(hexes$ready_units, lw, zero.policy = TRUE)
 
 hexes <- hexes |>
@@ -73,7 +74,28 @@ hexes <- hexes |>
 st_write(hexes, file.path(OUT_DATA, "hex_hotspots.gpkg"),
          layer = "hexes", delete_dsn = TRUE, quiet = TRUE)
 
-hot <- filter(hexes, gi_z >= 1.96) |> st_drop_geometry()
+# ---- Affordability exposure --------------------------------------------
+# How much of the existing low-cost (NOAH) stock sits inside or directly
+# adjacent to the capacity clusters — the parcels most exposed if the
+# clusters redevelop. "Adjacent" = a hex touching a 95%+ hot-spot hex.
+
+hot95 <- filter(hexes, gi_z >= 1.96)
+touch <- st_intersects(hexes, hot95)
+hexes$near_hotspot <- lengths(touch) > 0
+
+exposure <- tibble::tibble(
+  stat = c("hot_hexes_95", "ready_units_hot_95", "noah_units_total_hexed",
+           "noah_units_in_hot_95", "noah_units_in_or_adjacent_hot_95"),
+  value = c(nrow(hot95),
+            sum(hot95$ready_units),
+            sum(hexes$noah_units),
+            sum(hexes$noah_units[hexes$gi_z >= 1.96]),
+            sum(hexes$noah_units[hexes$near_hotspot]))
+)
+readr::write_csv(exposure, file.path(OUT_DATA, "hotspot_stats.csv"))
+
+hot <- st_drop_geometry(hot95)
 message("02_hotspots: ", nrow(hexes), " hexes; ", nrow(hot),
         " hot at 95%+, holding ", round(sum(hot$ready_units)),
-        " of ", round(sum(hexes$ready_units)), " ready units.")
+        " of ", round(sum(hexes$ready_units)), " ready units; NOAH units in/adjacent: ",
+        sum(hexes$noah_units[hexes$near_hotspot]), " of ", sum(hexes$noah_units), ".")

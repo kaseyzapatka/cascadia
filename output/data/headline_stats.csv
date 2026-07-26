@@ -12,3 +12,6 @@ existing_units_all_parcels,44317
 share_capacity_top_decile_parcels,0.6866374295937684
 displacement_watch_parcels,530
 displacement_watch_units,2847
+noah_cutoff_value_per_unit,240300
+noah_parcels,6691
+noah_units,23839

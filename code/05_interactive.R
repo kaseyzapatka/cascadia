@@ -1,4 +1,4 @@
-# 04_interactive.R
+# 05_interactive.R
 # Self-contained Leaflet map for the website: hex capacity clusters over a
 # light basemap, with the opportunity parcels as a toggleable layer.
 # Writes: output/maps/hotspot_map.html (embedded on the map.qmd page)
@@ -14,6 +14,8 @@ dir.create(here::here("output", "maps"), recursive = TRUE, showWarnings = FALSE)
 
 hexes   <- st_read(file.path(OUT_DATA, "hex_hotspots.gpkg"),   quiet = TRUE)
 parcels <- st_read(file.path(OUT_DATA, "parcels_scored.gpkg"), quiet = TRUE)
+routes  <- st_read(file.path(OUT_DATA, "transit.gpkg"), layer = "routes",
+                   quiet = TRUE)
 
 # Leaflet wants WGS84. Simplify parcel outlines (~10 ft tolerance) to keep
 # the self-contained HTML light enough to embed.
@@ -29,7 +31,7 @@ opp_ll <- parcels |>
     )
   )
 
-# Brand palette (see 03_figures.R); hot classes stepped green, gray neutral.
+# Brand palette (see 04_figures.R); hot classes stepped green, gray neutral.
 PAL_GI <- c(
   "Hot spot (99% conf.)" = "#4c5813",
   "Hot spot (95% conf.)" = "#8b9c26",
@@ -51,6 +53,10 @@ map <- leaflet(options = leafletOptions(minZoom = 11)) |>
     fillColor = ~col, fillOpacity = 0.55, color = "#ffffff", weight = 0.5,
     label = ~sprintf("%.0f plan-enabled units (%s)", ready_units, gi_class)
   ) |>
+  addPolylines(
+    data = st_transform(routes, 4326), group = "Mountain Line routes",
+    color = "#52514e", weight = 1.2, opacity = 0.7
+  ) |>
   addPolygons(
     data = opp_ll, group = "Opportunity parcels",
     fillColor = "#7096c0", fillOpacity = 0.5, color = "#7096c0", weight = 0.5,
@@ -63,7 +69,8 @@ map <- leaflet(options = leafletOptions(minZoom = 11)) |>
     labels = LBL_GI[names(PAL_GI) %in% unique(as.character(hexes_ll$gi_class))]
   ) |>
   addLayersControl(
-    overlayGroups = c("Capacity clusters (Gi*)", "Opportunity parcels"),
+    overlayGroups = c("Capacity clusters (Gi*)", "Mountain Line routes",
+                      "Opportunity parcels"),
     options = layersControlOptions(collapsed = FALSE)
   ) |>
   hideGroup("Opportunity parcels")

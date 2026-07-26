@@ -6,7 +6,7 @@ format:
     toc: false
 ---
 
-Explore where Missoula's plan-enabled housing capacity clusters. Each
+This map shows where Missoula's plan-enabled housing capacity clusters. Each
 **hex** is scored by how much untapped capacity it *and its neighbors*
 hold; green hexes hold significantly more than a random arrangement of
 the same parcels would produce (a Getis-Ord Gi\* test). The three green

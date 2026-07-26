@@ -25,6 +25,15 @@ percent in steep slopes > 25% (`PercentSlope`).
 | Invalid rings / self-intersections | Repaired with `st_make_valid()` on the invalid subset |
 | Empty geometries | Dropped |
 
+Two source-labeling notes: the `PercentageFlood` field is aliased
+"Percentage of Floodplain in Parcel" but described as percent in
+*floodway* — the write-up says "floodway/floodplain" advisedly, and the
+constraint screen is identical either way. The Mullan-area designation
+is spelled `Sxtpqyen Area` in the data; prose uses the City's common
+rendering "Sxwtpqyen."
+
+
+
 ## Plan-enabled capacity
 
 For each parcel whose Growth Policy designation calls for housing:
@@ -83,6 +92,38 @@ parcels a single owner or small builder can develop under by-right rules
 from sites that realistically need master planning, subdivision, and new
 internal infrastructure.
 
+## Plan vintage
+
+The taxlot layer carries the future land-use designations of the **2035
+Growth Policy**. In December 2024 the City adopted the successor [Our
+Missoula 2045 Land Use Plan](https://www.ci.missoula.mt.us/3156/Land-Use-Plan)
+(need identified: ~22,000–27,500 new homes by 2045). Capacity here is
+therefore measured against the 2035-vintage map and read as a
+feasibility check on the 2045 target — designation-level densities are
+broadly continuous between the two plans, but a designation-by-
+designation re-run on the 2045 map is the natural refresh once its GIS
+layer is in hand.
+
+## Naturally occurring affordable housing (NOAH)
+
+NOAH = parcels with at least one dwelling unit whose **total assessed
+value per unit falls in the bottom quartile** of the city's housing
+stock — everything under **~$240,300 per unit** (6,691 parcels, ~23,800
+units). Assessed value proxies *price level*, not rent, and lags the
+market; the flag marks relative affordability, not income-qualified
+affordability. Exposure is measured on the hex grid: a hex's NOAH units
+count as exposed when the hex is, or touches, a 95%+ capacity cluster
+(~2,600 units).
+
+## Transit accessibility
+
+Stops and route shapes come from Mountain Line's published GTFS feed
+(July 2026; `data/external/`). A parcel counts as transit-accessible
+when it intersects a **quarter-mile (1,320 ft) Euclidean buffer** around
+any stop — the standard walkshed shorthand, which slightly overstates
+true network walking distance. 58% of plan-enabled units on opportunity
+parcels fall inside the walkshed.
+
 ## Hot-spot analysis (Getis-Ord Gi\*)
 
 Plan-enabled units on opportunity parcels are summed to a **1,000-ft
@@ -90,6 +131,17 @@ hexagonal grid** (~20-acre cells; 1,188 hexes contain at least one
 housing-eligible parcel). Gi\* runs on the hex values with queen
 contiguity, self-inclusive weights; classes are reported at 90/95/99%
 confidence.
+
+**Significance and multiple testing.** With 1,188 hexes, fixed z-score
+thresholds involve many simultaneous tests: at the 95% level, ~30 hexes
+would clear the bar by chance alone, against 40 observed — so the 95%
+tier is treated as an outer envelope, not headline evidence. The finding
+rests on the **99% tier: 29 hexes observed against ~6 expected by
+chance** (~11,400 units). Under a one-sided false-discovery-rate
+correction (q < 0.05), 25 hexes (~10,800 units) remain significant —
+the concentration conclusion is unchanged. Gi\* here uses the analytic
+normal approximation (no permutations), read as descriptive spatial
+inference rather than formal hypothesis testing.
 
 **Why hexes rather than parcels?** Parcel-level unit gap is extremely
 right-skewed (median 1, maximum ~3,200), and parcels vary enormously in
@@ -120,6 +172,13 @@ is why the map legend shows only capacity clusters. Running LISA as a
 robustness check on the hex grid is a natural QC step for the regional
 expansion.
 
+## Cluster naming
+
+The three labeled clusters on the maps are contiguity components of the
+95%+ hexes; their names were verified by reverse-geocoding each
+component's centroid (North Reserve corridor; Halle Drive area = Linda
+Vista / Miller Creek; Hillview Way / Moose Can Gully = South Hills).
+
 ## Reproducibility
 
 ```sh
@@ -148,3 +207,7 @@ outputs, so rendering never re-runs the analysis.
 - **Zoning is not analyzed here** — the story is deliberately framed
   against the Growth Policy. A zoning-vs-plan entitlement-gap analysis is
   the natural next phase.
+- **ACS estimates** (tenure, rent burden) carry margins of error; figures
+  cited are point estimates for Missoula city.
+- **The walkshed is Euclidean**, not network-routed, and GTFS reflects
+  current service.
