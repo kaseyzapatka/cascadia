@@ -55,7 +55,7 @@ mode, because it *looks* finished.
 
 | Role | Owns | Why it fits |
 |---|---|---|
-| **Junior Associate** | Data acquisition; crosswalk drafting per jurisdiction; analysis runs; source documentation | Judgment-building work with clear review points |
+| **Junior Associate** | Data acquisition and management; crosswalk drafting per jurisdiction; analysis runs; source documentation | Judgment-building work with clear review points |
 | **GIS Intern** | Geometry QA (validity, topology, CRS); metadata inventory; map production from templates; dashboard layer prep | Well-specified, checkable tasks that build real skills |
 | **Me (strategic lead)** | Schema and assumption sign-off; crosswalk reviews with jurisdiction staff; client communication; final QC | Keeps my time on decisions, not production |
 
