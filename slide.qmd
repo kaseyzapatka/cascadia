@@ -73,7 +73,7 @@ format:
     #text(size: 8.5pt)[
       #text(fill: accent, weight: "bold")[1.] Align zoning with the plan in
       the hot-spot clusters (North Reserve, Linda Vista/Miller Creek, South
-      Hills) — that's where entitlement friction costs the most homes.
+      Hills) — where entitlement friction costs the most homes.
       #linebreak()
       #text(fill: accent, weight: "bold")[2.] Make small infill by-right:
       half the capacity sits on parcels a small builder can develop under

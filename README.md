@@ -27,7 +27,7 @@ Policy already makes room for, and where that capacity clusters.
   Vista/Miller Creek, and the South Hills (95%+ envelope: 40 hexes,
   ~14,600 units).
 - **58% of the capacity is within a quarter-mile of a Mountain Line bus
-  stop** (agency GTFS) — transit-aligned smart growth, measured.
+  stop** (agency GTFS) — growth where zero-fare transit already runs.
 - **The affordability lens:** Missoula is 52% renter and half of renters
   are cost-burdened (ACS 2019–2023). ~2,600 of the city's lowest-cost
   (NOAH) units sit in or beside the capacity clusters; separately, 530

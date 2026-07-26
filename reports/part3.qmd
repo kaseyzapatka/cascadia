@@ -23,8 +23,8 @@ format:
 The hiring exercise asks for an AI-enhanced version of the Part 1 slide, in
 a format that can be embedded in a website. **This website is that
 deliverable.** The one-page slide
-([download](../missoula_data_story_slide.pdf)) is the seed; the site enhances
-it into something a static slide can't be:
+([download](../missoula_data_story_slide.pdf)) is the starting point; the
+site extends it into what a static slide cannot be:
 
 - **The [data story](../index.qmd)** expands the slide's narrative into a full
   memo with an executive summary, findings, recommendations, and caveats —
@@ -50,7 +50,7 @@ hot-spot methodology, and the pipeline behind them. **Claude (Anthropic)**
 was then used to enhance and harden the deliverable:
 
 - **Enhancing the one-page slide into this website** — converting the
-  slide's map, figures, and narrative into the Quarto site you're reading,
+  slide's map, figures, and narrative into the Quarto site you are reading,
   including the interactive Leaflet version of the hero map.
 - **Producing the slide layout itself** — the page composition that turns
   the pipeline's figures and numbers into the polished one-page PDF.
@@ -71,5 +71,5 @@ where the analysis ends and the polish begins. Everything quantitative on
 this site traces to the reproducible pipeline in the
 [repository](https://github.com/kaseyzapatka/cascadia); the AI
 acceleration is documented here; and the assumptions that drive the
-headline numbers are inspectable in one file (`code/00_setup.R`). That's
-the standard I'd bring to client work.
+headline numbers are inspectable in one file (`code/00_setup.R`). That is
+the standard I would bring to client work.
