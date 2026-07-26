@@ -33,7 +33,7 @@ adopted land-use plan at all. Naively stacking layers produces a dashboard
 that silently compares incomparable things — the most dangerous failure
 mode, because it *looks* finished.
 
-**The workflow to defeat it:**
+**The workflow to address it:**
 
 1. **Canonical schema first.** Define the region-wide analysis schema
    (the pilot's derived fields: developable acres, plan-enabled capacity,
