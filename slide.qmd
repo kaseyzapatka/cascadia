@@ -32,8 +32,8 @@ format:
 #text(size: 10pt, fill: ink2)[
   The adopted Growth Policy makes room to nearly double the city's housing
   stock on vacant and underbuilt land — enough to deliver the 2045 Land Use
-  Plan's 22,000–27,500-home target 1.6–2× over, without touching a
-  floodplain.
+  Plan's 22,000–27,500-home target 1.6–2× over, netting out floodway and
+  steep-slope acres.
 ]
 #v(2pt)
 #line(length: 100%, stroke: 1.5pt + accent)
@@ -50,9 +50,10 @@ format:
       #text(size: 8.5pt)[
         #text(weight: "bold", fill: blue)[The affordability stakes:] Missoula
         is 52% renter, and half of renters are cost-burdened (ACS 2019–23).
-        Meanwhile ≈2,600 of the city's lowest-cost homes — including 530
-        mobile-home parcels — sit in or beside the growth clusters. They are
-        excluded from the count above; preservation must move with upzoning.
+        ≈2,600 of the city's lowest-cost (NOAH) homes sit in or beside the
+        growth clusters; separately, 530 mobile-home parcels (≈2,850 units)
+        sit on planned-density land citywide. All are excluded from the count
+        above — preservation must move with upzoning.
       ]
     ]
   ],

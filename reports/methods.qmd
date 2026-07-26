@@ -25,6 +25,15 @@ percent in steep slopes > 25% (`PercentSlope`).
 | Invalid rings / self-intersections | Repaired with `st_make_valid()` on the invalid subset |
 | Empty geometries | Dropped |
 
+Two source-labeling notes: the `PercentageFlood` field is aliased
+"Percentage of Floodplain in Parcel" but described as percent in
+*floodway* — the write-up says "floodway/floodplain" advisedly, and the
+constraint screen is identical either way. The Mullan-area designation
+is spelled `Sxtpqyen Area` in the data; prose uses the City's common
+rendering "Sxwtpqyen."
+
+
+
 ## Plan-enabled capacity
 
 For each parcel whose Growth Policy designation calls for housing:
@@ -122,6 +131,17 @@ hexagonal grid** (~20-acre cells; 1,188 hexes contain at least one
 housing-eligible parcel). Gi\* runs on the hex values with queen
 contiguity, self-inclusive weights; classes are reported at 90/95/99%
 confidence.
+
+**Significance and multiple testing.** With 1,188 hexes, fixed z-score
+thresholds involve many simultaneous tests: at the 95% level, ~30 hexes
+would clear the bar by chance alone, against 40 observed — so the 95%
+tier is treated as an outer envelope, not headline evidence. The finding
+rests on the **99% tier: 29 hexes observed against ~6 expected by
+chance** (~11,400 units). Under a one-sided false-discovery-rate
+correction (q < 0.05), 25 hexes (~10,800 units) remain significant —
+the concentration conclusion is unchanged. Gi\* here uses the analytic
+normal approximation (no permutations), read as descriptive spatial
+inference rather than formal hypothesis testing.
 
 **Why hexes rather than parcels?** Parcel-level unit gap is extremely
 right-skewed (median 1, maximum ~3,200), and parcels vary enormously in

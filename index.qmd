@@ -25,9 +25,10 @@ format:
 **The finding:** Missoula's adopted [Growth Policy](https://www.ci.missoula.mt.us/3156/Land-Use-Plan) already plans for roughly
 **43,000 more homes** on land that is vacant or economically underbuilt today
 — about as many homes as the city currently has (~44,300) — **without
-changing the plan or touching a floodplain**. Half of that capacity is
-small-scale infill on parcels of five acres or less, and a third of it
-concentrates in just ~3% of the urban fabric.
+changing the plan, netting out floodway and steep-slope acres**. Half of
+that capacity is small-scale infill on parcels of five acres or less, and
+the strongest clusters (99% confidence) hold a quarter of it on ~2% of
+the urban fabric.
 
 **The recommendation:** As the City rewrites its development code, align
 zoned entitlements with the Growth Policy in the handful of corridors where
@@ -100,7 +101,7 @@ their own finding below, as a risk rather than an opportunity). Finally, a
 **Getis-Ord Gi\*** analysis on a 1,000-ft hex grid finds where that
 capacity clusters. Full detail: [Methods & Sources](reports/methods.qmd).
 
-## Finding 1 — A third of the capacity clusters in ~4% of the city
+## Finding 1 — The capacity concentrates in a few corridors
 
 ![**The story in one map.** Green hexes hold significantly more
 plan-enabled capacity — counting each hex together with its neighbors —
@@ -108,14 +109,17 @@ than a random arrangement of the same parcels would produce (Getis-Ord
 Gi\*); darker green means stronger statistical evidence, not more
 capacity. The three biggest clusters — labeled and verified by
 reverse-geocoding — are the North Reserve corridor, the Linda
-Vista/Miller Creek area, and the South Hills. Together the 40 hexes at
-95%+ confidence hold ~14,600 units — a third of the citywide total on
-~3% of the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
+Vista/Miller Creek area, and the South Hills. The 29 hexes at 99%
+confidence alone hold ~11,400 units — a quarter of the citywide total on
+~2% of the urban fabric.](output/figures/fig1_hotspot_map.png){#fig-hero width=88%}
 
 Untapped capacity is not evenly smeared across Missoula. Aggregated to a
-1,000-ft hex grid and tested for spatial clustering, **40 of 1,188 hexes
-(~3.4%) are hot spots at 95%+ confidence, and they hold ~14,600 of the
-~43,000 plan-enabled units**. These are the places where code reform,
+1,000-ft hex grid and tested for spatial clustering, **29 of 1,188 hexes
+(~2.4%) are capacity clusters at 99% confidence — five times as many as
+chance would produce — and they hold ~11,400 of the ~43,000 plan-enabled
+units**. Widening to the 95%+ envelope adds 11 hexes for ~14,600 units;
+the concentration finding is robust to a false-discovery-rate correction
+(see [Methods](reports/methods.qmd)). These are the places where code reform,
 infrastructure investment, and permitting capacity would do the most work
 per acre: the North Reserve corridor, the Linda Vista/Miller Creek area,
 and the South Hills, with smaller significant clusters through midtown.
@@ -133,7 +137,10 @@ residential designations carry most of the headroom.](output/figures/fig2_capaci
 
 Summing across designations, **3,419 opportunity parcels (~4,200 acres)
 carry ~43,000 plan-enabled units** — nearly a one-for-one doubling of the
-existing ~44,300-unit stock. Roughly half of that capacity sits on vacant
+existing ~44,300-unit stock^[Taxlot dwelling-unit sum (44,317), which
+includes ~2,050 group-quarters beds on 54 parcels; the ACS counts ~36,000
+conventional housing units citywide, so the comparison is indicative
+rather than census-exact.]. Roughly half of that capacity sits on vacant
 land and half on economically underbuilt parcels whose improvements are
 worth less than the land beneath them. This is not a rezoning wish list:
 every unit of it is consistent with the future land-use map the City has

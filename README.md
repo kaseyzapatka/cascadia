@@ -21,15 +21,18 @@ Policy already makes room for, and where that capacity clusters.
   (~4,200 acres) where the Growth Policy's future land use already calls
   for housing. Missoula has ~44,300 units today.
 - **Half of that capacity is small-scale infill** (parcels ≤ 5 acres).
-- **A third concentrates in ~3% of the urban fabric**: 40 Gi* hot-spot
-  hexes (95%+ confidence) hold ~14,600 units — the North Reserve corridor,
-  Linda Vista/Miller Creek, and the South Hills.
+- **A quarter of the capacity concentrates in ~2% of the urban fabric**:
+  29 Gi* hot-spot hexes at 99% confidence — five times what chance would
+  produce — hold ~11,400 units in the North Reserve corridor, Linda
+  Vista/Miller Creek, and the South Hills (95%+ envelope: 40 hexes,
+  ~14,600 units).
 - **58% of the capacity is within a quarter-mile of a Mountain Line bus
   stop** (agency GTFS) — transit-aligned smart growth, measured.
 - **The affordability lens:** Missoula is 52% renter and half of renters
-  are cost-burdened (ACS 2019–2023); ~2,600 of the city's lowest-cost
-  (NOAH) units — including 530 mobile-home parcels — sit in or beside the
-  capacity clusters and are flagged for preservation, not redevelopment.
+  are cost-burdened (ACS 2019–2023). ~2,600 of the city's lowest-cost
+  (NOAH) units sit in or beside the capacity clusters; separately, 530
+  mobile-home parcels (~2,850 units) sit on planned-density land citywide.
+  All are flagged for preservation, not redevelopment.
 
 ## How it fits together
 

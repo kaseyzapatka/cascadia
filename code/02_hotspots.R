@@ -52,7 +52,7 @@ hexes <- hexes |>
 nb <- include.self(poly2nb(hexes, queen = TRUE))
 lw <- nb2listw(nb, style = "W", zero.policy = TRUE)
 
-set.seed(GI_SEED)
+# localG is analytic (normal approximation), so no seed is involved.
 gi <- localG(hexes$ready_units, lw, zero.policy = TRUE)
 
 hexes <- hexes |>

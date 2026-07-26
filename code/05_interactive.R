@@ -1,4 +1,4 @@
-# 04_interactive.R
+# 05_interactive.R
 # Self-contained Leaflet map for the website: hex capacity clusters over a
 # light basemap, with the opportunity parcels as a toggleable layer.
 # Writes: output/maps/hotspot_map.html (embedded on the map.qmd page)
@@ -29,7 +29,7 @@ opp_ll <- parcels |>
     )
   )
 
-# Brand palette (see 03_figures.R); hot classes stepped green, gray neutral.
+# Brand palette (see 04_figures.R); hot classes stepped green, gray neutral.
 PAL_GI <- c(
   "Hot spot (99% conf.)" = "#4c5813",
   "Hot spot (95% conf.)" = "#8b9c26",
