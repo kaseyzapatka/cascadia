@@ -197,7 +197,8 @@ fig3 <- ggplot(breakdown,
             position = position_stack(vjust = 0.5),
             color = "#272727", size = 3.4, fontface = "bold") +
   scale_fill_manual(values = c("Vacant" = COL_EXISTING,
-                               "Underbuilt" = COL_ADDED), name = NULL) +
+                               "Underbuilt" = COL_ADDED),
+                    breaks = c("Vacant", "Underbuilt"), name = NULL) +
   scale_x_continuous(labels = comma) +
   labs(
     title    = "Half the opportunity is small-scale infill",
