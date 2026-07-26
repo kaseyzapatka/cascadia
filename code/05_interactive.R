@@ -55,7 +55,7 @@ map <- leaflet(options = leafletOptions(minZoom = 11)) |>
   ) |>
   addPolylines(
     data = st_transform(routes, 4326), group = "Mountain Line routes",
-    color = "#52514e", weight = 2, opacity = 0.8
+    color = "#52514e", weight = 1.2, opacity = 0.7
   ) |>
   addPolygons(
     data = opp_ll, group = "Opportunity parcels",

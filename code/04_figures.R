@@ -219,11 +219,15 @@ fig4 <- ggplot() +
   geom_sf(data = parcels, fill = COL_FABRIC, color = NA) +
   geom_sf(data = filter(hexes, noah_units > 0),
           aes(fill = noah_units), color = "#fcfcfb", linewidth = 0.1) +
+  geom_sf(data = transit, aes(color = "Mountain Line bus route"),
+          linewidth = 0.35) +
   geom_sf(data = filter(hexes, gi_z >= 1.96), fill = NA,
           aes(color = "Capacity cluster (95%+, Fig 1)"), linewidth = 0.8) +
-  scale_color_manual(values = c("Capacity cluster (95%+, Fig 1)" = "#8b9c26"),
+  scale_color_manual(values = c("Capacity cluster (95%+, Fig 1)" = "#8b9c26",
+                                "Mountain Line bus route" = "#8a8677"),
                      name = NULL,
-                     guide = guide_legend(override.aes = list(fill = NA))) +
+                     guide = guide_legend(override.aes = list(fill = NA,
+                                                              linewidth = 0.8))) +
   geom_text(data = st_drop_geometry(comps),
             aes(x = x, y = y, label = label),
             nudge_y = 4200, fontface = "bold", size = 3.4, color = COL_INK) +
