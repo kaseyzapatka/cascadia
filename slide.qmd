@@ -30,10 +30,10 @@ format:
 #text(size: 20pt, weight: "bold")[Missoula's next 43,000 homes are already on the books]
 #v(0pt)
 #text(size: 10pt, fill: ink2)[
-  The adopted Growth Policy makes room to nearly double the city's housing
-  stock on vacant and underbuilt land — enough to deliver the 2045 Land Use
-  Plan's 22,000–27,500-home target 1.6–2× over, netting out floodway and
-  steep-slope acres.
+  The City does not need to find new land or amend its plan: removing the
+  friction between the adopted Growth Policy and today's code opens room
+  for ≈43,000 homes on vacant and underbuilt land — the 2045 Land Use
+  Plan's 22,000–27,500-home target, 1.6–2× over.
 ]
 #v(2pt)
 #line(length: 100%, stroke: 1.5pt + accent)

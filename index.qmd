@@ -22,13 +22,17 @@ format:
 
 ::: {.callout-note title="Executive Summary"}
 
-**The finding:** Missoula's adopted [Growth Policy](https://www.ci.missoula.mt.us/3156/Land-Use-Plan) already plans for roughly
-**43,000 more homes** on land that is vacant or economically underbuilt today
-— about as many homes as the city currently has (~44,300) — **without
-changing the plan, netting out floodway and steep-slope acres**. Half of
-that capacity is small-scale infill on parcels of five acres or less, and
-the strongest clusters (99% confidence) hold a quarter of it on ~2% of
-the urban fabric.
+**The finding:** **The City does not need to find new land or amend its
+plan to meet its housing goals — it can add roughly 43,000 homes by
+removing the conversion friction between what the adopted plan already
+allows and what gets built.** Missoula's adopted
+[Growth Policy](https://www.ci.missoula.mt.us/3156/Land-Use-Plan) makes
+room for those homes on vacant and economically underbuilt land — about
+as many homes as the city has today (~44,300), and 1.6–2× the 2045 Land
+Use Plan's 22,000–27,500-home target, netting out floodway and
+steep-slope acres. Half of that capacity is small-scale infill on
+parcels of five acres or less; the strongest clusters (99% confidence)
+hold a quarter of it on ~2% of the urban fabric.
 
 **The recommendation:** As the City rewrites its development code, align
 zoned entitlements with the Growth Policy in the handful of corridors where
@@ -37,40 +41,36 @@ capacity already clusters — and pair that upzoning with preservation for the
 sit on the same planned-density land.
 :::
 
-## The question
+## The mission
 
-Missoula is considering policy changes to advance housing affordability and
-smart growth at a moment when Montana's land-use rules are shifting under
-the [2023 Montana Land Use Planning Act](https://www.engagemissoula.com/the-new-montana-land-use-planning-act-sb382) and the City's own [code-reform work](https://www.engagemissoula.com/growth-policy-update).
-For that effort, two questions matter before any others, and a parcel
-dataset can answer both directly: **how much housing does the City's
-adopted plan already make room for, and where does that capacity sit?**
-If the plan already provides for substantial growth in specific places,
-the policy task shifts from finding new land to removing the friction —
-zoning, process, infrastructure — between the plan and the ground.
+Missoula is considering policy changes to **advance housing
+affordability and smart growth**, at a moment when Montana's land-use
+rules are shifting under the [2023 Montana Land Use Planning
+Act](https://www.engagemissoula.com/the-new-montana-land-use-planning-act-sb382)
+and the City is rewriting its development code through the [Our
+Missoula code-reform project](https://www.engagemissoula.com/growth-policy-update).
+The adopted [Our Missoula 2045 Land Use
+Plan](https://www.ci.missoula.mt.us/3156/Land-Use-Plan) sets the
+target: roughly **22,000–27,500 new homes by 2045**.
 
-Those questions sit directly under both of the City's stated goals.
-**Affordability** in a supply-constrained market depends on two things:
-adding homes where demand already is, and protecting the low-cost homes
-that already exist — this analysis locates the first (43,000 plan-enabled
-units) and flags the second (the mobile-home finding below). **Smart growth**
-means directing that supply *inward* — onto vacant and underbuilt land
-already served by streets, pipes, and transit — rather than outward into
-farmland and hazard areas. Plan-enabled capacity is, by construction,
-smart-growth capacity: it sits inside the existing urban fabric, nets out
-floodway and steep slopes, and half of it is small-scale infill.
+## The solution
 
-One timing note matters. This dataset carries the future land-use
-designations of the **2035 Growth Policy**; in December 2024 the City
-adopted its successor, the [Our Missoula 2045 Land Use
-Plan](https://www.ci.missoula.mt.us/3156/Land-Use-Plan), which
-identifies a need of roughly **22,000–27,500 new homes by 2045**. That
-makes this analysis a feasibility check on the City's own target: at
-deliberately conservative midpoint densities, the 2035-vintage plan
-already provides ground for ~43,000 units — the 2045 target fits within
-existing plan capacity **1.6 to 2 times over**. The binding constraint
-is not land; it is converting what the plan already allows into
-entitled, permitted homes.
+**The City does not need to find new land or amend its plan to hit that
+target — it needs to remove the friction that keeps already-planned
+homes from being built.** Measured against the adopted future land-use
+map (this dataset carries the 2035-vintage designations), vacant and
+underbuilt parcels already provide ground for **~43,000 homes at
+conservative midpoint densities — the 2045 target, 1.6 to 2 times
+over**. The binding constraint is not land; it is conversion friction:
+zoning that has not caught up with the plan, review process, and
+infrastructure timing.
+
+That solution serves both stated goals at once. Affordability: the
+supply lands where demand already is, and the analysis flags the
+low-cost homes that need protecting while it happens. Smart growth: the
+capacity sits inside the existing urban fabric, nets out floodway and
+steep slopes, and 58% of it is within a quarter-mile of a bus stop —
+growth inward, not outward.
 
 ## Approach
 
@@ -143,9 +143,9 @@ conventional housing units citywide, so the comparison is indicative
 rather than census-exact.]. Roughly half of that capacity sits on vacant
 land and half on economically underbuilt parcels whose improvements are
 worth less than the land beneath them. This is not a rezoning wish list:
-every unit of it is consistent with the future land-use map the City has
-already adopted. The capacity is real, mapped, and — because it nets out
-floodway and steep-slope land — buildable ground.
+every unit is consistent with the future land-use map the City has
+already adopted, on acreage that nets out floodway and steep-slope
+land.
 
 ## Finding 3 — Half the opportunity is small-scale infill
 
@@ -161,16 +161,13 @@ by master planning and infrastructure; small-site capacity is unlocked
 by **by-right approvals, missing-middle allowances, and simpler
 review** — exactly the levers a development-code rewrite controls.
 
-## The affordability lens — who this is for, and who it puts at risk
+## The affordability lens — ~2,600 of the city's lowest-cost homes sit in the growth path
 
 Missoula is a **majority-renter city**: 52% of households rent, and
 **half of those renters (49.9%) are cost-burdened**, paying more than
 30% of income for housing (ACS 2019–2023). This is the demand side of
 the capacity story, and it falls hardest on the households with the
-least room to absorb it. Adding supply inside the existing urban
-fabric, near transit, is the most direct structural answer to that
-pressure — and the 2045 plan's housing target reflects the City's own
-version of the same conclusion.
+least room to absorb it.
 
 But the same market forces that would fill the capacity clusters also
 threaten the affordability that already exists. Using assessed values,
