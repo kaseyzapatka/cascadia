@@ -87,6 +87,10 @@ quarto render        # -> docs/ (also builds the three PDFs via post-render)
 quarto preview       # local preview
 ```
 
+If an incremental render logs a transient `rename ... NotFound` error,
+the post-render PDF hook raced quarto's own file moves — re-run from
+clean (`rm -rf docs && quarto render`); a clean render always passes.
+
 Publishing: GitHub Pages serves the committed `docs/` folder from `main`
 (Settings → Pages → Deploy from a branch → `main` / `docs`). Render
 locally, commit `docs/`, push.
