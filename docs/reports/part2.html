@@ -4113,7 +4113,7 @@ vertical-align: -.125em;
 <p><strong>The workflow to address it:</strong></p>
 <ol type="1">
 <li><strong>Canonical schema first.</strong> Define the region-wide analysis schema (the pilot’s derived fields: developable acres, plan-enabled capacity, opportunity class) before acquiring anything.</li>
-<li><strong>Per-jurisdiction crosswalks as data, not code.</strong> Each jurisdiction gets a version-controlled crosswalk table (source class → canonical class → assumed density, with a source citation per row). Crosswalks are reviewed with planning staff from each jurisdiction — the local-knowledge check no script can replace.</li>
+<li><strong>Per-jurisdiction crosswalks as data, not code.</strong> Each jurisdiction gets a version-controlled crosswalk table (source class → canonical class → assumed density, with a source citation per row). Crosswalks are reviewed with planning staff from each jurisdiction — the local-knowledge check no script can replace. Where a jurisdiction has no adopted plan (likely in Frenchtown, Lolo, Bonner), the crosswalk documents a fallback — county zoning or growth policy — and the dashboard flags that capacity as lower-confidence.</li>
 <li><strong>One automated pipeline.</strong> The pilot’s R pipeline generalizes: raw sources are never edited; every transformation is scripted; adding a jurisdiction means adding a config block and a crosswalk, not new code.</li>
 <li><strong>Validation gates between stages.</strong> Automated checks at each step — row counts reconcile, CRS uniform, geometries valid, no unmapped classes, capacity totals within plausibility bounds per jurisdiction — so errors surface at ingest, not at the client meeting.</li>
 </ol>
@@ -4151,7 +4151,7 @@ vertical-align: -.125em;
 </tr>
 </tbody>
 </table>
-<p>Weekly cadence: Monday stand-up, mid-week working session, Friday review of outputs against the task list.</p>
+<p>Weekly cadence: Monday stand-up, mid-week working session, Friday output review.</p>
 <p><strong>Quality control before anything reaches the client:</strong></p>
 <ul>
 <li><strong>Automated:</strong> the pipeline’s validation gates run on every rebuild; no hand-edited files anywhere in the chain.</li>
@@ -4193,7 +4193,7 @@ vertical-align: -.125em;
 </tr>
 <tr class="odd">
 <td>5–9</td>
-<td>3. Pipeline generalization, capacity analysis, hot spots (validated regional dataset)</td>
+<td>3. Pipeline generalization, housing-readiness analysis, hot spots (validated regional dataset)</td>
 <td>Senior + Junior</td>
 <td>$11,000</td>
 </tr>

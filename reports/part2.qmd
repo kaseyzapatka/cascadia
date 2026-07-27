@@ -42,7 +42,10 @@ mode, because it *looks* finished.
    gets a version-controlled crosswalk table (source class → canonical
    class → assumed density, with a source citation per row). Crosswalks
    are reviewed with planning staff from each jurisdiction — the
-   local-knowledge check no script can replace.
+   local-knowledge check no script can replace. Where a jurisdiction has no adopted
+   plan (likely in Frenchtown, Lolo, Bonner), the crosswalk documents a
+   fallback — county zoning or growth policy — and the dashboard flags
+   that capacity as lower-confidence.
 3. **One automated pipeline.** The pilot's R pipeline generalizes: raw
    sources are never edited; every transformation is scripted; adding a
    jurisdiction means adding a config block and a crosswalk, not new code.
@@ -59,8 +62,8 @@ mode, because it *looks* finished.
 | **Junior Associate** | Data acquisition and management; crosswalk drafting per jurisdiction; analysis runs; source documentation | Judgment-building work with clear review points |
 | **GIS Intern** | Geometry QA (validity, topology, CRS); metadata inventory; map production from templates; dashboard layer prep | Well-specified, checkable tasks that build real skills |
 
-Weekly cadence: Monday stand-up, mid-week working session, Friday review
-of outputs against the task list.
+Weekly cadence: Monday stand-up, mid-week working session, Friday
+output review.
 
 **Quality control before anything reaches the client:**
 
@@ -82,7 +85,7 @@ of outputs against the task list.
 |---|---|---|---|
 | 1–2 | 1. Scoping, canonical schema, data-sharing letters & named contacts per jurisdiction (schema memo) | Senior | $4,500 |
 | 2–6 | 2. Data acquisition & crosswalks, 5+ jurisdictions (crosswalk workbook) | Junior Assoc. | $9,500 |
-| 5–9 | 3. Pipeline generalization, capacity analysis, hot spots (validated regional dataset) | Senior + Junior | $11,000 |
+| 5–9 | 3. Pipeline generalization, housing-readiness analysis, hot spots (validated regional dataset) | Senior + Junior | $11,000 |
 | 8–13 | 4. Web dashboard build, open-stack: Quarto/Observable + hosted tiles (beta dashboard) | Senior + Intern | $10,500 |
 | 11–14 | 5. Documentation, methods report, QC & ground-truthing (methods report) | All | $5,500 |
 | 14–16 | 6. Client reviews, revisions, training & handoff (training + reproducible handoff) | Senior | $4,000 |
