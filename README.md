@@ -12,15 +12,17 @@ Policy already makes room for, and where that capacity clusters.
   [slide.qmd](slide.qmd)
 - **Part 2 — strategic project management one-pager:** from
   [reports/part2.qmd](reports/part2.qmd)
-- **Part 3 — AI-enhanced web deliverable:** the Quarto website itself
-  (data story, interactive map, methods), served by GitHub Pages
+- **Part 3 — AI-enhanced deliverable:** the slide's hero map rebuilt with
+  AI as the embeddable [interactive
+  map](https://www.kaseyzapatka.com/cascadia/reports/map.html), delivered
+  through this Quarto site (see [reports/part3.qmd](reports/part3.qmd))
 
 ## Headline findings
 
 - **~43,000 plan-enabled units** sit on 3,419 vacant or underbuilt parcels
   (~4,200 acres) where the Growth Policy's future land use already calls
   for housing. Missoula has ~44,300 units today.
-- **Half of that capacity is small-scale infill** (parcels ≤ 5 acres).
+- **54% of that capacity is small-scale infill** (parcels ≤ 5 acres).
 - **A quarter of the capacity concentrates in ~2% of the urban fabric**:
   29 Gi* hot-spot hexes at 99% confidence — five times what chance would
   produce — hold ~11,400 units in the North Reserve corridor, Linda
@@ -47,7 +49,7 @@ flowchart LR
     E --> G[("output/maps/")]
     F --> H["quarto render<br/>(.qmd pages)"]
     G --> H
-    H --> I["Website<br/>(GitHub Actions → gh-pages)"]
+    H --> I["Website<br/>(GitHub Pages, main /docs)"]
     H --> J["PDFs: Part 1 slide,<br/>Part 2 + Part 3 one-pagers"]
 ```
 
@@ -78,18 +80,18 @@ environment in [output/session_info.txt](output/session_info.txt).
 
 ## Website
 
-Quarto site: config and homepage at the repo root, content pages in [reports/](reports/) (verasight-style layout). The site embeds the
-committed figures and map from `output/`, so rendering never re-runs the
-analysis:
+Quarto site: config and homepage at the repo root, content pages in
+[reports/](reports/). The site embeds the committed figures and map from
+`output/`, so rendering never re-runs the analysis:
 
 ```sh
 quarto render        # -> docs/ (also builds the three PDFs via post-render)
 quarto preview       # local preview
 ```
 
-If an incremental render logs a transient `rename ... NotFound` error,
-the post-render PDF hook raced Quarto's own file moves — re-run from
-clean (`rm -rf docs && quarto render`); a clean render always passes.
+The PDF hook runs only on full renders (it skips `quarto preview` and
+single-file renders, which used to race Quarto's own file moves) — so
+after editing a PDF source, rebuild with a full `quarto render`.
 
 Publishing: GitHub Pages serves the committed `docs/` folder from `main`
 (Settings → Pages → Deploy from a branch → `main` / `docs`). Render
