@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Kasey Zapatka">
 
-<title>Methods &amp; Sources – Missoula Housing Capacity</title>
+<title>Scaling to a Regional Housing Readiness Dashboard – Missoula Housing Capacity</title>
 <style>
 
 code{white-space: pre-wrap;}
@@ -19,41 +20,6 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
-}
-
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-}
-pre.numberSource { margin-left: 3em; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -4046,7 +4012,7 @@ vertical-align: -.125em;
 <span class="menu-text">Part 1: Data Story</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reports/part2.html"> 
+    <a class="nav-link active" href="../reports/part2.html" aria-current="page"> 
 <span class="menu-text">Part 2: Project Management</span></a>
   </li>  
   <li class="nav-item">
@@ -4058,7 +4024,7 @@ vertical-align: -.125em;
 <span class="menu-text">Interactive Map</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../reports/methods.html" aria-current="page"> 
+    <a class="nav-link" href="../reports/methods.html"> 
 <span class="menu-text">Methods</span></a>
   </li>  
 </ul>
@@ -4102,19 +4068,11 @@ vertical-align: -.125em;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a></li>
-  <li><a href="#cleaning-decisions" id="toc-cleaning-decisions" class="nav-link" data-scroll-target="#cleaning-decisions">Cleaning decisions</a></li>
-  <li><a href="#plan-enabled-capacity" id="toc-plan-enabled-capacity" class="nav-link" data-scroll-target="#plan-enabled-capacity">Plan-enabled capacity</a></li>
-  <li><a href="#the-opportunity-screen" id="toc-the-opportunity-screen" class="nav-link" data-scroll-target="#the-opportunity-screen">The opportunity screen</a></li>
-  <li><a href="#plan-vintage" id="toc-plan-vintage" class="nav-link" data-scroll-target="#plan-vintage">Plan vintage</a></li>
-  <li><a href="#naturally-occurring-affordable-housing-noah" id="toc-naturally-occurring-affordable-housing-noah" class="nav-link" data-scroll-target="#naturally-occurring-affordable-housing-noah">Naturally occurring affordable housing (NOAH)</a></li>
-  <li><a href="#transit-accessibility" id="toc-transit-accessibility" class="nav-link" data-scroll-target="#transit-accessibility">Transit accessibility</a></li>
-  <li><a href="#hot-spot-analysis-getis-ord-gi" id="toc-hot-spot-analysis-getis-ord-gi" class="nav-link" data-scroll-target="#hot-spot-analysis-getis-ord-gi">Hot-spot analysis (Getis-Ord Gi*)</a></li>
-  <li><a href="#cluster-naming" id="toc-cluster-naming" class="nav-link" data-scroll-target="#cluster-naming">Cluster naming</a></li>
-  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#a.-scaling-technical-workflow" id="toc-a.-scaling-technical-workflow" class="nav-link active" data-scroll-target="#a.-scaling-technical-workflow">2a. Scaling &amp; technical workflow</a></li>
+  <li><a href="#b.-delegation-quality-control" id="toc-b.-delegation-quality-control" class="nav-link" data-scroll-target="#b.-delegation-quality-control">2b. Delegation &amp; quality control</a></li>
+  <li><a href="#c.-budget-schedule-50000-fixed-16-weeks" id="toc-c.-budget-schedule-50000-fixed-16-weeks" class="nav-link" data-scroll-target="#c.-budget-schedule-50000-fixed-16-weeks">2c. Budget &amp; schedule ($50,000 fixed, ~16 weeks)</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="missoula_project_management.pdf"><i class="bi bi-file-pdf"></i>Download PDF</a></li></ul></div></nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -4125,13 +4083,20 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Methods &amp; Sources</h1>
+<h1 class="title">Scaling to a Regional Housing Readiness Dashboard</h1>
+<p class="subtitle lead">Strategic project management for the Five Valleys expansion</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kasey Zapatka </p>
+          </div>
+  </div>
     
   
     
@@ -4142,156 +4107,137 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>A single Esri file geodatabase layer, <code>CP_Hiring_Exercise_Missoula</code> (<strong>32,974 parcels</strong>, NAD83 State Plane Montana, US feet), with an accompanying field map. Fields used: existing use (<code>LandUseBuildingType_All</code>), dwelling units, assessed land/building/total value, acres, Growth Policy future land use (<code>Land_Use</code>), current zoning (<code>Zoning_Mstr</code>), percent of parcel in floodway (<code>PercentageFlood</code>), and percent in steep slopes &gt; 25% (<code>PercentSlope</code>).</p>
+<section id="a.-scaling-technical-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="a.-scaling-technical-workflow">2a. Scaling &amp; technical workflow</h2>
+<p><strong>The primary data trap: schema fragmentation across jurisdictions.</strong> The pilot data already shows it — <code>Zoning_Mstr</code> mixes <code>CITY -RM1-45</code> with <code>COUNTY -Rural Residential, Small Agriculture-1</code>: different naming schemes, different density logic, different vintages, in one field. Expanding to Missoula County and unincorporated Frenchtown, Lolo, and Bonner multiplies that: each jurisdiction’s zoning, future land use, and assessor attributes were built for different purposes, and unincorporated areas may have no adopted land-use plan at all. Naively stacking layers produces a dashboard that silently compares incomparable things — the most dangerous failure mode, because it <em>looks</em> finished.</p>
+<p><strong>The workflow to address it:</strong></p>
+<ol type="1">
+<li><strong>Canonical schema first.</strong> Define the region-wide analysis schema (the pilot’s derived fields: developable acres, plan-enabled capacity, opportunity class) before acquiring anything.</li>
+<li><strong>Per-jurisdiction crosswalks as data, not code.</strong> Each jurisdiction gets a version-controlled crosswalk table (source class → canonical class → assumed density, with a source citation per row). Crosswalks are reviewed with planning staff from each jurisdiction — the local-knowledge check no script can replace. Where a jurisdiction has no adopted plan (likely in Frenchtown, Lolo, Bonner), the crosswalk documents a fallback — county zoning or growth policy — and the dashboard flags that capacity as lower-confidence.</li>
+<li><strong>One automated pipeline.</strong> The pilot’s R pipeline generalizes: raw sources are never edited; every transformation is scripted; adding a jurisdiction means adding a config block and a crosswalk, not new code.</li>
+<li><strong>Validation gates between stages.</strong> Automated checks at each step — row counts reconcile, CRS uniform, geometries valid, no unmapped classes, capacity totals within plausibility bounds per jurisdiction — so errors surface at ingest, not at the client meeting.</li>
+</ol>
 </section>
-<section id="cleaning-decisions" class="level2">
-<h2 class="anchored" data-anchor-id="cleaning-decisions">Cleaning decisions</h2>
+<section id="b.-delegation-quality-control" class="level2">
+<h2 class="anchored" data-anchor-id="b.-delegation-quality-control">2b. Delegation &amp; quality control</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Quirk</th>
-<th>Treatment</th>
+<th>Role</th>
+<th>Owns</th>
+<th>Reasoning</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>~900 features stored as curve geometries (<code>MultiSurface</code>)</td>
-<td>Linearized to polygons on read (GDAL <code>forceTo</code>)</td>
+<td><strong>Me (strategic lead)</strong></td>
+<td>Schema and assumption sign-off; crosswalk reviews with jurisdiction staff; client communication; final QC</td>
+<td>Keeps my time on decisions, not production</td>
 </tr>
 <tr class="even">
-<td><code>PercentageFlood</code> / <code>PercentSlope</code> populated only where a constraint exists</td>
-<td><code>NA</code> → 0% (verified: nulls mean “no mapped constraint”)</td>
+<td><strong>Junior Associate</strong></td>
+<td>Data acquisition and management; crosswalk drafting per jurisdiction; analysis runs; source documentation</td>
+<td>Judgment-building work with clear review points</td>
 </tr>
 <tr class="odd">
-<td><code>YearBuilt = 0</code> sentinel</td>
-<td>→ <code>NA</code></td>
-</tr>
-<tr class="even">
-<td>Invalid rings / self-intersections</td>
-<td>Repaired with <code>st_make_valid()</code> on the invalid subset</td>
-</tr>
-<tr class="odd">
-<td>Empty geometries</td>
-<td>Dropped</td>
+<td><strong>GIS Intern</strong></td>
+<td>Geometry QA (validity, topology, CRS); metadata inventory; map production from templates; dashboard layer prep</td>
+<td>Well-specified, checkable tasks that build real skills</td>
 </tr>
 </tbody>
 </table>
-<p>Two source-labeling notes: the <code>PercentageFlood</code> field is aliased “Percentage of Floodplain in Parcel” but described as percent in <em>floodway</em> — the write-up says “floodway/floodplain” advisedly, and the constraint screen is identical either way. The Mullan-area designation is spelled <code>Sxtpqyen Area</code> in the data; prose uses the City’s common rendering “Sxwtpqyen.”</p>
+<p>Weekly cadence: Monday stand-up, mid-week working session, Friday output review.</p>
+<p><strong>Quality control before anything reaches the client:</strong></p>
+<ul>
+<li><strong>Automated:</strong> the pipeline’s validation gates run on every rebuild; no hand-edited files anywhere in the chain.</li>
+<li><strong>Peer review:</strong> every crosswalk and analysis script reviewed by a second person; intern’s geometry QA spot-checked against county records.</li>
+<li><strong>Ground-truthing:</strong> for each jurisdiction, a random sample of ~25 parcels checked by hand against assessor records and aerial imagery.</li>
+<li><strong>Sensitivity disclosure:</strong> headline numbers published with their sensitivity to the key thresholds (density assumptions, softness cutoff), so no single assumption can quietly drive the story.</li>
+<li><strong>Sign-off checklist:</strong> sources cited, numbers reconciled to pipeline output, cartography standards met — before any deliverable ships.</li>
+</ul>
 </section>
-<section id="plan-enabled-capacity" class="level2">
-<h2 class="anchored" data-anchor-id="plan-enabled-capacity">Plan-enabled capacity</h2>
-<p>For each parcel whose Growth Policy designation calls for housing:</p>
-<blockquote class="blockquote">
-<p><strong>capacity</strong> = developable acres × assumed du/ac − existing units, floored at zero</p>
-</blockquote>
-<p>where <em>developable acres</em> = acres × (1 − max(flood share, slope share)). Taking the max of the two constraint shares is conservative without double-counting (their overlap is unknown).</p>
-<p><strong>Allowable densities</strong> come from the adopted <strong>Our Missoula 2035 Growth Policy</strong> designation ranges, as those ranges are applied in the City’s own annexation and rezoning staff reports (e.g., “Residential Medium Density (3 to 11 dwelling units per acre)… Residential High Density (24 to 43 dwelling units per acre) (Our Missoula 2035)”). Capacity uses the <strong>midpoint</strong> of each range — a deliberately conservative “expected” density rather than the plan’s ceiling:</p>
+<section id="c.-budget-schedule-50000-fixed-16-weeks" class="level2">
+<h2 class="anchored" data-anchor-id="c.-budget-schedule-50000-fixed-16-weeks">2c. Budget &amp; schedule ($50,000 fixed, ~16 weeks)</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 54%">
+<col style="width: 18%">
+<col style="width: 17%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Designation</th>
-<th>Policy range (du/ac)</th>
-<th>Used</th>
+<th>Weeks</th>
+<th>Task (deliverable)</th>
+<th>Lead</th>
+<th>Budget</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Residential Low</td>
 <td>1–2</td>
-<td>1.5</td>
+<td>1. Scoping, canonical schema, data-sharing letters &amp; named contacts per jurisdiction (schema memo)</td>
+<td>Senior</td>
+<td>$4,500</td>
 </tr>
 <tr class="even">
-<td>Residential Medium</td>
-<td>3–11</td>
-<td>7</td>
+<td>2–6</td>
+<td>2. Data acquisition &amp; crosswalks, 5+ jurisdictions (crosswalk workbook)</td>
+<td>Junior Assoc.</td>
+<td>$9,500</td>
 </tr>
 <tr class="odd">
-<td>Residential Medium-High</td>
-<td>12–23</td>
-<td>17.5</td>
+<td>5–9</td>
+<td>3. Pipeline generalization, housing-readiness analysis, hot spots (validated regional dataset)</td>
+<td>Senior + Junior</td>
+<td>$11,000</td>
 </tr>
 <tr class="even">
-<td>Residential High</td>
-<td>24–43</td>
-<td>33.5</td>
+<td>8–13</td>
+<td>4. Web dashboard build, open-stack: Quarto/Observable + hosted tiles (beta dashboard)</td>
+<td>Senior + Intern</td>
+<td>$10,500</td>
 </tr>
 <tr class="odd">
-<td>Neighborhood Mixed Use</td>
-<td>carries medium-high (12–23)</td>
-<td>17.5</td>
+<td>11–14</td>
+<td>5. Documentation, methods report, QC &amp; ground-truthing (methods report)</td>
+<td>All</td>
+<td>$5,500</td>
 </tr>
 <tr class="even">
-<td>Community Mixed Use</td>
-<td>carries high (24–43 in aligned zoning)</td>
-<td>33.5</td>
+<td>14–16</td>
+<td>6. Client reviews, revisions, training &amp; handoff (training + reproducible handoff)</td>
+<td>Senior</td>
+<td>$4,000</td>
 </tr>
 <tr class="odd">
-<td>Urban Center</td>
-<td>not stated in the Policy</td>
-<td>43</td>
+<td>—</td>
+<td>Contingency (10%)</td>
+<td>—</td>
+<td>$5,000</td>
+</tr>
+<tr class="even">
+<td><strong>16 weeks</strong></td>
+<td><strong>Total</strong></td>
+<td></td>
+<td><strong>$50,000</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Urban Center has no du/ac in the Policy; it is pinned at 43 — the highest density the Policy quotes anywhere — which is conservative for the downtown designation. Values are centralized in <code>code/00_setup.R</code>. All other designations (including the Sxwtpqyen Area’s own designation, industrial, parks, open/resource) contribute zero capacity — a conservative choice that likely <em>understates</em> the total.</p>
-</section>
-<section id="the-opportunity-screen" class="level2">
-<h2 class="anchored" data-anchor-id="the-opportunity-screen">The opportunity screen</h2>
-<p>A parcel counts as an <strong>opportunity</strong> when all of the following hold:</p>
-<ol type="1">
-<li><strong>Housing-eligible</strong> future land-use designation (table above);</li>
-<li><strong>Economically soft</strong> — vacant, or improvement-to-land ratio (ILR: assessed building value ÷ assessed land value) <strong>&lt; 1.0</strong>, i.e., the dirt is worth more than what stands on it;</li>
-<li><strong>Not excluded</strong> — public/institutional land, parks, open space and recreation, master condo records (which would double-count their child units), and <strong>mobile homes</strong> (naturally occurring affordable housing — flagged separately as displacement risk, never as opportunity);</li>
-<li><strong>Not constrained</strong> — no more than 50% of the parcel in floodway or steep slope; capacity on the remainder is already discounted;</li>
-<li><strong>Material</strong> — capacity gap of at least one unit.</li>
-</ol>
-<p>Opportunity parcels are typed <strong>vacant vs. underbuilt</strong> and sized <strong>infill (≤ 5 ac) vs. large site (&gt; 5 ac)</strong>. The 5-acre line separates parcels a single owner or small builder can develop under by-right rules from sites that realistically need master planning, subdivision, and new internal infrastructure.</p>
-</section>
-<section id="plan-vintage" class="level2">
-<h2 class="anchored" data-anchor-id="plan-vintage">Plan vintage</h2>
-<p>The taxlot layer carries the future land-use designations of the <strong>2035 Growth Policy</strong>. In December 2024 the City adopted the successor <a href="https://www.ci.missoula.mt.us/3156/Land-Use-Plan">Our Missoula 2045 Land Use Plan</a> (need identified: ~22,000–27,500 new homes by 2045). Capacity here is therefore measured against the 2035-vintage map and read as a feasibility check on the 2045 target — designation-level densities are broadly continuous between the two plans, but a designation-by- designation re-run on the 2045 map is the natural refresh once its GIS layer is in hand.</p>
-</section>
-<section id="naturally-occurring-affordable-housing-noah" class="level2">
-<h2 class="anchored" data-anchor-id="naturally-occurring-affordable-housing-noah">Naturally occurring affordable housing (NOAH)</h2>
-<p>NOAH = parcels with at least one dwelling unit whose <strong>total assessed value per unit falls in the bottom quartile</strong> of the city’s housing stock — everything under <strong>~$240,300 per unit</strong> (6,691 parcels, ~23,800 units). Assessed value proxies <em>price level</em>, not rent, and lags the market; the flag marks relative affordability, not income-qualified affordability. Exposure is measured on the hex grid: a hex’s NOAH units count as exposed when the hex is, or touches, a 95%+ capacity cluster (~2,600 units).</p>
-</section>
-<section id="transit-accessibility" class="level2">
-<h2 class="anchored" data-anchor-id="transit-accessibility">Transit accessibility</h2>
-<p>Stops and route shapes come from Mountain Line’s published GTFS feed (July 2026; <code>data/external/</code>). A parcel counts as transit-accessible when it intersects a <strong>quarter-mile (1,320 ft) Euclidean buffer</strong> around any stop — the standard walkshed shorthand, which slightly overstates true network walking distance. 58% of plan-enabled units on opportunity parcels fall inside the walkshed.</p>
-</section>
-<section id="hot-spot-analysis-getis-ord-gi" class="level2">
-<h2 class="anchored" data-anchor-id="hot-spot-analysis-getis-ord-gi">Hot-spot analysis (Getis-Ord Gi*)</h2>
-<p>Plan-enabled units on opportunity parcels are summed to a <strong>1,000-ft hexagonal grid</strong> (~20-acre cells; 1,188 hexes contain at least one housing-eligible parcel). Gi* runs on the hex values with queen contiguity, self-inclusive weights; classes are reported at 90/95/99% confidence.</p>
-<p><strong>Significance and multiple testing.</strong> With 1,188 hexes, fixed z-score thresholds involve many simultaneous tests: at the 95% level, ~30 hexes would clear the bar by chance alone, against 40 observed — so the 95% tier is treated as an outer envelope, not headline evidence. The finding rests on the <strong>99% tier: 29 hexes observed against ~6 expected by chance</strong> (~11,400 units). Under a one-sided false-discovery-rate correction (q &lt; 0.05), 25 hexes (~10,800 units) remain significant — the concentration conclusion is unchanged. Gi* here uses the analytic normal approximation (no permutations), read as descriptive spatial inference rather than formal hypothesis testing.</p>
-<p><strong>Why hexes rather than parcels?</strong> Parcel-level unit gap is extremely right-skewed (median 1, maximum ~3,200), and parcels vary enormously in size, so a parcel-level statistic mostly re-identifies individual mega-parcels and their immediate neighbors. Aggregating first asks the policy-relevant question — <em>which places, at the scale of a block cluster, concentrate capacity</em> — and yields legible corridors instead of scattered outliers. A uniform grid also equalizes the spatial support underlying each observation (parcels differ in area by four orders of magnitude), which contiguity-based weights otherwise distort.</p>
-<p><strong>Why Gi* rather than a LISA map?</strong> The question this analysis asks is specific: <em>where do high-capacity places sit next to other high-capacity places</em> — LISA’s <strong>high-high</strong> quadrant. A Gi* hot spot is precisely that: because the statistic sums each hex <em>together with its neighbors</em>, a significant positive z-score can only occur where high values cluster against other high values. So Gi* delivers the high-high answer directly, with a single confidence-graded class that maps cleanly.</p>
-<p>LISA (local Moran’s I) reports the same high-high clusters but adds three more classes — low-low, and the high-low / low-high spatial <em>outliers</em>. Those are valuable diagnostics (an isolated mega-parcel in a low-capacity neighborhood is a high-low outlier), but for a policy audience they quadruple the legend to answer a question nobody asked here. The one thing LISA would add — cold spots (low-low) — turns out empty: no low-capacity cluster reaches significance in this data, which is why the map legend shows only capacity clusters. Running LISA as a robustness check on the hex grid is a natural QC step for the regional expansion.</p>
-</section>
-<section id="cluster-naming" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-naming">Cluster naming</h2>
-<p>The three labeled clusters on the maps are contiguity components of the 95%+ hexes; their names were verified by reverse-geocoding each component’s centroid (North Reserve corridor; Halle Drive area = Linda Vista / Miller Creek; Hillview Way / Moose Can Gully = South Hills).</p>
-</section>
-<section id="reproducibility" class="level2">
-<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> code/run_all.R   <span class="co"># raw .gdb -&gt; derived data -&gt; figures -&gt; map</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Numbered scripts with all assumptions centralized in <code>code/00_setup.R</code>; the exact package environment is recorded in <code>output/session_info.txt</code>. The website is rendered with Quarto from the committed figure and map outputs, so rendering never re-runs the analysis.</p>
-</section>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<p>Budgeted at blended rates:</p>
 <ul>
-<li><strong>Plan-implied, not predicted.</strong> Capacity measures what the adopted future land-use map makes room for — not ownership, feasibility, or infrastructure timing.</li>
-<li><strong>Densities are range midpoints</strong>, not the plan’s ceiling — using the top of each designation range would roughly double the headline capacity. Urban Center’s value is an assumption (the Policy states no du/ac for it).</li>
-<li><strong>Assessed values</strong> proxy economic softness; they lag the market and compress at the top.</li>
-<li><strong>The Sxwtpqyen Area</strong> (766 parcels) is conservatively excluded from capacity; the Mullan-area master plan is largely residential, so totals are understated.</li>
-<li><strong>Zoning is not analyzed here</strong> — the story is deliberately framed against the Growth Policy. A zoning-vs-plan entitlement-gap analysis is the natural next phase.</li>
-<li><strong>ACS estimates</strong> (tenure, rent burden) carry margins of error; figures cited are point estimates for Missoula city.</li>
-<li><strong>The walkshed is Euclidean</strong>, not network-routed, and GTFS reflects current service.</li>
+<li><strong>Senior Associate</strong> — $150/hr × ~130 hours</li>
+<li><strong>Junior Associate</strong> — $95/hr × ~190 hours</li>
+<li><strong>GIS Intern</strong> — $55/hr × ~135 hours</li>
+<li><strong>≈455 staff hours ($45,000)</strong> plus <strong>$5,000 contingency (10%)</strong>, sized to the real risk: other jurisdictions’ data</li>
+<li>Invoicing tied to the milestone deliverable named in each task, not to hours</li>
 </ul>
+<p>The budget’s shape reflects the risk: data normalization (Tasks 1–3, $25,000) is half the project, because the dashboard is only as credible as the crosswalks under it. The schedule’s critical path is jurisdiction response time — outside our control — so Task 1 secures data-sharing letters and a named contact per jurisdiction <em>before</em> analysis dates are promised. Scope boundary: the fixed fee covers the named jurisdictions and one dashboard revision cycle; additions are priced at the stated rates by change order. All required data is public and free (Montana State Library cadastral, city/county GIS, GTFS, ACS); commercial data, travel, and post-handoff hosting are excluded, with any records-request fees absorbed by contingency. The dashboard stays on an open stack — no per-seat licenses to inherit — and Task 6 ends with the client able to re-run the pipeline when next year’s assessor roll lands.</p>
 
 
 </section>
