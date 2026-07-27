@@ -1,6 +1,6 @@
 ---
 title: "The AI-Enhanced Deliverable"
-subtitle: "The interactive map is the AI enhancement of the Part 1 slide; AI also built the site that delivers it"
+subtitle: "The interactive map is the AI enhancement of the Part 1 slide; I also used AI to build the site that delivers it"
 format-links:
   - html
   - format: typst

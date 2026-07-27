@@ -92,8 +92,9 @@ format:
   acres (net of floodway/steep slope) − existing units, on vacant or
   economically soft parcels (improvement value < land value), excluding
   public, institutional, open-space, and mobile-home land. Clusters:
-  Getis-Ord Gi\* on a 1,000-ft hex grid, 95%+ confidence. Densities: midpoints of the
-  adopted 2035 Growth Policy designation ranges.
+  Getis-Ord Gi\* on a 1,000-ft hex grid, shown at 90/95/99% confidence. Densities: midpoints
+  of the adopted 2035 Growth Policy designation ranges. Capacity is what the plan allows,
+  not a development forecast.
   Sources: City of Missoula taxlot data (2024); Mountain Line GTFS; ACS
   2019–2023 (tenure, rent burden). Analysis: Kasey Zapatka, 2026 — full
   methods, interactive map, and code at kaseyzapatka.com/cascadia.
