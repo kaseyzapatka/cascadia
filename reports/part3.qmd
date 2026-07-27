@@ -21,10 +21,9 @@ format:
 ## What this deliverable is
 
 The exercise asks for AI-driven enhancements to the one-page slide from
-Part 1, in a format that can be embedded in a website. **The enhancement
-is the [interactive map](map.qmd)** — live at
-<https://www.kaseyzapatka.com/cascadia/reports/map.html> — the slide's
-static hero map, rebuilt with AI as an explorable Leaflet map — hover any hex for its plan-enabled
+Part 1, in a format that can be embedded in a website. **The enhancement is the
+[interactive map](https://www.kaseyzapatka.com/cascadia/reports/map.html)**:
+the slide's static hero map, rebuilt with AI as an explorable Leaflet map — hover any hex for its plan-enabled
 units, toggle the 3,419 underlying opportunity parcels, turn the Mountain
 Line routes on and off, click any parcel for its details. It is a single
 self-contained HTML file, so it embeds in any web page — including a
