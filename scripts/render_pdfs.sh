@@ -13,6 +13,12 @@
 if [ -n "$MISSOULA_RENDERING_PDF" ]; then
   exit 0
 fi
+# Skip during `quarto preview` / incremental renders: the three nested
+# renders below race quarto's own file moves (transient rename/404s).
+# QUARTO_PROJECT_RENDER_ALL is set only on full `quarto render` runs.
+if [ -z "$QUARTO_PROJECT_RENDER_ALL" ]; then
+  exit 0
+fi
 export MISSOULA_RENDERING_PDF=1
 set -e
 
