@@ -10,7 +10,7 @@ format:
 
 ::: {.callout-note title="Executive Summary"}
 
-**The mission:** Missoula is considering policy changes to **advance
+Missoula is considering policy changes to **advance
 housing affordability and smart growth** as it rewrites its development
 code under the [2023 Montana Land Use Planning
 Act](https://www.engagemissoula.com/the-new-montana-land-use-planning-act-sb382).
