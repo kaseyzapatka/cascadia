@@ -146,7 +146,8 @@ outlines are the 95%+ capacity clusters from the hero map. The overlap
 is where displacement pressure would concentrate: **~2,600 low-cost
 units sit inside or directly adjacent to a capacity cluster.**](output/figures/fig4_noah_map.png){#fig-noah width=88%}
 
-The most exposed class is mobile homes — **530 parcels (~2,850 units)
+A good example of those most likely to be impacted is mobile homes —
+**530 parcels (~2,850 units)
 on land the Growth Policy designates for higher density**, which is why
 they are excluded from the opportunity count entirely. The implication
 is sequencing: pair upzoning from the start with preservation tools —
