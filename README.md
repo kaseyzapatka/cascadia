@@ -48,7 +48,7 @@ flowchart LR
     F --> H["quarto render<br/>(.qmd pages)"]
     G --> H
     H --> I["Website<br/>(GitHub Actions → gh-pages)"]
-    H --> J["PDFs: Part 1 slide,<br/>Part 2 one-pager, memo"]
+    H --> J["PDFs: Part 1 slide,<br/>Part 2 + Part 3 one-pagers"]
 ```
 
 ## Pipeline
@@ -87,6 +87,10 @@ quarto render        # -> docs/ (also builds the three PDFs via post-render)
 quarto preview       # local preview
 ```
 
+If an incremental render logs a transient `rename ... NotFound` error,
+the post-render PDF hook raced Quarto's own file moves — re-run from
+clean (`rm -rf docs && quarto render`); a clean render always passes.
+
 Publishing: GitHub Pages serves the committed `docs/` folder from `main`
 (Settings → Pages → Deploy from a branch → `main` / `docs`). Render
 locally, commit `docs/`, push.
@@ -109,10 +113,10 @@ locally, commit `docs/`, push.
 │   └── run_all.R                      # entry point: reproduce everything
 ├── output/
 │   ├── data/                          # scored parcels, hexes, stats
-│   ├── figures/                       # fig1–fig3 (committed)
+│   ├── figures/                       # fig1–fig4 (committed)
 │   └── maps/hotspot_map.html          # embedded interactive map
 ├── _quarto.yml                    # site config (navbar, formats) — repo root
-├── index.qmd                      # Part 1 · data story homepage (html + memo PDF)
+├── index.qmd                      # Part 1 · data story homepage
 ├── slide.qmd                      # Part 1 · one-page slide (PDF; root for Typst asset access)
 ├── brand.scss                     # site theme (blue/green palette)
 ├── reports/                       # content pages

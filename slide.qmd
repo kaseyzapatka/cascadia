@@ -8,7 +8,7 @@ format:
 // Part 1 deliverable: one-slide GIS data story (11 x 8.5 landscape).
 #set page(width: 11in, height: 8.5in, numbering: none,
           margin: (x: 0.45in, top: 0.35in, bottom: 0.3in))
-#set text(size: 9.5pt, fill: rgb("#272727"))
+#set text(font: "Helvetica Neue", size: 9.5pt, fill: rgb("#272727"))
 
 #let accent = rgb("#8b9c26")   // brand green (deep step for text/rules)
 #let blue   = rgb("#7096c0")   // brand steel blue
@@ -30,10 +30,10 @@ format:
 #text(size: 20pt, weight: "bold")[Missoula's next 43,000 homes are already on the books]
 #v(0pt)
 #text(size: 10pt, fill: ink2)[
-  The adopted Growth Policy makes room to nearly double the city's housing
-  stock on vacant and underbuilt land — enough to deliver the 2045 Land Use
-  Plan's 22,000–27,500-home target 1.6–2× over, netting out floodway and
-  steep-slope acres.
+  The City does not need to find new land or amend its plan: removing the
+  friction between the adopted Growth Policy and today's code opens room
+  for \~43,000 homes on vacant and underbuilt land — the 2045 Land Use
+  Plan's 22,000–27,500-home target, 1.6–2× over.
 ]
 #v(2pt)
 #line(length: 100%, stroke: 1.5pt + accent)
@@ -48,12 +48,10 @@ format:
     #v(4pt)
     #box(fill: rgb("#f6f6f6"), stroke: (left: 3pt + blue), inset: 8pt, radius: 2pt, width: 100%)[
       #text(size: 8.5pt)[
-        #text(weight: "bold", fill: blue)[The affordability stakes:] Missoula
-        is 52% renter, and half of renters are cost-burdened (ACS 2019–23).
-        ≈2,600 of the city's lowest-cost (NOAH) homes sit in or beside the
-        growth clusters; separately, 530 mobile-home parcels (≈2,850 units)
-        sit on planned-density land citywide. All are excluded from the count
-        above — preservation must move with upzoning.
+        #text(weight: "bold", fill: blue)[The affordability stakes:] Half of
+        Missoula's renters are cost-burdened (ACS 2019–2023), and \~2,600 of the
+        city's lowest-cost homes sit in or beside the capacity clusters —
+        not counted above. Preservation must move with upzoning.
       ]
     ]
   ],
@@ -61,7 +59,7 @@ format:
     #grid(
       columns: (1fr, 1fr, 1fr),
       gutter: 8pt,
-      stat[≈43,000][plan-enabled homes on 3,419 vacant and underbuilt parcels — no plan change needed],
+      stat[\~43,000][plan-enabled homes on 3,419 vacant and underbuilt parcels — no plan change needed],
       stat[54%][of capacity is infill on parcels ≤ 5 acres — unlocked by code, not land assembly],
       stat[58%][of this capacity is within a ¼-mile walk of a Mountain Line bus stop],
     )
@@ -94,8 +92,9 @@ format:
   acres (net of floodway/steep slope) − existing units, on vacant or
   economically soft parcels (improvement value < land value), excluding
   public, institutional, open-space, and mobile-home land. Clusters:
-  Getis-Ord Gi\* on a 1,000-ft hex grid, 95%+ confidence. Densities: midpoints of the
-  adopted 2035 Growth Policy designation ranges.
+  Getis-Ord Gi\* on a 1,000-ft hex grid, shown at 90/95/99% confidence. Densities: midpoints
+  of the adopted 2035 Growth Policy designation ranges. Capacity is what the plan allows,
+  not a development forecast.
   Sources: City of Missoula taxlot data (2024); Mountain Line GTFS; ACS
   2019–2023 (tenure, rent burden). Analysis: Kasey Zapatka, 2026 — full
   methods, interactive map, and code at kaseyzapatka.com/cascadia.

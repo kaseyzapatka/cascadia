@@ -4021,7 +4021,7 @@ vertical-align: -.125em;
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reports/map.html"> 
-<span class="menu-text">Map</span></a>
+<span class="menu-text">Interactive Map</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reports/methods.html"> 
@@ -4045,10 +4045,6 @@ vertical-align: -.125em;
         <li>
     <a class="dropdown-item" href="../reports/missoula_ai_enhancement.pdf">
  <span class="dropdown-text">Part 3: AI enhancement (PDF)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../missoula_housing_memo.pdf">
- <span class="dropdown-text">Full memo (PDF)</span></a>
   </li>  
     </ul>
   </li>
@@ -4113,11 +4109,11 @@ vertical-align: -.125em;
 
 <section id="a.-scaling-technical-workflow" class="level2">
 <h2 class="anchored" data-anchor-id="a.-scaling-technical-workflow">2a. Scaling &amp; technical workflow</h2>
-<p><strong>The primary data trap: schema fragmentation across jurisdictions.</strong> The pilot data already shows it — <code>Zoning_Mstr</code> mixes <code>CITY -RM1-45</code> with <code>COUNTY -Rural Residential, Small Agriculture-1</code>: different naming schemes, different density logic, different vintages, in one field. Expanding to Missoula County and unincorporated Frenchtown, Lolo, and Bonner multiplies that: each jurisdiction’s zoning, future land use, and assessor attributes were built for different purposes, and unincorporated areas may have no adopted land-use plan at all. Naively stacking layers produces a dashboard that silently compares incomparable things — the most dangerous failure mode, because it <em>looks</em> finished.</p>
+<p><strong>The primary data trap: schema fragmentation across jurisdictions.</strong> The pilot data already shows it — <code>Zoning_Mstr</code> mixes <code>CITY -RM1-45</code> with <code>COUNTY -Rural Residential, Small Agriculture-1</code>: different naming schemes, different density logic, different vintages, in one field. Expanding to Missoula County and unincorporated Frenchtown, Lolo, and Bonner multiplies that: each jurisdiction’s zoning, future land use, and assessor attributes were built for different purposes, and unincorporated areas may have no adopted land-use plan at all. Naively stacking layers produces a dashboard that silently compares incomparable things and <em>looks</em> finished.</p>
 <p><strong>The workflow to address it:</strong></p>
 <ol type="1">
 <li><strong>Canonical schema first.</strong> Define the region-wide analysis schema (the pilot’s derived fields: developable acres, plan-enabled capacity, opportunity class) before acquiring anything.</li>
-<li><strong>Per-jurisdiction crosswalks as data, not code.</strong> Each jurisdiction gets a version-controlled crosswalk table (source class → canonical class → assumed density, with a source citation per row). Crosswalks are reviewed with planning staff from each jurisdiction — the local-knowledge check no script can replace.</li>
+<li><strong>Per-jurisdiction crosswalks as data, not code.</strong> Each jurisdiction gets a version-controlled crosswalk table (source class → canonical class → assumed density, with a source citation per row). Crosswalks are reviewed with planning staff from each jurisdiction — the local-knowledge check no script can replace. Where a jurisdiction has no adopted plan (likely in Frenchtown, Lolo, Bonner), the crosswalk documents a fallback — county zoning or growth policy — and the dashboard flags that capacity as lower-confidence.</li>
 <li><strong>One automated pipeline.</strong> The pilot’s R pipeline generalizes: raw sources are never edited; every transformation is scripted; adding a jurisdiction means adding a config block and a crosswalk, not new code.</li>
 <li><strong>Validation gates between stages.</strong> Automated checks at each step — row counts reconcile, CRS uniform, geometries valid, no unmapped classes, capacity totals within plausibility bounds per jurisdiction — so errors surface at ingest, not at the client meeting.</li>
 </ol>
@@ -4134,34 +4130,34 @@ vertical-align: -.125em;
 <tr class="header">
 <th>Role</th>
 <th>Owns</th>
-<th>Why it fits</th>
+<th>Reasoning</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><strong>Junior Associate</strong></td>
-<td>Data acquisition and management; crosswalk drafting per jurisdiction; analysis runs; source documentation</td>
-<td>Judgment-building work with clear review points</td>
-</tr>
-<tr class="even">
-<td><strong>GIS Intern</strong></td>
-<td>Geometry QA (validity, topology, CRS); metadata inventory; map production from templates; dashboard layer prep</td>
-<td>Well-specified, checkable tasks that build real skills</td>
-</tr>
 <tr class="odd">
 <td><strong>Me (strategic lead)</strong></td>
 <td>Schema and assumption sign-off; crosswalk reviews with jurisdiction staff; client communication; final QC</td>
 <td>Keeps my time on decisions, not production</td>
 </tr>
+<tr class="even">
+<td><strong>Junior Associate</strong></td>
+<td>Data acquisition and management; crosswalk drafting per jurisdiction; analysis runs; source documentation</td>
+<td>Judgment-building work with clear review points</td>
+</tr>
+<tr class="odd">
+<td><strong>GIS Intern</strong></td>
+<td>Geometry QA (validity, topology, CRS); metadata inventory; map production from templates; dashboard layer prep</td>
+<td>Well-specified, checkable tasks that build real skills</td>
+</tr>
 </tbody>
 </table>
-<p>Weekly cadence: Monday stand-up, mid-week working session, Friday review of outputs against the task list.</p>
+<p>Weekly cadence: Monday stand-up, mid-week working session, Friday output review.</p>
 <p><strong>Quality control before anything reaches the client:</strong></p>
 <ul>
 <li><strong>Automated:</strong> the pipeline’s validation gates run on every rebuild; no hand-edited files anywhere in the chain.</li>
 <li><strong>Peer review:</strong> every crosswalk and analysis script reviewed by a second person; intern’s geometry QA spot-checked against county records.</li>
 <li><strong>Ground-truthing:</strong> for each jurisdiction, a random sample of ~25 parcels checked by hand against assessor records and aerial imagery.</li>
-<li><strong>Sensitivity disclosure:</strong> headline numbers published with their sensitivity to the key thresholds (density assumptions, softness cutoff), so no single assumption can quietly drive the story.</li>
+<li><strong>Sensitivity disclosure:</strong> headline numbers published with their sensitivity to the key thresholds, so no single assumption can quietly drive the story.</li>
 <li><strong>Sign-off checklist:</strong> sources cited, numbers reconciled to pipeline output, cartography standards met — before any deliverable ships.</li>
 </ul>
 </section>
@@ -4197,13 +4193,13 @@ vertical-align: -.125em;
 </tr>
 <tr class="odd">
 <td>5–9</td>
-<td>3. Pipeline generalization, capacity analysis, hot spots (validated regional dataset)</td>
+<td>3. Pipeline generalization, housing-readiness analysis, hot spots (validated regional dataset)</td>
 <td>Senior + Junior</td>
 <td>$11,000</td>
 </tr>
 <tr class="even">
 <td>8–13</td>
-<td>4. Web dashboard build, open-stack: Quarto/Observable + hosted tiles (beta dashboard)</td>
+<td>4. Web dashboard build, open stack: Quarto/Observable + hosted tiles (beta dashboard)</td>
 <td>Senior + Intern</td>
 <td>$10,500</td>
 </tr>
@@ -4233,8 +4229,15 @@ vertical-align: -.125em;
 </tr>
 </tbody>
 </table>
-<p>Budgeted at blended rates — Senior Associate $150/hr (~130 hrs), Junior Associate $95/hr (~190 hrs), GIS Intern $55/hr (~135 hrs) — ≈455 staff hours ($45,000) plus $5,000 contingency (10%), sized to the real risk: other jurisdictions’ data. Invoicing is tied to the milestone deliverable named in each task, not to hours.</p>
-<p>The budget’s shape reflects the risk: data normalization (Tasks 1–3, $25,000) is half the project, because the dashboard is only as credible as the crosswalks under it. The schedule’s critical path is jurisdiction response time — outside our control — so Task 1 secures data-sharing letters and a named contact per jurisdiction <em>before</em> analysis dates are promised. Scope boundary: the fixed fee covers the named jurisdictions and one dashboard revision cycle; additions are priced at the stated rates by change order. All required data is public and free (Montana State Library cadastral, city/county GIS, GTFS, ACS); commercial data, travel, and post-handoff hosting are excluded, with any records-request fees absorbed by contingency. The dashboard stays on an open stack — no per-seat licenses to inherit — and Task 6 ends with the client able to re-run the pipeline when next year’s assessor roll lands.</p>
+<p>Budgeted at blended rates:</p>
+<ul>
+<li><strong>Senior Associate</strong> — $150/hr × ~130 hours</li>
+<li><strong>Junior Associate</strong> — $95/hr × ~190 hours</li>
+<li><strong>GIS Intern</strong> — $55/hr × ~135 hours</li>
+<li><strong>~455 staff hours ($45,000)</strong> plus <strong>$5,000 contingency (10%)</strong>, sized to the real risk: other jurisdictions’ data</li>
+<li>Invoicing tied to the milestone deliverable named in each task, not to hours</li>
+</ul>
+<p>The budget’s shape reflects the risk: data normalization (Tasks 1–3, $25,000) is half the project, because the dashboard is only as credible as the crosswalks under it. The schedule’s critical path is jurisdiction response time — outside our control — so Task 1 secures data-sharing letters and a named contact per jurisdiction <em>before</em> analysis dates are promised. Scope boundary: the fixed fee covers the named jurisdictions and one dashboard revision cycle; additions are priced at the stated rates by change order. All required data is public and free (Montana State Library cadastral, city/county GIS, GTFS, ACS); commercial data, travel, and post-handoff hosting are excluded, with any records-request fees absorbed by contingency. The dashboard stays on an open stack — no per-seat licenses — and Task 6 leaves the client able to re-run the pipeline on next year’s assessor roll.</p>
 
 
 </section>

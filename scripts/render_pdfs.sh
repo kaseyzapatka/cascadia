@@ -6,12 +6,17 @@
 #                                    lands in docs/reports/)
 #   missoula_ai_enhancement.pdf     (Part 3 page, from reports/part3.qmd,
 #                                    lands in docs/reports/)
-#   missoula_housing_memo.pdf       (full memo, from index.qmd)
 # Output filenames are set via `output-file:` in each qmd so navbar links
 # and the pages' "Download PDF" links stay consistent.
 #
 # Guard against recursion: the renders below re-trigger this hook.
 if [ -n "$MISSOULA_RENDERING_PDF" ]; then
+  exit 0
+fi
+# Skip during `quarto preview` / incremental renders: the three nested
+# renders below race quarto's own file moves (transient rename/404s).
+# QUARTO_PROJECT_RENDER_ALL is set only on full `quarto render` runs.
+if [ -z "$QUARTO_PROJECT_RENDER_ALL" ]; then
   exit 0
 fi
 export MISSOULA_RENDERING_PDF=1
@@ -24,5 +29,4 @@ quarto render slide.qmd --to typst
 mv -f missoula_data_story_slide.pdf docs/
 quarto render reports/part2.qmd --to typst
 quarto render reports/part3.qmd --to typst
-quarto render index.qmd --to typst
 echo "  PDFs done."

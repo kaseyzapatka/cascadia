@@ -4055,7 +4055,7 @@ vertical-align: -.125em;
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reports/map.html"> 
-<span class="menu-text">Map</span></a>
+<span class="menu-text">Interactive Map</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../reports/methods.html" aria-current="page"> 
@@ -4079,10 +4079,6 @@ vertical-align: -.125em;
         <li>
     <a class="dropdown-item" href="../reports/missoula_ai_enhancement.pdf">
  <span class="dropdown-text">Part 3: AI enhancement (PDF)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../missoula_housing_memo.pdf">
- <span class="dropdown-text">Full memo (PDF)</span></a>
   </li>  
     </ul>
   </li>
@@ -4258,7 +4254,7 @@ vertical-align: -.125em;
 </section>
 <section id="plan-vintage" class="level2">
 <h2 class="anchored" data-anchor-id="plan-vintage">Plan vintage</h2>
-<p>The taxlot layer carries the future land-use designations of the <strong>2035 Growth Policy</strong>. In December 2024 the City adopted the successor <a href="https://www.ci.missoula.mt.us/3156/Land-Use-Plan">Our Missoula 2045 Land Use Plan</a> (need identified: ~22,000–27,500 new homes by 2045). Capacity here is therefore measured against the 2035-vintage map and read as a feasibility check on the 2045 target — designation-level densities are broadly continuous between the two plans, but a designation-by- designation re-run on the 2045 map is the natural refresh once its GIS layer is in hand.</p>
+<p>The taxlot layer carries the future land-use designations of the <strong>2035 Growth Policy</strong>. In December 2024 the City adopted the successor <a href="https://www.ci.missoula.mt.us/3156/Land-Use-Plan">Our Missoula 2045 Land Use Plan</a> (need identified: ~22,000–27,500 new homes by 2045). Capacity here is therefore measured against the 2035-vintage map and read as a feasibility check on the 2045 target — designation-level densities are broadly continuous between the two plans, but a designation-by-designation re-run on the 2045 map is the natural refresh once its GIS layer is in hand.</p>
 </section>
 <section id="naturally-occurring-affordable-housing-noah" class="level2">
 <h2 class="anchored" data-anchor-id="naturally-occurring-affordable-housing-noah">Naturally occurring affordable housing (NOAH)</h2>
@@ -4273,7 +4269,7 @@ vertical-align: -.125em;
 <p>Plan-enabled units on opportunity parcels are summed to a <strong>1,000-ft hexagonal grid</strong> (~20-acre cells; 1,188 hexes contain at least one housing-eligible parcel). Gi* runs on the hex values with queen contiguity, self-inclusive weights; classes are reported at 90/95/99% confidence.</p>
 <p><strong>Significance and multiple testing.</strong> With 1,188 hexes, fixed z-score thresholds involve many simultaneous tests: at the 95% level, ~30 hexes would clear the bar by chance alone, against 40 observed — so the 95% tier is treated as an outer envelope, not headline evidence. The finding rests on the <strong>99% tier: 29 hexes observed against ~6 expected by chance</strong> (~11,400 units). Under a one-sided false-discovery-rate correction (q &lt; 0.05), 25 hexes (~10,800 units) remain significant — the concentration conclusion is unchanged. Gi* here uses the analytic normal approximation (no permutations), read as descriptive spatial inference rather than formal hypothesis testing.</p>
 <p><strong>Why hexes rather than parcels?</strong> Parcel-level unit gap is extremely right-skewed (median 1, maximum ~3,200), and parcels vary enormously in size, so a parcel-level statistic mostly re-identifies individual mega-parcels and their immediate neighbors. Aggregating first asks the policy-relevant question — <em>which places, at the scale of a block cluster, concentrate capacity</em> — and yields legible corridors instead of scattered outliers. A uniform grid also equalizes the spatial support underlying each observation (parcels differ in area by four orders of magnitude), which contiguity-based weights otherwise distort.</p>
-<p><strong>Why Gi* rather than a LISA map?</strong> The question this analysis asks is specific: <em>where do high-capacity places sit next to other high-capacity places</em> — LISA’s <strong>high-high</strong> quadrant. A Gi* hot spot is precisely that: because the statistic sums each hex <em>together with its neighbors</em>, a significant positive z-score can only occur where high values cluster against other high values. So Gi* delivers the high-high answer directly, with a single confidence-graded class that maps cleanly.</p>
+<p><strong>Why Gi* rather than a LISA map?</strong> The question this analysis asks is specific: <em>where do high-capacity places sit next to other high-capacity places</em> — LISA’s <strong>high-high</strong> quadrant. A Gi* hot spot is precisely that: because the statistic sums each hex <em>together with its neighbors</em>, a significant positive z-score can only occur where high values cluster next to other high values. So Gi* delivers the high-high answer directly, with a single confidence-graded class that maps cleanly.</p>
 <p>LISA (local Moran’s I) reports the same high-high clusters but adds three more classes — low-low, and the high-low / low-high spatial <em>outliers</em>. Those are valuable diagnostics (an isolated mega-parcel in a low-capacity neighborhood is a high-low outlier), but for a policy audience they quadruple the legend to answer a question nobody asked here. The one thing LISA would add — cold spots (low-low) — turns out empty: no low-capacity cluster reaches significance in this data, which is why the map legend shows only capacity clusters. Running LISA as a robustness check on the hex grid is a natural QC step for the regional expansion.</p>
 </section>
 <section id="cluster-naming" class="level2">

@@ -25,7 +25,7 @@ website:
         href: reports/part2.qmd
       - text: "Part 3: AI"
         href: reports/part3.qmd
-      - text: "Map"
+      - text: "Interactive Map"
         href: reports/map.qmd
       - text: "Methods"
         href: reports/methods.qmd
@@ -38,8 +38,6 @@ website:
             href: reports/missoula_project_management.pdf
           - text: "Part 3: AI enhancement (PDF)"
             href: reports/missoula_ai_enhancement.pdf
-          - text: "Full memo (PDF)"
-            href: missoula_housing_memo.pdf
       - icon: github
         href: https://github.com/kaseyzapatka/cascadia
   page-footer:

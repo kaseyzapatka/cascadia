@@ -139,10 +139,17 @@ fig1 <- ggplot() + map_layers() +
 ggsave(file.path(OUT_FIG, "fig1_hotspot_map.png"), fig1,
        width = 8.5, height = 9.5, dpi = 300, bg = "#fcfcfb")
 
-# Slide variant: same map, no title block (the slide header carries it).
-fig1s <- ggplot() + map_layers() + theme_map()
+# Slide variant: same map with a self-explanatory title block (no caption —
+# the slide footer carries sources and method).
+fig1s <- ggplot() + map_layers() +
+  labs(
+    title    = "Missoula's untapped housing capacity clusters in a few corridors",
+    subtitle = "Green hexes hold significantly more plan-enabled capacity — counted with their
+neighbors — than chance would produce (Getis-Ord Gi*); darker green = stronger evidence."
+  ) +
+  theme_map()
 ggsave(file.path(OUT_FIG, "fig1_hotspot_map_slide.png"), fig1s,
-       width = 8.5, height = 8.6, dpi = 300, bg = "#fcfcfb")
+       width = 8.5, height = 9.1, dpi = 300, bg = "#fcfcfb")
 
 # ---- Fig 2: existing units vs. plan capacity by land-use class ---------
 # Dumbbell: blue dot = units on the ground today, orange dot = today plus

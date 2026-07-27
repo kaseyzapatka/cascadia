@@ -4020,7 +4020,7 @@ vertical-align: -.125em;
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reports/map.html"> 
-<span class="menu-text">Map</span></a>
+<span class="menu-text">Interactive Map</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reports/methods.html"> 
@@ -4044,10 +4044,6 @@ vertical-align: -.125em;
         <li>
     <a class="dropdown-item" href="../reports/missoula_ai_enhancement.pdf">
  <span class="dropdown-text">Part 3: AI enhancement (PDF)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../missoula_housing_memo.pdf">
- <span class="dropdown-text">Full memo (PDF)</span></a>
   </li>  
     </ul>
   </li>
@@ -4087,7 +4083,7 @@ vertical-align: -.125em;
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">The AI-Enhanced Deliverable</h1>
-<p class="subtitle lead">How the Part 1 slide became this website — and exactly how AI was used</p>
+<p class="subtitle lead">The interactive map is the AI enhancement of the Part 1 slide; I also used AI to build the site that delivers it</p>
 </div>
 
 
@@ -4106,20 +4102,15 @@ vertical-align: -.125em;
 
 <section id="what-this-deliverable-is" class="level2">
 <h2 class="anchored" data-anchor-id="what-this-deliverable-is">What this deliverable is</h2>
-<p>The hiring exercise asks for an AI-enhanced version of the Part 1 slide, in a format that can be embedded in a website. <strong>This website is that deliverable.</strong> The one-page slide (<a href="../missoula_data_story_slide.pdf">download</a>) is the starting point; the site extends it into what a static slide cannot be:</p>
-<ul>
-<li><strong>The <a href="../index.html">data story</a></strong> expands the slide’s narrative into a full memo with an executive summary, findings, recommendations, and caveats — with a <a href="../missoula_housing_memo.pdf">PDF version</a> built from the same source.</li>
-<li><strong>The <a href="../reports/map.html">interactive map</a></strong> turns the slide’s hero map into an explorable Leaflet map: hover any hex for its capacity, toggle on the 3,419 underlying opportunity parcels, click one for its details.</li>
-<li><strong><a href="../reports/methods.html">Methods &amp; Sources</a></strong> documents every cleaning decision, assumption, and methodological choice — the audit trail a slide can never carry.</li>
-<li><strong>The whole site is embeddable and reproducible</strong>: it renders with Quarto from a public repository, republishes automatically via GitHub Actions on every push, and every number regenerates from one command (<code>Rscript code/run_all.R</code>).</li>
-</ul>
+<p>The exercise asks for AI-driven enhancements to the one-page slide from Part 1, in a format that can be embedded in a website. <strong>The enhancement is the</strong> <a href="https://www.kaseyzapatka.com/cascadia/reports/map.html"><strong>interactive map</strong></a>: the slide’s static hero map, rebuilt with AI as an explorable Leaflet map — hover any hex for its plan-enabled units, toggle the 3,419 underlying opportunity parcels, turn the Mountain Line routes on and off, click any parcel for its details. It is a single self-contained HTML file, so it embeds in any web page — including a client-facing one — with one line of code.</p>
+<p>AI was also used to build the delivery vehicle: this Quarto website, which packages the enhanced map together with the Part 1 slide (<a href="../missoula_data_story_slide.pdf">download</a>), the full <a href="../index.html">data story</a>, and the <a href="../reports/methods.html">methods audit trail</a> — so the deliverable arrives polished and is easy to transmit to clients for review. The site renders from a public repository and republishes automatically on every push; every number regenerates from one command (<code>Rscript code/run_all.R</code>).</p>
 </section>
 <section id="how-ai-was-used" class="level2">
 <h2 class="anchored" data-anchor-id="how-ai-was-used">How AI was used</h2>
 <p>The exercise asks for AI-driven enhancements to the Part 1 deliverable, and that is where I used it. I designed and built the analysis — the capacity framework, the opportunity screen and its exclusion rules, the hot-spot methodology, and the pipeline behind them. <strong>Claude (Anthropic)</strong> was then used to enhance and harden the deliverable:</p>
 <ul>
-<li><strong>Enhancing the one-page slide into this website</strong> — converting the slide’s map, figures, and narrative into the Quarto site you are reading, including the interactive Leaflet version of the hero map.</li>
-<li><strong>Producing the slide layout itself</strong> — the page composition that turns the pipeline’s figures and numbers into the polished one-page PDF.</li>
+<li><strong>Enhancing the slide’s hero map into the interactive map</strong> — the Leaflet build, the hover and toggle behavior, and the self-contained packaging that makes it embeddable.</li>
+<li><strong>Building this website in Quarto</strong> — the pages, navigation, theme, and publishing workflow that package all three parts into a polished deliverable a client can review from a single link.</li>
 <li><strong>Auditing the code</strong> — reviewing the pipeline for correctness and reproducibility, and checking the cartography programmatically, including colorblind-safety validation (deuteranopia, protanopia, tritanopia) of the palette before it touched a map.</li>
 </ul>
 <p>What stayed human: the choice of story (plan-enabled capacity, not another choropleth), the framing against the Growth Policy rather than zoning, the analysis and its assumptions, the exclusion rules and their ethics, the recommendations, and the final read on every number before it shipped.</p>

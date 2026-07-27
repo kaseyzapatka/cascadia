@@ -100,9 +100,9 @@ Missoula 2045 Land Use Plan](https://www.ci.missoula.mt.us/3156/Land-Use-Plan)
 (need identified: ~22,000–27,500 new homes by 2045). Capacity here is
 therefore measured against the 2035-vintage map and read as a
 feasibility check on the 2045 target — designation-level densities are
-broadly continuous between the two plans, but a designation-by-
-designation re-run on the 2045 map is the natural refresh once its GIS
-layer is in hand.
+broadly continuous between the two plans, but a
+designation-by-designation re-run on the 2045 map is the natural
+refresh once its GIS layer is in hand.
 
 ## Naturally occurring affordable housing (NOAH)
 
@@ -158,7 +158,7 @@ specific: *where do high-capacity places sit next to other high-capacity
 places* — LISA's **high-high** quadrant. A Gi\* hot spot is precisely
 that: because the statistic sums each hex *together with its neighbors*,
 a significant positive z-score can only occur where high values cluster
-against other high values. So Gi\* delivers the high-high answer
+next to other high values. So Gi\* delivers the high-high answer
 directly, with a single confidence-graded class that maps cleanly.
 
 LISA (local Moran's I) reports the same high-high clusters but adds
