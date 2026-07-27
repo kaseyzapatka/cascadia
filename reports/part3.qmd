@@ -18,6 +18,11 @@ format:
       y: 1.8cm
 ---
 
+```{=typst}
+// PDF only: make links visibly clickable (blue + underline).
+#show link: it => underline(text(fill: rgb("#46689b"), it))
+```
+
 ## What this deliverable is
 
 The exercise asks for AI-driven enhancements to the one-page slide from
