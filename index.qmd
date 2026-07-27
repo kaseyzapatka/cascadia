@@ -131,31 +131,27 @@ review** — exactly the levers a development-code rewrite controls.
 
 Missoula is a **majority-renter city**: 52% of households rent, and
 **half of those renters (49.9%) are cost-burdened**, paying more than
-30% of income for housing (ACS 2019–2023). This is the demand side of
-the capacity story, and it falls hardest on the households with the
-least room to absorb it.
+30% of income for housing (ACS 2019–2023). More housing where demand
+already is would ease that pressure for a large share of the city.
 
-But the same market forces that would fill the capacity clusters also
-threaten the affordability that already exists. Using assessed values,
-we flag the city's **naturally occurring affordable housing (NOAH)** —
-the bottom quartile of homes by assessed value per unit, everything
-under roughly **$240,000 per unit** (~6,700 parcels, ~23,800 units).
+The risk is that new development displaces the cheap housing that
+already exists. We flag the city's lowest-cost stock — the bottom
+quartile by assessed value per unit, under roughly **$240,000**
+(~23,800 units) — as **naturally occurring affordable housing (NOAH)**
+and map it against the capacity clusters: **~2,600 of those units sit
+inside or beside the growth path**.
 
 ![Blue hexes shade where the low-cost stock concentrates; dark-green
 outlines are the 95%+ capacity clusters from the hero map. The overlap
 is where displacement pressure would concentrate: **~2,600 low-cost
 units sit inside or directly adjacent to a capacity cluster.**](output/figures/fig4_noah_map.png){#fig-noah width=88%}
 
-The sharpest case is mobile homes: **530 mobile-home parcels holding
-~2,850 units sit on land the Growth Policy designates for higher
-density**. Their improvement values are low, so any market-driven
-realization of the plan's capacity puts them first in line for
-redevelopment — which is why they are excluded from the opportunity
-count entirely. The policy implication is sequencing: pair the capacity
-strategy from the start with preservation tools — mobile-home park
+The most exposed class is mobile homes — **530 parcels (~2,850 units)
+on land the Growth Policy designates for higher density**, which is why
+they are excluded from the opportunity count entirely. The implication
+is sequencing: pair upzoning from the start with preservation tools —
 resident-ownership conversions, NOAH acquisition funds, zoning
-overlays, relocation standards — in exactly the hexes where the two
-maps overlap.
+overlays — in exactly the hexes where the two maps overlap.
 
 ## What this means for the code reform
 
