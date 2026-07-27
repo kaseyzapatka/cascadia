@@ -12,6 +12,7 @@ format:
   typst:
     output-file: missoula_ai_enhancement.pdf
     toc: false
+    mainfont: "Helvetica Neue"
     papersize: us-letter
     margin:
       x: 1.6cm
@@ -20,14 +21,14 @@ format:
 
 ```{=typst}
 // PDF only: make links visibly clickable (blue + underline).
-#show link: it => underline(text(fill: rgb("#46689b"), it))
+#show link: it => underline(text(fill: rgb("#0b66da"), it))
 ```
 
 ## What this deliverable is
 
 The exercise asks for AI-driven enhancements to the one-page slide from
-Part 1, in a format that can be embedded in a website. **The enhancement is the
-[interactive map](https://www.kaseyzapatka.com/cascadia/reports/map.html)**:
+Part 1, in a format that can be embedded in a website. **The enhancement is the**
+[**interactive map**](https://www.kaseyzapatka.com/cascadia/reports/map.html):
 the slide's static hero map, rebuilt with AI as an explorable Leaflet map — hover any hex for its plan-enabled
 units, toggle the 3,419 underlying opportunity parcels, turn the Mountain
 Line routes on and off, click any parcel for its details. It is a single
@@ -40,7 +41,7 @@ which packages the enhanced map together with the Part 1 slide
 [data story](../index.qmd), and the [methods audit
 trail](methods.qmd) — so the deliverable arrives polished and is easy to
 transmit to clients for review. The site renders from a public
-repository, republishes automatically on every push, and every number
+repository and republishes automatically on every push; every number
 regenerates from one command (`Rscript code/run_all.R`).
 
 ## How AI was used

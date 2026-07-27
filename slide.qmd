@@ -8,7 +8,7 @@ format:
 // Part 1 deliverable: one-slide GIS data story (11 x 8.5 landscape).
 #set page(width: 11in, height: 8.5in, numbering: none,
           margin: (x: 0.45in, top: 0.35in, bottom: 0.3in))
-#set text(size: 9.5pt, fill: rgb("#272727"))
+#set text(font: "Helvetica Neue", size: 9.5pt, fill: rgb("#272727"))
 
 #let accent = rgb("#8b9c26")   // brand green (deep step for text/rules)
 #let blue   = rgb("#7096c0")   // brand steel blue
@@ -49,9 +49,9 @@ format:
     #box(fill: rgb("#f6f6f6"), stroke: (left: 3pt + blue), inset: 8pt, radius: 2pt, width: 100%)[
       #text(size: 8.5pt)[
         #text(weight: "bold", fill: blue)[The affordability stakes:] Half of
-        Missoula's renters are cost-burdened (ACS 2019–23), and ≈2,600 of the
-        city's lowest-cost homes sit in or beside the growth clusters —
-        excluded from the count above. Preservation must move with upzoning.
+        Missoula's renters are cost-burdened (ACS 2019–2023), and ≈2,600 of the
+        city's lowest-cost homes sit in or beside the capacity clusters —
+        not counted above. Preservation must move with upzoning.
       ]
     ]
   ],

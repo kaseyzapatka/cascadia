@@ -28,12 +28,12 @@ steep-slope acres. Half of that capacity is small-scale infill on
 parcels of five acres or less; the strongest clusters (99% confidence)
 hold a quarter of it on ~2% of the urban fabric; 58% of it is within a
 quarter-mile of a bus stop. The binding constraint is not land; it is
-conversion friction: zoning that has not caught up with the plan,
-review process, and infrastructure timing.
+conversion friction: the review process, infrastructure timing, and
+zoning that has not caught up with the plan.
 
 **The recommendation:** Align zoned entitlements with the Growth Policy
-where the capacity clusters — the North Reserve corridor, Linda
-Vista/Miller Creek, and the South Hills — make small infill by-right,
+where the capacity clusters (the North Reserve corridor, Linda
+Vista/Miller Creek, and the South Hills), make small infill by-right,
 and pair that upzoning with preservation for the ~2,600 lowest-cost
 homes that sit in the same growth path.
 :::
@@ -102,7 +102,7 @@ underbuilt parcels (green). Community Mixed Use and the medium/high
 residential designations carry most of the headroom.](output/figures/fig2_capacity_gap.png){#fig-capacity width=92%}
 
 Summing across designations, **3,419 opportunity parcels (~4,200 acres)
-carry ~43,000 plan-enabled units** — nearly a one-for-one doubling of the
+carry ~43,000 plan-enabled units** — nearly enough to double the
 existing ~44,300-unit stock^[Taxlot dwelling-unit sum (44,317), which
 includes ~2,050 group-quarters beds on 54 parcels; the ACS counts ~36,000
 conventional housing units citywide, so the comparison is indicative
@@ -146,7 +146,7 @@ outlines are the 95%+ capacity clusters from the hero map. The overlap
 is where displacement pressure would concentrate: **~2,600 low-cost
 units sit inside or directly adjacent to a capacity cluster.**](output/figures/fig4_noah_map.png){#fig-noah width=88%}
 
-A good example of those most likely to be impacted is mobile homes —
+The most exposed stock is mobile homes —
 **530 parcels (~2,850 units)
 on land the Growth Policy designates for higher density**, which is why
 they are excluded from the opportunity count entirely. The implication
@@ -164,8 +164,8 @@ overlays — in exactly the hexes where the two maps overlap.
    by-right missing-middle allowances and streamlined review are the
    levers that convert it into permitted homes.
 3. **Protect the residents already providing affordability.** Preservation
-   for the 530 mobile-home parcels before — not after — the surrounding
-   land appreciates.
+   for the 530 mobile-home parcels should come before — not after — the
+   surrounding land appreciates.
 
 ## Caveats
 
@@ -176,7 +176,8 @@ Policy's designation ranges — the plan's ceiling would roughly double
 the headline. Assessed values proxy price levels, not rents, so the
 NOAH flag marks *relative* affordability; the quarter-mile walkshed is
 straight-line, which slightly overstates walk access. The Sxwtpqyen master-plan
-area carries its own designation we conservatively treat as non-residential,
+area carries its own designation, which we conservatively treat as
+non-residential,
 so the true total is likely *higher*. See [Methods & Sources](reports/methods.qmd).
 
 ---

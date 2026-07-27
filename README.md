@@ -88,7 +88,7 @@ quarto preview       # local preview
 ```
 
 If an incremental render logs a transient `rename ... NotFound` error,
-the post-render PDF hook raced quarto's own file moves — re-run from
+the post-render PDF hook raced Quarto's own file moves — re-run from
 clean (`rm -rf docs && quarto render`); a clean render always passes.
 
 Publishing: GitHub Pages serves the committed `docs/` folder from `main`
@@ -113,7 +113,7 @@ locally, commit `docs/`, push.
 │   └── run_all.R                      # entry point: reproduce everything
 ├── output/
 │   ├── data/                          # scored parcels, hexes, stats
-│   ├── figures/                       # fig1–fig3 (committed)
+│   ├── figures/                       # fig1–fig4 (committed)
 │   └── maps/hotspot_map.html          # embedded interactive map
 ├── _quarto.yml                    # site config (navbar, formats) — repo root
 ├── index.qmd                      # Part 1 · data story homepage

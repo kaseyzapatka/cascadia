@@ -13,11 +13,13 @@ format:
   typst:
     output-file: missoula_project_management.pdf
     toc: false
+    mainfont: "Helvetica Neue"
+    linestretch: 0.92
     papersize: us-letter
     margin:
       x: 0.9cm
-      y: 0.9cm
-    fontsize: 7.6pt
+      y: 0.75cm
+    fontsize: 7.1pt
 ---
 
 ## 2a. Scaling & technical workflow
@@ -29,9 +31,8 @@ different density logic, different vintages, in one field. Expanding to
 Missoula County and unincorporated Frenchtown, Lolo, and Bonner multiplies
 that: each jurisdiction's zoning, future land use, and assessor attributes
 were built for different purposes, and unincorporated areas may have no
-adopted land-use plan at all. Naively stacking layers produces a dashboard
-that silently compares incomparable things — the most dangerous failure
-mode, because it *looks* finished.
+adopted land-use plan at all. Naively stacking layers produces a dashboard that
+silently compares incomparable things and *looks* finished.
 
 **The workflow to address it:**
 
@@ -74,8 +75,8 @@ output review.
 - **Ground-truthing:** for each jurisdiction, a random sample of ~25
   parcels checked by hand against assessor records and aerial imagery.
 - **Sensitivity disclosure:** headline numbers published with their
-  sensitivity to the key thresholds (density assumptions, softness cutoff),
-  so no single assumption can quietly drive the story.
+  sensitivity to the key thresholds, so no single assumption can quietly
+  drive the story.
 - **Sign-off checklist:** sources cited, numbers reconciled to pipeline
   output, cartography standards met — before any deliverable ships.
 
@@ -86,7 +87,7 @@ output review.
 | 1–2 | 1. Scoping, canonical schema, data-sharing letters & named contacts per jurisdiction (schema memo) | Senior | $4,500 |
 | 2–6 | 2. Data acquisition & crosswalks, 5+ jurisdictions (crosswalk workbook) | Junior Assoc. | $9,500 |
 | 5–9 | 3. Pipeline generalization, housing-readiness analysis, hot spots (validated regional dataset) | Senior + Junior | $11,000 |
-| 8–13 | 4. Web dashboard build, open-stack: Quarto/Observable + hosted tiles (beta dashboard) | Senior + Intern | $10,500 |
+| 8–13 | 4. Web dashboard build, open stack: Quarto/Observable + hosted tiles (beta dashboard) | Senior + Intern | $10,500 |
 | 11–14 | 5. Documentation, methods report, QC & ground-truthing (methods report) | All | $5,500 |
 | 14–16 | 6. Client reviews, revisions, training & handoff (training + reproducible handoff) | Senior | $4,000 |
 | — | Contingency (10%) | — | $5,000 |
@@ -99,7 +100,7 @@ Budgeted at blended rates:
 - **Senior Associate** — $150/hr × ~130 hours
 - **Junior Associate** — $95/hr × ~190 hours
 - **GIS Intern** — $55/hr × ~135 hours
-- **≈455 staff hours ($45,000)** plus **$5,000 contingency (10%)**,
+- **~455 staff hours ($45,000)** plus **$5,000 contingency (10%)**,
   sized to the real risk: other jurisdictions' data
 - Invoicing tied to the milestone deliverable named in each task, not
   to hours
@@ -114,6 +115,6 @@ and one dashboard revision cycle; additions are priced at the stated
 rates by change order. All required data is public and free (Montana
 State Library cadastral, city/county GIS, GTFS, ACS); commercial data,
 travel, and post-handoff hosting are excluded, with any records-request
-fees absorbed by contingency. The dashboard stays on an open stack — no
-per-seat licenses to inherit — and Task 6 ends with the client able to
-re-run the pipeline when next year's assessor roll lands.
+fees absorbed by contingency. The dashboard stays on an open
+stack — no per-seat licenses — and Task 6 leaves the client able to
+re-run the pipeline on next year's assessor roll.
