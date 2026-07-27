@@ -6,15 +6,20 @@ format:
     toc: false
 ---
 
-This map shows where Missoula's plan-enabled housing capacity clusters. Each
-**hex** is scored by how much untapped capacity it *and its neighbors*
-hold; green hexes hold significantly more than a random arrangement of
-the same parcels would produce (a Getis-Ord Gi\* test). The three green
-tiers are **confidence levels, not capacity levels** — darker green means
-stronger statistical evidence that the concentration is real (99% / 95% /
-90%). Toggle on the **opportunity parcels** layer to see the underlying
-vacant and underbuilt lots (blue); click any parcel for its current use,
-future land-use designation, acreage, and plan-enabled units.
+The value of this map is the overlay: turn on all three layers and you
+can see, block by block, where the capacity clusters sit in relation to
+public transportation — and which parcels drive each cluster.
+
+- **Capacity clusters (green hexes)** — areas holding significantly more
+  plan-enabled capacity, counted with their neighbors, than a random
+  arrangement would produce (Getis-Ord Gi\*). The tiers are confidence
+  levels, not capacity amounts: darker green means stronger evidence.
+- **Opportunity parcels (blue)** — the 3,419 vacant or economically
+  underbuilt parcels where the Growth Policy already calls for more
+  housing. Click any parcel for its current use, designation, acreage,
+  and plan-enabled units.
+- **Mountain Line bus routes (gray)** — the transit network; 58% of all
+  plan-enabled units sit within a quarter-mile walk of a stop.
 
 ```{=html}
 <iframe src="../output/maps/hotspot_map.html"

@@ -48,7 +48,7 @@ flowchart LR
     F --> H["quarto render<br/>(.qmd pages)"]
     G --> H
     H --> I["Website<br/>(GitHub Actions → gh-pages)"]
-    H --> J["PDFs: Part 1 slide,<br/>Part 2 one-pager, memo"]
+    H --> J["PDFs: Part 1 slide,<br/>Part 2 + Part 3 one-pagers"]
 ```
 
 ## Pipeline
@@ -112,7 +112,7 @@ locally, commit `docs/`, push.
 │   ├── figures/                       # fig1–fig3 (committed)
 │   └── maps/hotspot_map.html          # embedded interactive map
 ├── _quarto.yml                    # site config (navbar, formats) — repo root
-├── index.qmd                      # Part 1 · data story homepage (html + memo PDF)
+├── index.qmd                      # Part 1 · data story homepage
 ├── slide.qmd                      # Part 1 · one-page slide (PDF; root for Typst asset access)
 ├── brand.scss                     # site theme (blue/green palette)
 ├── reports/                       # content pages

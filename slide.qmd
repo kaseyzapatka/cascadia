@@ -48,12 +48,10 @@ format:
     #v(4pt)
     #box(fill: rgb("#f6f6f6"), stroke: (left: 3pt + blue), inset: 8pt, radius: 2pt, width: 100%)[
       #text(size: 8.5pt)[
-        #text(weight: "bold", fill: blue)[The affordability stakes:] Missoula
-        is 52% renter, and half of renters are cost-burdened (ACS 2019–23).
-        ≈2,600 of the city's lowest-cost (NOAH) homes sit in or beside the
-        growth clusters; separately, 530 mobile-home parcels (≈2,850 units)
-        sit on planned-density land citywide. All are excluded from the count
-        above — preservation must move with upzoning.
+        #text(weight: "bold", fill: blue)[The affordability stakes:] Half of
+        Missoula's renters are cost-burdened (ACS 2019–23), and ≈2,600 of the
+        city's lowest-cost homes sit in or beside the growth clusters —
+        excluded from the count above. Preservation must move with upzoning.
       ]
     ]
   ],
