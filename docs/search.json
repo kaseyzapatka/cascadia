@@ -1,5 +1,117 @@
 [
   {
+    "objectID": "reports/part3.html",
+    "href": "reports/part3.html",
+    "title": "The AI-Enhanced Deliverable",
+    "section": "",
+    "text": "The exercise asks for AI-driven enhancements to the one-page slide from Part 1, in a format that can be embedded in a website. The enhancement is the interactive map — live at https://www.kaseyzapatka.com/cascadia/reports/map.html — the slide’s static hero map, rebuilt with AI as an explorable Leaflet map — hover any hex for its plan-enabled units, toggle the 3,419 underlying opportunity parcels, turn the Mountain Line routes on and off, click any parcel for its details. It is a single self-contained HTML file, so it embeds in any web page — including a client-facing one — with one line of code.\nAI was also used to build the delivery vehicle: this Quarto website, which packages the enhanced map together with the Part 1 slide (download), the full data story, and the methods audit trail — so the deliverable arrives polished and is easy to transmit to clients for review. The site renders from a public repository, republishes automatically on every push, and every number regenerates from one command (Rscript code/run_all.R)."
+  },
+  {
+    "objectID": "reports/part3.html#what-this-deliverable-is",
+    "href": "reports/part3.html#what-this-deliverable-is",
+    "title": "The AI-Enhanced Deliverable",
+    "section": "",
+    "text": "The exercise asks for AI-driven enhancements to the one-page slide from Part 1, in a format that can be embedded in a website. The enhancement is the interactive map — live at https://www.kaseyzapatka.com/cascadia/reports/map.html — the slide’s static hero map, rebuilt with AI as an explorable Leaflet map — hover any hex for its plan-enabled units, toggle the 3,419 underlying opportunity parcels, turn the Mountain Line routes on and off, click any parcel for its details. It is a single self-contained HTML file, so it embeds in any web page — including a client-facing one — with one line of code.\nAI was also used to build the delivery vehicle: this Quarto website, which packages the enhanced map together with the Part 1 slide (download), the full data story, and the methods audit trail — so the deliverable arrives polished and is easy to transmit to clients for review. The site renders from a public repository, republishes automatically on every push, and every number regenerates from one command (Rscript code/run_all.R)."
+  },
+  {
+    "objectID": "reports/part3.html#how-ai-was-used",
+    "href": "reports/part3.html#how-ai-was-used",
+    "title": "The AI-Enhanced Deliverable",
+    "section": "How AI was used",
+    "text": "How AI was used\nThe exercise asks for AI-driven enhancements to the Part 1 deliverable, and that is where I used it. I designed and built the analysis — the capacity framework, the opportunity screen and its exclusion rules, the hot-spot methodology, and the pipeline behind them. Claude (Anthropic) was then used to enhance and harden the deliverable:\n\nEnhancing the slide’s hero map into the interactive map — the Leaflet build, the hover and toggle behavior, and the self-contained packaging that makes it embeddable.\nBuilding this website in Quarto — the pages, navigation, theme, and publishing workflow that package all three parts into a polished deliverable a client can review from a single link.\nAuditing the code — reviewing the pipeline for correctness and reproducibility, and checking the cartography programmatically, including colorblind-safety validation (deuteranopia, protanopia, tritanopia) of the palette before it touched a map.\n\nWhat stayed human: the choice of story (plan-enabled capacity, not another choropleth), the framing against the Growth Policy rather than zoning, the analysis and its assumptions, the exclusion rules and their ethics, the recommendations, and the final read on every number before it shipped."
+  },
+  {
+    "objectID": "reports/part3.html#why-this-transparency-matters",
+    "href": "reports/part3.html#why-this-transparency-matters",
+    "title": "The AI-Enhanced Deliverable",
+    "section": "Why this transparency matters",
+    "text": "Why this transparency matters\nA firm that publishes AI-polished work owes its clients clarity about where the analysis ends and the polish begins. Everything quantitative on this site traces to the reproducible pipeline in the repository; the AI acceleration is documented here; and the assumptions that drive the headline numbers are inspectable in one file (code/00_setup.R). That is the standard I would bring to client work."
+  },
+  {
+    "objectID": "reports/methods.html",
+    "href": "reports/methods.html",
+    "title": "Methods & Sources",
+    "section": "",
+    "text": "A single Esri file geodatabase layer, CP_Hiring_Exercise_Missoula (32,974 parcels, NAD83 State Plane Montana, US feet), with an accompanying field map. Fields used: existing use (LandUseBuildingType_All), dwelling units, assessed land/building/total value, acres, Growth Policy future land use (Land_Use), current zoning (Zoning_Mstr), percent of parcel in floodway (PercentageFlood), and percent in steep slopes &gt; 25% (PercentSlope)."
+  },
+  {
+    "objectID": "reports/methods.html#data",
+    "href": "reports/methods.html#data",
+    "title": "Methods & Sources",
+    "section": "",
+    "text": "A single Esri file geodatabase layer, CP_Hiring_Exercise_Missoula (32,974 parcels, NAD83 State Plane Montana, US feet), with an accompanying field map. Fields used: existing use (LandUseBuildingType_All), dwelling units, assessed land/building/total value, acres, Growth Policy future land use (Land_Use), current zoning (Zoning_Mstr), percent of parcel in floodway (PercentageFlood), and percent in steep slopes &gt; 25% (PercentSlope)."
+  },
+  {
+    "objectID": "reports/methods.html#cleaning-decisions",
+    "href": "reports/methods.html#cleaning-decisions",
+    "title": "Methods & Sources",
+    "section": "Cleaning decisions",
+    "text": "Cleaning decisions\n\n\n\n\n\n\n\nQuirk\nTreatment\n\n\n\n\n~900 features stored as curve geometries (MultiSurface)\nLinearized to polygons on read (GDAL forceTo)\n\n\nPercentageFlood / PercentSlope populated only where a constraint exists\nNA → 0% (verified: nulls mean “no mapped constraint”)\n\n\nYearBuilt = 0 sentinel\n→ NA\n\n\nInvalid rings / self-intersections\nRepaired with st_make_valid() on the invalid subset\n\n\nEmpty geometries\nDropped\n\n\n\nTwo source-labeling notes: the PercentageFlood field is aliased “Percentage of Floodplain in Parcel” but described as percent in floodway — the write-up says “floodway/floodplain” advisedly, and the constraint screen is identical either way. The Mullan-area designation is spelled Sxtpqyen Area in the data; prose uses the City’s common rendering “Sxwtpqyen.”"
+  },
+  {
+    "objectID": "reports/methods.html#plan-enabled-capacity",
+    "href": "reports/methods.html#plan-enabled-capacity",
+    "title": "Methods & Sources",
+    "section": "Plan-enabled capacity",
+    "text": "Plan-enabled capacity\nFor each parcel whose Growth Policy designation calls for housing:\n\ncapacity = developable acres × assumed du/ac − existing units, floored at zero\n\nwhere developable acres = acres × (1 − max(flood share, slope share)). Taking the max of the two constraint shares is conservative without double-counting (their overlap is unknown).\nAllowable densities come from the adopted Our Missoula 2035 Growth Policy designation ranges, as those ranges are applied in the City’s own annexation and rezoning staff reports (e.g., “Residential Medium Density (3 to 11 dwelling units per acre)… Residential High Density (24 to 43 dwelling units per acre) (Our Missoula 2035)”). Capacity uses the midpoint of each range — a deliberately conservative “expected” density rather than the plan’s ceiling:\n\n\n\nDesignation\nPolicy range (du/ac)\nUsed\n\n\n\n\nResidential Low\n1–2\n1.5\n\n\nResidential Medium\n3–11\n7\n\n\nResidential Medium-High\n12–23\n17.5\n\n\nResidential High\n24–43\n33.5\n\n\nNeighborhood Mixed Use\ncarries medium-high (12–23)\n17.5\n\n\nCommunity Mixed Use\ncarries high (24–43 in aligned zoning)\n33.5\n\n\nUrban Center\nnot stated in the Policy\n43\n\n\n\nUrban Center has no du/ac in the Policy; it is pinned at 43 — the highest density the Policy quotes anywhere — which is conservative for the downtown designation. Values are centralized in code/00_setup.R. All other designations (including the Sxwtpqyen Area’s own designation, industrial, parks, open/resource) contribute zero capacity — a conservative choice that likely understates the total."
+  },
+  {
+    "objectID": "reports/methods.html#the-opportunity-screen",
+    "href": "reports/methods.html#the-opportunity-screen",
+    "title": "Methods & Sources",
+    "section": "The opportunity screen",
+    "text": "The opportunity screen\nA parcel counts as an opportunity when all of the following hold:\n\nHousing-eligible future land-use designation (table above);\nEconomically soft — vacant, or improvement-to-land ratio (ILR: assessed building value ÷ assessed land value) &lt; 1.0, i.e., the dirt is worth more than what stands on it;\nNot excluded — public/institutional land, parks, open space and recreation, master condo records (which would double-count their child units), and mobile homes (naturally occurring affordable housing — flagged separately as displacement risk, never as opportunity);\nNot constrained — no more than 50% of the parcel in floodway or steep slope; capacity on the remainder is already discounted;\nMaterial — capacity gap of at least one unit.\n\nOpportunity parcels are typed vacant vs. underbuilt and sized infill (≤ 5 ac) vs. large site (&gt; 5 ac). The 5-acre line separates parcels a single owner or small builder can develop under by-right rules from sites that realistically need master planning, subdivision, and new internal infrastructure."
+  },
+  {
+    "objectID": "reports/methods.html#plan-vintage",
+    "href": "reports/methods.html#plan-vintage",
+    "title": "Methods & Sources",
+    "section": "Plan vintage",
+    "text": "Plan vintage\nThe taxlot layer carries the future land-use designations of the 2035 Growth Policy. In December 2024 the City adopted the successor Our Missoula 2045 Land Use Plan (need identified: ~22,000–27,500 new homes by 2045). Capacity here is therefore measured against the 2035-vintage map and read as a feasibility check on the 2045 target — designation-level densities are broadly continuous between the two plans, but a designation-by- designation re-run on the 2045 map is the natural refresh once its GIS layer is in hand."
+  },
+  {
+    "objectID": "reports/methods.html#naturally-occurring-affordable-housing-noah",
+    "href": "reports/methods.html#naturally-occurring-affordable-housing-noah",
+    "title": "Methods & Sources",
+    "section": "Naturally occurring affordable housing (NOAH)",
+    "text": "Naturally occurring affordable housing (NOAH)\nNOAH = parcels with at least one dwelling unit whose total assessed value per unit falls in the bottom quartile of the city’s housing stock — everything under ~$240,300 per unit (6,691 parcels, ~23,800 units). Assessed value proxies price level, not rent, and lags the market; the flag marks relative affordability, not income-qualified affordability. Exposure is measured on the hex grid: a hex’s NOAH units count as exposed when the hex is, or touches, a 95%+ capacity cluster (~2,600 units)."
+  },
+  {
+    "objectID": "reports/methods.html#transit-accessibility",
+    "href": "reports/methods.html#transit-accessibility",
+    "title": "Methods & Sources",
+    "section": "Transit accessibility",
+    "text": "Transit accessibility\nStops and route shapes come from Mountain Line’s published GTFS feed (July 2026; data/external/). A parcel counts as transit-accessible when it intersects a quarter-mile (1,320 ft) Euclidean buffer around any stop — the standard walkshed shorthand, which slightly overstates true network walking distance. 58% of plan-enabled units on opportunity parcels fall inside the walkshed."
+  },
+  {
+    "objectID": "reports/methods.html#hot-spot-analysis-getis-ord-gi",
+    "href": "reports/methods.html#hot-spot-analysis-getis-ord-gi",
+    "title": "Methods & Sources",
+    "section": "Hot-spot analysis (Getis-Ord Gi*)",
+    "text": "Hot-spot analysis (Getis-Ord Gi*)\nPlan-enabled units on opportunity parcels are summed to a 1,000-ft hexagonal grid (~20-acre cells; 1,188 hexes contain at least one housing-eligible parcel). Gi* runs on the hex values with queen contiguity, self-inclusive weights; classes are reported at 90/95/99% confidence.\nSignificance and multiple testing. With 1,188 hexes, fixed z-score thresholds involve many simultaneous tests: at the 95% level, ~30 hexes would clear the bar by chance alone, against 40 observed — so the 95% tier is treated as an outer envelope, not headline evidence. The finding rests on the 99% tier: 29 hexes observed against ~6 expected by chance (~11,400 units). Under a one-sided false-discovery-rate correction (q &lt; 0.05), 25 hexes (~10,800 units) remain significant — the concentration conclusion is unchanged. Gi* here uses the analytic normal approximation (no permutations), read as descriptive spatial inference rather than formal hypothesis testing.\nWhy hexes rather than parcels? Parcel-level unit gap is extremely right-skewed (median 1, maximum ~3,200), and parcels vary enormously in size, so a parcel-level statistic mostly re-identifies individual mega-parcels and their immediate neighbors. Aggregating first asks the policy-relevant question — which places, at the scale of a block cluster, concentrate capacity — and yields legible corridors instead of scattered outliers. A uniform grid also equalizes the spatial support underlying each observation (parcels differ in area by four orders of magnitude), which contiguity-based weights otherwise distort.\nWhy Gi* rather than a LISA map? The question this analysis asks is specific: where do high-capacity places sit next to other high-capacity places — LISA’s high-high quadrant. A Gi* hot spot is precisely that: because the statistic sums each hex together with its neighbors, a significant positive z-score can only occur where high values cluster against other high values. So Gi* delivers the high-high answer directly, with a single confidence-graded class that maps cleanly.\nLISA (local Moran’s I) reports the same high-high clusters but adds three more classes — low-low, and the high-low / low-high spatial outliers. Those are valuable diagnostics (an isolated mega-parcel in a low-capacity neighborhood is a high-low outlier), but for a policy audience they quadruple the legend to answer a question nobody asked here. The one thing LISA would add — cold spots (low-low) — turns out empty: no low-capacity cluster reaches significance in this data, which is why the map legend shows only capacity clusters. Running LISA as a robustness check on the hex grid is a natural QC step for the regional expansion."
+  },
+  {
+    "objectID": "reports/methods.html#cluster-naming",
+    "href": "reports/methods.html#cluster-naming",
+    "title": "Methods & Sources",
+    "section": "Cluster naming",
+    "text": "Cluster naming\nThe three labeled clusters on the maps are contiguity components of the 95%+ hexes; their names were verified by reverse-geocoding each component’s centroid (North Reserve corridor; Halle Drive area = Linda Vista / Miller Creek; Hillview Way / Moose Can Gully = South Hills)."
+  },
+  {
+    "objectID": "reports/methods.html#reproducibility",
+    "href": "reports/methods.html#reproducibility",
+    "title": "Methods & Sources",
+    "section": "Reproducibility",
+    "text": "Reproducibility\nRscript code/run_all.R   # raw .gdb -&gt; derived data -&gt; figures -&gt; map\nNumbered scripts with all assumptions centralized in code/00_setup.R; the exact package environment is recorded in output/session_info.txt. The website is rendered with Quarto from the committed figure and map outputs, so rendering never re-runs the analysis."
+  },
+  {
+    "objectID": "reports/methods.html#limitations",
+    "href": "reports/methods.html#limitations",
+    "title": "Methods & Sources",
+    "section": "Limitations",
+    "text": "Limitations\n\nPlan-implied, not predicted. Capacity measures what the adopted future land-use map makes room for — not ownership, feasibility, or infrastructure timing.\nDensities are range midpoints, not the plan’s ceiling — using the top of each designation range would roughly double the headline capacity. Urban Center’s value is an assumption (the Policy states no du/ac for it).\nAssessed values proxy economic softness; they lag the market and compress at the top.\nThe Sxwtpqyen Area (766 parcels) is conservatively excluded from capacity; the Mullan-area master plan is largely residential, so totals are understated.\nZoning is not analyzed here — the story is deliberately framed against the Growth Policy. A zoning-vs-plan entitlement-gap analysis is the natural next phase.\nACS estimates (tenure, rent burden) carry margins of error; figures cited are point estimates for Missoula city.\nThe walkshed is Euclidean, not network-routed, and GTFS reflects current service."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Missoula’s Housing Capacity Is Already on the Books",
@@ -61,5 +173,40 @@
     "title": "Missoula’s Housing Capacity Is Already on the Books",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nAreal math is done in NAD83 State Plane Montana (feet), the layer’s native projection. See Methods & Sources for cleaning decisions, including ~900 curve geometries and the flood/slope fields where missing genuinely means zero.↩︎\nDensities are the midpoints of the adopted 2035 Growth Policy designation ranges (e.g., Residential Medium 3–11 du/ac → 7), as those ranges are applied in the City’s own annexation and rezoning staff reports; they are centralized in code/00_setup.R. This is plan-implied capacity from the City’s future land-use map, deliberately distinct from current zoning: it measures what the City has already agreed growth should look like.↩︎\nTaxlot dwelling-unit sum (44,317), which includes ~2,050 group-quarters beds on 54 parcels; the ACS counts ~36,000 conventional housing units citywide, so the comparison is indicative rather than census-exact.↩︎"
+  },
+  {
+    "objectID": "reports/map.html",
+    "href": "reports/map.html",
+    "title": "Interactive capacity map",
+    "section": "",
+    "text": "The value of this map is the overlay: turn on all three layers and you can see, block by block, where the capacity clusters sit in relation to public transportation — and which parcels drive each cluster.\n\nCapacity clusters (green hexes) — areas holding significantly more plan-enabled capacity, counted with their neighbors, than a random arrangement would produce (Getis-Ord Gi*). The tiers are confidence levels, not capacity amounts: darker green means stronger evidence.\nOpportunity parcels (blue) — the 3,419 vacant or economically underbuilt parcels where the Growth Policy already calls for more housing. Click any parcel for its current use, designation, acreage, and plan-enabled units.\nMountain Line bus routes (gray) — the transit network; 58% of all plan-enabled units sit within a quarter-mile walk of a stop.\n\n\n\n\n\n\n\n\n\nSources: City of Missoula taxlot layer (2024). Capacity is plan-implied (Growth Policy future land use), not a development forecast — see Methods & Sources."
+  },
+  {
+    "objectID": "reports/part2.html",
+    "href": "reports/part2.html",
+    "title": "Scaling to a Regional Housing Readiness Dashboard",
+    "section": "",
+    "text": "The primary data trap: schema fragmentation across jurisdictions. The pilot data already shows it — Zoning_Mstr mixes CITY -RM1-45 with COUNTY -Rural Residential, Small Agriculture-1: different naming schemes, different density logic, different vintages, in one field. Expanding to Missoula County and unincorporated Frenchtown, Lolo, and Bonner multiplies that: each jurisdiction’s zoning, future land use, and assessor attributes were built for different purposes, and unincorporated areas may have no adopted land-use plan at all. Naively stacking layers produces a dashboard that silently compares incomparable things — the most dangerous failure mode, because it looks finished.\nThe workflow to address it:\n\nCanonical schema first. Define the region-wide analysis schema (the pilot’s derived fields: developable acres, plan-enabled capacity, opportunity class) before acquiring anything.\nPer-jurisdiction crosswalks as data, not code. Each jurisdiction gets a version-controlled crosswalk table (source class → canonical class → assumed density, with a source citation per row). Crosswalks are reviewed with planning staff from each jurisdiction — the local-knowledge check no script can replace.\nOne automated pipeline. The pilot’s R pipeline generalizes: raw sources are never edited; every transformation is scripted; adding a jurisdiction means adding a config block and a crosswalk, not new code.\nValidation gates between stages. Automated checks at each step — row counts reconcile, CRS uniform, geometries valid, no unmapped classes, capacity totals within plausibility bounds per jurisdiction — so errors surface at ingest, not at the client meeting."
+  },
+  {
+    "objectID": "reports/part2.html#a.-scaling-technical-workflow",
+    "href": "reports/part2.html#a.-scaling-technical-workflow",
+    "title": "Scaling to a Regional Housing Readiness Dashboard",
+    "section": "",
+    "text": "The primary data trap: schema fragmentation across jurisdictions. The pilot data already shows it — Zoning_Mstr mixes CITY -RM1-45 with COUNTY -Rural Residential, Small Agriculture-1: different naming schemes, different density logic, different vintages, in one field. Expanding to Missoula County and unincorporated Frenchtown, Lolo, and Bonner multiplies that: each jurisdiction’s zoning, future land use, and assessor attributes were built for different purposes, and unincorporated areas may have no adopted land-use plan at all. Naively stacking layers produces a dashboard that silently compares incomparable things — the most dangerous failure mode, because it looks finished.\nThe workflow to address it:\n\nCanonical schema first. Define the region-wide analysis schema (the pilot’s derived fields: developable acres, plan-enabled capacity, opportunity class) before acquiring anything.\nPer-jurisdiction crosswalks as data, not code. Each jurisdiction gets a version-controlled crosswalk table (source class → canonical class → assumed density, with a source citation per row). Crosswalks are reviewed with planning staff from each jurisdiction — the local-knowledge check no script can replace.\nOne automated pipeline. The pilot’s R pipeline generalizes: raw sources are never edited; every transformation is scripted; adding a jurisdiction means adding a config block and a crosswalk, not new code.\nValidation gates between stages. Automated checks at each step — row counts reconcile, CRS uniform, geometries valid, no unmapped classes, capacity totals within plausibility bounds per jurisdiction — so errors surface at ingest, not at the client meeting."
+  },
+  {
+    "objectID": "reports/part2.html#b.-delegation-quality-control",
+    "href": "reports/part2.html#b.-delegation-quality-control",
+    "title": "Scaling to a Regional Housing Readiness Dashboard",
+    "section": "2b. Delegation & quality control",
+    "text": "2b. Delegation & quality control\n\n\n\n\n\n\n\n\nRole\nOwns\nReasoning\n\n\n\n\nMe (strategic lead)\nSchema and assumption sign-off; crosswalk reviews with jurisdiction staff; client communication; final QC\nKeeps my time on decisions, not production\n\n\nJunior Associate\nData acquisition and management; crosswalk drafting per jurisdiction; analysis runs; source documentation\nJudgment-building work with clear review points\n\n\nGIS Intern\nGeometry QA (validity, topology, CRS); metadata inventory; map production from templates; dashboard layer prep\nWell-specified, checkable tasks that build real skills\n\n\n\nWeekly cadence: Monday stand-up, mid-week working session, Friday review of outputs against the task list.\nQuality control before anything reaches the client:\n\nAutomated: the pipeline’s validation gates run on every rebuild; no hand-edited files anywhere in the chain.\nPeer review: every crosswalk and analysis script reviewed by a second person; intern’s geometry QA spot-checked against county records.\nGround-truthing: for each jurisdiction, a random sample of ~25 parcels checked by hand against assessor records and aerial imagery.\nSensitivity disclosure: headline numbers published with their sensitivity to the key thresholds (density assumptions, softness cutoff), so no single assumption can quietly drive the story.\nSign-off checklist: sources cited, numbers reconciled to pipeline output, cartography standards met — before any deliverable ships."
+  },
+  {
+    "objectID": "reports/part2.html#c.-budget-schedule-50000-fixed-16-weeks",
+    "href": "reports/part2.html#c.-budget-schedule-50000-fixed-16-weeks",
+    "title": "Scaling to a Regional Housing Readiness Dashboard",
+    "section": "2c. Budget & schedule ($50,000 fixed, ~16 weeks)",
+    "text": "2c. Budget & schedule ($50,000 fixed, ~16 weeks)\n\n\n\n\n\n\n\n\n\nWeeks\nTask (deliverable)\nLead\nBudget\n\n\n\n\n1–2\n1. Scoping, canonical schema, data-sharing letters & named contacts per jurisdiction (schema memo)\nSenior\n$4,500\n\n\n2–6\n2. Data acquisition & crosswalks, 5+ jurisdictions (crosswalk workbook)\nJunior Assoc.\n$9,500\n\n\n5–9\n3. Pipeline generalization, capacity analysis, hot spots (validated regional dataset)\nSenior + Junior\n$11,000\n\n\n8–13\n4. Web dashboard build, open-stack: Quarto/Observable + hosted tiles (beta dashboard)\nSenior + Intern\n$10,500\n\n\n11–14\n5. Documentation, methods report, QC & ground-truthing (methods report)\nAll\n$5,500\n\n\n14–16\n6. Client reviews, revisions, training & handoff (training + reproducible handoff)\nSenior\n$4,000\n\n\n—\nContingency (10%)\n—\n$5,000\n\n\n16 weeks\nTotal\n\n$50,000\n\n\n\nBudgeted at blended rates:\n\nSenior Associate — $150/hr × ~130 hours\nJunior Associate — $95/hr × ~190 hours\nGIS Intern — $55/hr × ~135 hours\n≈455 staff hours ($45,000) plus $5,000 contingency (10%), sized to the real risk: other jurisdictions’ data\nInvoicing tied to the milestone deliverable named in each task, not to hours\n\nThe budget’s shape reflects the risk: data normalization (Tasks 1–3, $25,000) is half the project, because the dashboard is only as credible as the crosswalks under it. The schedule’s critical path is jurisdiction response time — outside our control — so Task 1 secures data-sharing letters and a named contact per jurisdiction before analysis dates are promised. Scope boundary: the fixed fee covers the named jurisdictions and one dashboard revision cycle; additions are priced at the stated rates by change order. All required data is public and free (Montana State Library cadastral, city/county GIS, GTFS, ACS); commercial data, travel, and post-handoff hosting are excluded, with any records-request fees absorbed by contingency. The dashboard stays on an open stack — no per-seat licenses to inherit — and Task 6 ends with the client able to re-run the pipeline when next year’s assessor roll lands."
   }
 ]
